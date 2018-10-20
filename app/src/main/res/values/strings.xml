@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Fitness App</string>
+
+    <string name="dbname_users">users</string>
+    <string name="dbname_user_account_settings">user_account_settings</string>
+    <string name="field_email">email</string>
+    <string name="field_username">username</string>
+    <string name="auth_failed">Failed to Authenticate</string>
+
+    //Trainee Home Strings
+    <string name="schedule">Schedule</string>
+    <string name="dietplanner">Diet Planner</string>
+    <string name="progress">Progress</string>
+    <string name="workouts">Workouts</string>
+
+    //Sign In/Up Strings
+    <string name="ContactUs">Contact Us</string>
+    <string name="GoSignIn">Already Have an Account?\n Sign In</string>
+    <string name="createAccount">Create An Account</string>
+</resources>

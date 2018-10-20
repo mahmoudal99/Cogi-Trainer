@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity">
+
+    <LinearLayout
+        android:id="@+id/login_linlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:background="@color/outline"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/LogoHeight"
+                    android:layout_height="@dimen/LogoWidth"
+                    android:src="@drawable/logo_with_text_white"/>
+
+                <EditText
+                    android:id="@+id/emailET"
+                    android:layout_width="@dimen/SignInEditTextWidth"
+                    android:layout_height="@dimen/SignInEditTextHeight"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Email"
+                    android:textColorHint="@color/outline"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"/>
+
+                <EditText
+                    android:id="@+id/firstnameET"
+                    android:layout_width="@dimen/SignInEditTextWidth"
+                    android:layout_height="@dimen/SignInEditTextHeight"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="First Name"
+                    android:textColorHint="@color/outline"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"/>
+
+                <EditText
+                    android:id="@+id/lastnameET"
+                    android:layout_width="@dimen/SignInEditTextWidth"
+                    android:layout_height="@dimen/SignInEditTextHeight"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Last Name"
+                    android:textColorHint="@color/outline"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"/>
+
+                <EditText
+                    android:id="@+id/usernameET"
+                    android:layout_width="@dimen/SignInEditTextWidth"
+                    android:layout_height="@dimen/SignInEditTextHeight"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Username"
+                    android:textColorHint="@color/outline"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"/>
+
+                <EditText
+                    android:id="@+id/passwordET"
+                    android:layout_width="@dimen/SignInEditTextWidth"
+                    android:layout_height="@dimen/SignInEditTextHeight"
+                    android:background="@drawable/edit_text_bg"
+                    android:layout_marginTop="20dp"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/outline"
+                    android:gravity="center"
+                    android:textSize="20sp"/>
+
+                <Button
+                    android:id="@+id/signUpBTN"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/signup_btn_bg"
+                    android:text="Sign Up"
+                    android:textSize="20sp"
+                    android:textColor="@color/outline"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/signInText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:text="@string/GoSignIn"
+                    android:textColor="@color/outline"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:background="@color/white"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/outline"/>
+
+                <TextView
+                    android:layout_width="240dp"
+                    android:layout_height="55dp"
+                    android:text="@string/ContactUs"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/outline"
+                    android:background="@color/white"/>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

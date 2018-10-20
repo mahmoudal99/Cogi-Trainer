@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "769320618727",
+    "firebase_url": "https://trainerapp-49122.firebaseio.com",
+    "project_id": "trainerapp-49122",
+    "storage_bucket": "trainerapp-49122.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769320618727:android:d46b71c348913ade",
+        "android_client_info": {
+          "package_name": "onipractice.mahmoud.com.fitnessapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769320618727-8ohht29armv164hd26iaae0nk7ajndbq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "onipractice.mahmoud.com.fitnessapp",
+            "certificate_hash": "3ef2fa95271d234cfedf3cac3e5efbd9ed8b59ac"
+          }
+        },
+        {
+          "client_id": "769320618727-bf5er2chccdfriougp8i23nr4isak9sv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZscs-oGUr1qIzZh_2Hx6hZqdqITaED4g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769320618727-bf5er2chccdfriougp8i23nr4isak9sv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity">
+
+    <LinearLayout
+        android:id="@+id/login_linlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="350dp"
+            android:background="@drawable/top_card_bg"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/LogoWidth"
+                    android:layout_height="@dimen/LogoHeight"
+                    android:src="@drawable/logo_with_text_white"/>
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="@dimen/SignInEditTextWidth"
+                    android:layout_height="@dimen/SignInEditTextHeight"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Email"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="@dimen/SignInEditTextWidth"
+                    android:layout_height="@dimen/SignInEditTextHeight"
+                    android:background="@drawable/edit_text_bg"
+                    android:layout_marginTop="20dp"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:gravity="center"
+                    android:textSize="20sp"/>
+
+                <Button
+                    android:id="@+id/loginBTN"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/blue_bg"
+                    android:text="Login"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/CreateAccountText"
+                    android:layout_width="240dp"
+                    android:layout_height="55dp"
+                    android:text="@string/createAccount"
+                    android:textColor="@color/outline"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:background="@color/white"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/outline"/>
+
+                <Button
+                    android:layout_width="240dp"
+                    android:layout_height="55dp"
+                    android:text="@string/ContactUs"
+                    android:textSize="15sp"
+                    android:textColor="@color/outline"
+                    android:background="@color/white"/>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

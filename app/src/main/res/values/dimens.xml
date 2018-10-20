@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //Sign In Layout Dimens
+    <dimen name="SignInEditTextWidth">280dp</dimen>
+    <dimen name="SignInEditTextHeight">45dp</dimen>
+    <dimen name="LogoWidth">140dp</dimen>
+    <dimen name="LogoHeight">140dp</dimen>
+
+    //Trainee Home Layout Dimens
+    <dimen name="CardViewWidth">360dp</dimen>
+    <dimen name="CardViewHeight">130dp</dimen>
+    <dimen name="ImageViewWidth">60dp</dimen>
+    <dimen name="ImageViewHeight">60dp</dimen>
+
+    //Choose Position Layout Dimens
+    <dimen name="RelativeLayoutWidth">250dp</dimen>
+    <dimen name="RelativeLayoutHeight">250dp</dimen>
+    <dimen name="OptionImageViewWidth">150dp</dimen>
+    <dimen name="OptionImageViewHeight">150dp</dimen>
+</resources>
