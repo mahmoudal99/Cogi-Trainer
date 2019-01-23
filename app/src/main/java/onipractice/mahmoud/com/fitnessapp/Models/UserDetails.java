@@ -9,13 +9,51 @@ public class UserDetails {
     private String lastname;
     private String PrefChosen;
     private String Preference;
+    private String email;
 
-    public UserDetails(String username, String firstname, String lastname, String PrefChosen, String Preference){
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    private String image;
+
+    @Override
+    public String toString() {
+        return "UserDetails{" +
+                "username='" + username + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", PrefChosen='" + PrefChosen + '\'' +
+                ", Preference='" + Preference + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    public UserDetails(String username, String firstname, String lastname, String PrefChosen, String Preference, String email, String image){
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
         this.PrefChosen = PrefChosen;
         this.Preference = Preference;
+        this.email = email;
+        this.image = image;
+
+    }
+
+    public static String getTAG() {
+        return TAG;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPreference() {
@@ -58,12 +96,4 @@ public class UserDetails {
         this.lastname = lastname;
     }
 
-    @Override
-    public String toString() {
-        return "UserDetails{" +
-                "username='" + username + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
-    }
 }

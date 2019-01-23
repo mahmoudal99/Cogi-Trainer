@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TraineeHomeActivity"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/linLayoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/backArrow"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                app:srcCompat="@drawable/ic_back"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif-monospace"
+                android:layout_centerInParent="true"
+                android:text="Weights"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/outline"/>
+
+    <com.smarteist.autoimageslider.SliderLayout
+        android:layout_width="400dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:id="@+id/imageSlider"/>
+
+    <ScrollView
+        android:layout_marginTop="280dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/chestCardView"
+                    android:layout_width="180dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:backgroundTint="@color/outline"
+                    android:layout_gravity="center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="3"
+                            android:fontFamily="serif-monospace"
+                            android:text="Chest"
+                            android:textColor="@color/white"
+                            android:gravity="center_horizontal"
+                            android:textSize="25sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/legsCardView"
+                    android:layout_width="180dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:backgroundTint="@color/outline"
+                    android:layout_gravity="center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="3"
+                            android:fontFamily="serif-monospace"
+                            android:text="Legs"
+                            android:textColor="@color/white"
+                            android:gravity="center_horizontal"
+                            android:textSize="25sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/backCardView"
+                    android:layout_width="180dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:backgroundTint="@color/outline"
+                    android:layout_gravity="center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="3"
+                            android:fontFamily="serif-monospace"
+                            android:text="Back"
+                            android:textColor="@color/white"
+                            android:gravity="center_horizontal"
+                            android:textSize="25sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/shouldersCardView"
+                    android:layout_width="180dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginRight="5dp"
+                    android:backgroundTint="@color/outline"
+                    android:layout_gravity="center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="3"
+                            android:fontFamily="serif-monospace"
+                            android:text="Shoulders"
+                            android:textColor="@color/white"
+                            android:gravity="center_horizontal"
+                            android:textSize="25sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/armsCardView"
+                    android:layout_width="180dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:backgroundTint="@color/outline"
+                    android:layout_gravity="center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="3"
+                            android:fontFamily="serif-monospace"
+                            android:text="Arms"
+                            android:textColor="@color/white"
+                            android:gravity="center_horizontal"
+                            android:textSize="25sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/absCardView"
+                    android:layout_width="180dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginRight="5dp"
+                    android:backgroundTint="@color/outline"
+                    android:layout_gravity="center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="3"
+                            android:fontFamily="serif-monospace"
+                            android:text="Abs"
+                            android:textColor="@color/white"
+                            android:gravity="center_horizontal"
+                            android:textSize="25sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

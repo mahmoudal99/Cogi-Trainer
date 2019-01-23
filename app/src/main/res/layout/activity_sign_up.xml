@@ -36,7 +36,7 @@
                     android:layout_height="@dimen/SignInEditTextHeight"
                     android:background="@drawable/edit_text_bg"
                     android:hint="Email"
-                    android:textColorHint="@color/outline"
+                    android:textColorHint="@color/white"
                     android:gravity="center"
                     android:textSize="20sp"
                     android:layout_marginTop="20dp"/>
@@ -46,8 +46,8 @@
                     android:layout_width="@dimen/SignInEditTextWidth"
                     android:layout_height="@dimen/SignInEditTextHeight"
                     android:background="@drawable/edit_text_bg"
-                    android:hint="First Name"
-                    android:textColorHint="@color/outline"
+                    android:hint="@string/first_name"
+                    android:textColorHint="@color/white"
                     android:gravity="center"
                     android:textSize="20sp"
                     android:layout_marginTop="20dp"/>
@@ -57,8 +57,8 @@
                     android:layout_width="@dimen/SignInEditTextWidth"
                     android:layout_height="@dimen/SignInEditTextHeight"
                     android:background="@drawable/edit_text_bg"
-                    android:hint="Last Name"
-                    android:textColorHint="@color/outline"
+                    android:hint="@string/last_name"
+                    android:textColorHint="@color/white"
                     android:gravity="center"
                     android:textSize="20sp"
                     android:layout_marginTop="20dp"/>
@@ -68,8 +68,8 @@
                     android:layout_width="@dimen/SignInEditTextWidth"
                     android:layout_height="@dimen/SignInEditTextHeight"
                     android:background="@drawable/edit_text_bg"
-                    android:hint="Username"
-                    android:textColorHint="@color/outline"
+                    android:hint="@string/username"
+                    android:textColorHint="@color/white"
                     android:gravity="center"
                     android:textSize="20sp"
                     android:layout_marginTop="20dp"/>
@@ -80,9 +80,9 @@
                     android:layout_height="@dimen/SignInEditTextHeight"
                     android:background="@drawable/edit_text_bg"
                     android:layout_marginTop="20dp"
-                    android:hint="Password"
+                    android:hint="@string/Password"
                     android:inputType="textPassword"
-                    android:textColorHint="@color/outline"
+                    android:textColorHint="@color/white"
                     android:gravity="center"
                     android:textSize="20sp"/>
 
@@ -91,10 +91,10 @@
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/signup_btn_bg"
-                    android:text="Sign Up"
+                    android:background="@null"
+                    android:text="@string/sign_up"
                     android:textSize="20sp"
-                    android:textColor="@color/outline"/>
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
@@ -117,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:text="@string/GoSignIn"
-                    android:textColor="@color/outline"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:textSize="20sp"
                     android:background="@color/white"/>
@@ -125,7 +125,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/outline"/>
+                    android:background="@color/black"/>
 
                 <TextView
                     android:layout_width="240dp"
@@ -133,7 +133,7 @@
                     android:text="@string/ContactUs"
                     android:gravity="center"
                     android:textSize="20sp"
-                    android:textColor="@color/outline"
+                    android:textColor="@color/black"
                     android:background="@color/white"/>
 
 
