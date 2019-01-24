@@ -20,6 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import onipractice.mahmoud.com.fitnessapp.Models.UserDetails;
 import onipractice.mahmoud.com.fitnessapp.Utils.FirebaseMethods;
 
@@ -27,12 +30,13 @@ public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
 
-    String email, username, firstname, lastname, password;
-    EditText emailET, usernameET, firstnameET, lastnameET, passwordET;
+    String email, firstname, lastname, password;
+    EditText emailET, firstnameET, lastnameET, passwordET;
     Button signUpBTN;
     TextView signInText;
     Context context;
     FirebaseMethods firebaseMethods;
+    String userSignedUp;
 
     //firebase
     private FirebaseAuth auth;
@@ -62,7 +66,6 @@ public class SignUpActivity extends AppCompatActivity {
         emailET = (EditText) findViewById(R.id.emailET);
         firstnameET = (EditText) findViewById(R.id.firstnameET);
         lastnameET = (EditText) findViewById(R.id.lastnameET);
-        usernameET = (EditText) findViewById(R.id.usernameET);
         passwordET = (EditText) findViewById(R.id.passwordET);
         signInText = (TextView) findViewById(R.id.signInText);
         signUpBTN = (Button) findViewById(R.id.signUpBTN);
@@ -71,7 +74,6 @@ public class SignUpActivity extends AppCompatActivity {
     private void clearWidgets(){
 
         emailET.getText().clear();
-        usernameET.getText().clear();
         passwordET.getText().clear();
         firstnameET.getText().clear();
         lastnameET.getText().clear();
@@ -94,20 +96,50 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 email = emailET.getText().toString();
-                username = usernameET.getText().toString();
-                password = passwordET.getText().toString();
                 firstname = firstnameET.getText().toString();
                 lastname = lastnameET.getText().toString();
 
                 email = emailET.getText().toString();
-                password = passwordET.getText().toString();
 
-                firebaseMethods.registerNewEmail(email, password, firstname, lastname, username);
-                Toast.makeText(context, "Check your inbox", Toast.LENGTH_SHORT).show();
-                clearWidgets();
+                if(passwordET.getText().toString().length()<8 &&!isValidPassword(passwordET.getText().toString())){
+
+                    Toast.makeText(context,
+                            "Password must be over 8 characters & contain atleast\n one lowercase, one uppercase, one number & a special character (@!#$)",
+                            Toast.LENGTH_SHORT).show();
+
+                    passwordET.getText().clear();
+
+                }else{
+
+                    password = passwordET.getText().toString();
+
+                    firebaseMethods.registerNewEmail(email, password, firstname, lastname);
+                    Toast.makeText(context, "Check your inbox", Toast.LENGTH_SHORT).show();
+
+                    clearWidgets();
+
+                    Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                }
+
+
             }
 
         });
+
+    }
+
+    public static boolean isValidPassword(final String password) {
+
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "[a-zA-Z0-9\\!\\@\\#\\$]{8,24}";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
 
     }
 

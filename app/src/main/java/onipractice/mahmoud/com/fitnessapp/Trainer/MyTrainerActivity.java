@@ -1,15 +1,21 @@
 package onipractice.mahmoud.com.fitnessapp.Trainer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +23,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import onipractice.mahmoud.com.fitnessapp.Messaging.ChatActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
 import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
@@ -29,18 +39,24 @@ public class MyTrainerActivity extends AppCompatActivity {
     ImageView chat_img, back_arrow;
     TextView nameTv, lastnameTv, availabilityTv, specialityTv;
 
-    String name, surname, id, availability, speciality;
+    Button sendClientRequestBtn, deleteClientRequestBtn;
+    String name, surname, id, availability, speciality, currentState;
 
     //firebase
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authStateListener;
     DatabaseReference rootRef;
     DatabaseReference uidRef;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_trainer);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        Toast.makeText(MyTrainerActivity.this, String.valueOf(user.getUid()), Toast.LENGTH_SHORT).show();
 
         id = getIntent().getStringExtra("user_id");
         initialize();
@@ -59,6 +75,7 @@ public class MyTrainerActivity extends AppCompatActivity {
         back_arrow = (ImageView) findViewById(R.id.backArrow);
         specialityTv = (TextView) findViewById(R.id.specialityTv);
         availabilityTv = (TextView) findViewById(R.id.availabilityTv);
+        deleteClientRequestBtn = (Button) findViewById(R.id.deleteFriendRequest);
     }
 
     private void setUpWidgets(){
@@ -78,6 +95,47 @@ public class MyTrainerActivity extends AppCompatActivity {
                 intent.putExtra("user_id", id);
                 intent.putExtra("user", "trainee");
                 startActivity(intent);
+            }
+        });
+
+        deleteClientRequestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteRequestState();
+            }
+        });
+
+    }
+
+    private void deleteRequestState(){
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        Toast.makeText(MyTrainerActivity.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+
+        Map unfriendMap = new HashMap();
+        unfriendMap.put("Friends/" + user.getUid() + "/" + "trainerId", null);
+
+        rootRef.updateChildren(unfriendMap, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+
+                if(databaseError == null){
+
+                    currentState = "not_friends";
+
+                    deleteClientRequestBtn.setVisibility(View.INVISIBLE);
+                    deleteClientRequestBtn.setEnabled(false);
+                    Intent intent = new Intent(MyTrainerActivity.this, TraineeHomeActivity.class);
+                    startActivity(intent);
+
+
+                }else {
+
+                    String error = databaseError.getMessage();
+                    Toast.makeText(MyTrainerActivity.this, error, Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
     }

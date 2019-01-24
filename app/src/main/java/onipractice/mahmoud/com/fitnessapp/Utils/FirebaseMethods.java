@@ -27,6 +27,7 @@ import onipractice.mahmoud.com.fitnessapp.Models.DietModel;
 import onipractice.mahmoud.com.fitnessapp.Models.TrainingDayModel;
 import onipractice.mahmoud.com.fitnessapp.Models.UserDetails;
 import onipractice.mahmoud.com.fitnessapp.SignInActivity;
+import onipractice.mahmoud.com.fitnessapp.SignUpActivity;
 import onipractice.mahmoud.com.fitnessapp.TimetableActivity;
 
 public class FirebaseMethods {
@@ -209,7 +210,7 @@ public class FirebaseMethods {
         uidRef.child(userID).child("gender").setValue(gender);
     }
 
-    public void addUser(String id, String username,String firstname,String lastname, String email){
+    public void addUser(String id, String firstname,String lastname, String email){
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference uidRef = rootRef.child("user_account_settings");
@@ -218,7 +219,7 @@ public class FirebaseMethods {
             userID = auth.getCurrentUser().getUid();
         }
 
-        UserDetails user = new UserDetails(username, firstname, lastname, "false", "Null", email, "default");
+        UserDetails user = new UserDetails(firstname, lastname, "false", "Null", email, "default");
 
         uidRef.child(id).setValue(user);
 
@@ -269,7 +270,7 @@ public class FirebaseMethods {
 
     }
 
-    public void registerNewEmail(final String email, String password, final String firstname, final String lastname, final String username){
+    public void registerNewEmail(final String email, String password, final String firstname, final String lastname){
 
         auth.createUserWithEmailAndPassword(email, password)
 
@@ -294,8 +295,19 @@ public class FirebaseMethods {
                             FirebaseUser user = auth.getCurrentUser();
                             String id = user.getUid();
 
-                            addUser(id, username, firstname, lastname, email);
+                            addUser(id, firstname, lastname, email);
                             sendVerificationEmail();
+                            user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            if (user != null) {
+                                // User is signed in
+                                auth = FirebaseAuth.getInstance();
+                                auth.signOut();
+
+                            } else {
+                                // User is signed out
+                                Log.d(TAG, "NO USER");
+                            }
                         }
                     }
 

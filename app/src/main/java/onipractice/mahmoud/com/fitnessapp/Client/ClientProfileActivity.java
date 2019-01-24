@@ -27,13 +27,15 @@ import java.util.Map;
 
 import onipractice.mahmoud.com.fitnessapp.Messaging.ChatActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
+import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
+import onipractice.mahmoud.com.fitnessapp.Trainer.AddTrainerActivity;
 
 public class ClientProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "ProfileActivity";
 
     // Variables
-    String name, surname, userId, user_id, currentState, referenceString;
+    String name, surname, userId, user_id, currentState, referenceString, userType;
 
     // Widgets
     Button sendClientRequestBtn, deleteClientRequestBtn;
@@ -59,6 +61,8 @@ public class ClientProfileActivity extends AppCompatActivity {
 
         referenceString = getIntent().getStringExtra("reference");
         user_id = getIntent().getStringExtra("user_id");
+
+        userType = getIntent().getStringExtra("user");
 
         currentState = "not_friends";
 
@@ -132,8 +136,17 @@ public class ClientProfileActivity extends AppCompatActivity {
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ClientProfileActivity.this, ClientsActivity.class);
-                startActivity(intent);
+
+                if(userType.equals("trainee")){
+
+                    Intent intent = new Intent(ClientProfileActivity.this, AddTrainerActivity.class);
+                    startActivity(intent);
+
+                }else{
+                    Intent intent = new Intent(ClientProfileActivity.this, ClientsActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

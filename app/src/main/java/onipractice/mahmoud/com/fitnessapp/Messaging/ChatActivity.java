@@ -99,9 +99,26 @@ public class ChatActivity extends AppCompatActivity {
         messagesRecyclerView.setLayoutManager(linearLayoutManager);
         messagesRecyclerView.setAdapter(messageAdapter);
 
+        if (Build.VERSION.SDK_INT >= 11) {
+            messagesRecyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                @Override
+                public void onLayoutChange(View v,
+                                           int left, int top, int right, int bottom,
+                                           int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                    if (bottom < oldBottom) {
+                        messagesRecyclerView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                messagesRecyclerView.smoothScrollToPosition(
+                                        messagesRecyclerView.getAdapter().getItemCount() - 1);
+                            }
+                        }, 100);
+                    }
+                }
+            });
+        }
+
         loadMessages();
-
-
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +207,14 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sendMessage();
+
+                messagesRecyclerView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        messagesRecyclerView.smoothScrollToPosition(
+                                messagesRecyclerView.getAdapter().getItemCount() - 1);
+                    }
+                }, 100);
             }
         });
 
@@ -298,6 +323,7 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 }
             });
+
         }
 
     }
@@ -331,6 +357,8 @@ public class ChatActivity extends AppCompatActivity {
                     messageAdapter.notifyDataSetChanged();
                     messagesRecyclerView.scrollToPosition(list.size());
                     refreshLayout.setRefreshing(false);
+
+
                 }
 
             }

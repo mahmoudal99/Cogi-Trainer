@@ -98,6 +98,7 @@ public class ClientsActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent friendIntent = new Intent(ClientsActivity.this, ClientProfileActivity.class);
                         friendIntent.putExtra("user_id", user_id);
+                        friendIntent.putExtra("user", "trainer");
                         friendIntent.putExtra("reference", "user_account_settings");
                         startActivity(friendIntent);
                     }

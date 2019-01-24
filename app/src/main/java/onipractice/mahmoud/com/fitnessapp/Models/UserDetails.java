@@ -4,7 +4,6 @@ public class UserDetails {
 
     private static final String TAG = "UserDtails";
 
-    private String username;
     private String firstname;
     private String lastname;
     private String PrefChosen;
@@ -24,7 +23,6 @@ public class UserDetails {
     @Override
     public String toString() {
         return "UserDetails{" +
-                "username='" + username + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", PrefChosen='" + PrefChosen + '\'' +
@@ -33,10 +31,9 @@ public class UserDetails {
                 '}';
     }
 
-    public UserDetails(String username, String firstname, String lastname, String PrefChosen, String Preference, String email, String image){
+    public UserDetails(String firstname, String lastname, String PrefChosen, String Preference, String email, String image){
         this.firstname = firstname;
         this.lastname = lastname;
-        this.username = username;
         this.PrefChosen = PrefChosen;
         this.Preference = Preference;
         this.email = email;
@@ -70,14 +67,6 @@ public class UserDetails {
 
     public void setPrefChosen(String prefChosen) {
         PrefChosen = prefChosen;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getFirstname() {

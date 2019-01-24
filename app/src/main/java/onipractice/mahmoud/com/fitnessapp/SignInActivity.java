@@ -40,6 +40,7 @@ public class SignInActivity extends AppCompatActivity {
     private TextView CreateAccountText;
     private String email, password, userID;
     private String result;
+    String userSignedUp;
 
     //Shared Preference
     SharedPreferences.Editor editor;
@@ -65,11 +66,11 @@ public class SignInActivity extends AppCompatActivity {
         editor = cacheData.edit();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
         if (user != null) {
             // User is signed in
-            Intent i = new Intent(SignInActivity.this, TraineeHomeActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
+           checkPreference();
         } else {
             // User is signed out
             Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -149,6 +150,8 @@ public class SignInActivity extends AppCompatActivity {
 
     private void checkPreference(){
 
+        auth = FirebaseAuth.getInstance();
+
         if(auth.getCurrentUser() != null){
             userID = auth.getCurrentUser().getUid();
         }
@@ -172,6 +175,7 @@ public class SignInActivity extends AppCompatActivity {
                 }else if (result.equals("Trainee")){
 
                     Intent intent = new Intent(context, TraineeHomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
 
                 }

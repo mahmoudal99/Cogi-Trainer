@@ -130,31 +130,8 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/relLayout4"
-            android:layout_below="@id/relLayout3"
-            android:layout_marginTop="10dp"
-            android:layout_width="@dimen/CardViewWidth"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
-
-            <TextView
-                android:id="@+id/usernameEt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:layout_marginStart="50dp"
-                android:background="@null"
-                android:fontFamily="serif-monospace"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
             android:id="@+id/relLayout5"
-            android:layout_below="@id/relLayout4"
+            android:layout_below="@id/relLayout3"
             android:layout_marginTop="10dp"
             android:layout_width="@dimen/CardViewWidth"
             android:layout_height="wrap_content"

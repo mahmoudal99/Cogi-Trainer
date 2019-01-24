@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -17,8 +18,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import onipractice.mahmoud.com.fitnessapp.Client.ClientProfileActivity;
+import onipractice.mahmoud.com.fitnessapp.Client.ClientsActivity;
+import onipractice.mahmoud.com.fitnessapp.Messaging.ChatActivity;
 import onipractice.mahmoud.com.fitnessapp.Models.TrainerModel;
 import onipractice.mahmoud.com.fitnessapp.R;
+import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
 
 public class AddTrainerActivity extends AppCompatActivity {
 
@@ -28,10 +32,25 @@ public class AddTrainerActivity extends AppCompatActivity {
     DatabaseReference rootRef;
     DatabaseReference uidRef;
 
+    ImageView backArrow;
+    String userType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_trainer);
+
+        backArrow = (ImageView) findViewById(R.id.backArrow);
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(AddTrainerActivity.this, TraineeHomeActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         usersList = (RecyclerView) findViewById(R.id.recyclerView);
         usersList.setHasFixedSize(true);
@@ -65,6 +84,7 @@ public class AddTrainerActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent friendIntent = new Intent(AddTrainerActivity.this, ClientProfileActivity.class);
                         friendIntent.putExtra("user_id", user_id);
+                        friendIntent.putExtra("user", "trainee");
                         friendIntent.putExtra("reference", "trainer");
                         startActivity(friendIntent);
                     }

@@ -56,17 +56,16 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="70dp"
+        android:layout_above="@id/bottom"
+        android:layout_alignBaseline="@id/bottom"
         android:background="@color/chatBg">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/messagesRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/bottom"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="57dp"
-            android:layout_marginBottom="-50dp">
+            android:layout_height="match_parent"
+            android:layout_alignBaseline="@id/bottom"
+            android:layout_marginTop="57dp">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -102,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Send Message"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="15dp"
             android:textColorHint="@color/grey"
             android:layout_gravity="center_vertical"
             android:textSize="20sp"

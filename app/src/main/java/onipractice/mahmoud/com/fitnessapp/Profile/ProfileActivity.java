@@ -44,11 +44,11 @@ public class ProfileActivity extends AppCompatActivity  {
     private static int RESULT_LOAD_IMG = 1;
 
     // Widgets
-    TextView emailEt, nameEt, surnameEt, usernameEt, editProfileTv, editProfImgTv, changePasswordTv, logoutTv;
+    TextView emailEt, nameEt, surnameEt, editProfileTv, editProfImgTv, changePasswordTv, logoutTv;
     CircleImageView profile;
     ImageView backArrow;
 
-    String name, surname, username, userId, image, current_user, user;
+    String name, surname, userId, image, current_user, user;
 
     Context context;
 
@@ -87,9 +87,8 @@ public class ProfileActivity extends AppCompatActivity  {
 
     }
 
-    private void setWidgets(String username, String name, String surname){
+    private void setWidgets(String name, String surname){
 
-        usernameEt.setText(username);
         nameEt.setText(name);
         surnameEt.setText(surname);
         emailEt.setText(auth.getCurrentUser().getEmail());
@@ -102,7 +101,6 @@ public class ProfileActivity extends AppCompatActivity  {
         emailEt = findViewById(R.id.emailEt);
         nameEt =  findViewById(R.id.nameEt);
         surnameEt = findViewById(R.id.surnameEt);
-        usernameEt = findViewById(R.id.usernameEt);
         changePasswordTv = findViewById(R.id.changePasswordTv);
         editProfileTv = findViewById(R.id.editProfileTv);
         editProfImgTv = findViewById(R.id.editProfImgTv);
@@ -196,10 +194,9 @@ public class ProfileActivity extends AppCompatActivity  {
 
                 name = dataSnapshot.child("firstname").getValue(String.class);
                 surname = dataSnapshot.child("lastname").getValue(String.class);
-                username = dataSnapshot.child("username").getValue(String.class);
                 image = dataSnapshot.child("image").getValue(String.class);
 
-                setWidgets(username, name, surname);
+                setWidgets(name, surname);
             }
 
             @Override

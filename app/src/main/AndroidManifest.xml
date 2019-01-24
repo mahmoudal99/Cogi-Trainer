@@ -18,11 +18,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <service android:name=".CloudMessaging.FirebaseInstanceIdService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <service android:name=".CloudMessaging.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -38,7 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".SignUpActivity" />
+
         <activity android:name=".ChoosePreferenceActivity" />
         <activity android:name=".Trainer.PersonalTrainerHomeActivity" />
         <activity
@@ -82,13 +86,6 @@
         <activity android:name=".Training.CardioActivity" />
         <activity android:name=".Training.WeightsActivity" />
         <activity android:name=".Training.StretchingActivity" />
-        <activity android:name=".TrackerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <service
             android:name=".TrackerService"

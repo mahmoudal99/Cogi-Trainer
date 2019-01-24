@@ -152,6 +152,7 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
 
                 if(trainerSet.equals("false")){
                     Intent intent = new Intent(TraineeHomeActivity.this, AddTrainerActivity.class);
+                    intent.putExtra("user", "trainee");
                     startActivity(intent);
                 }else{
                     Intent intent = new Intent(context, ChatActivity.class);

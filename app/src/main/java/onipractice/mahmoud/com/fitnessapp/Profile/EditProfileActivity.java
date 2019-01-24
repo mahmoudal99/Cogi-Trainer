@@ -47,13 +47,13 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     private static final String TAG = "ProfileActivity";
 
     // Widgets
-    TextView emailTv, nameTv, surnameTv, usernameTv, confirm, cancel, genderTv, weightTv, heightTv, weightLabel, heightLabel, genderLabel;
-    EditText passwordEt, emailEt, confirm_username;
+    TextView emailTv, nameTv, surnameTv, confirm, cancel, genderTv, weightTv, heightTv, weightLabel, heightLabel, genderLabel;
+    EditText passwordEt, emailEt;
     ImageView backArrow;
     Button maleBtn, femaleBtn;
 
     // Variables
-    String username, name, surname, userId, passwordDialog, emailDialog, usernameDialog, weight, gender, height, newGender, user;
+    String name, surname, userId, passwordDialog, emailDialog, usernameDialog, weight, gender, height, newGender, user;
     int newWeight, newHeight;
 
     Context context;
@@ -92,7 +92,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         emailTv = findViewById(R.id.emailTv);
         nameTv =  findViewById(R.id.nameTv);
         surnameTv = findViewById(R.id.surnameTv);
-        usernameTv = findViewById(R.id.usernameTv);
         backArrow = (ImageView) findViewById(R.id.backArrow);
         weightTv = findViewById(R.id.weightTv);
         genderTv = findViewById(R.id.genderTv);
@@ -113,15 +112,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
-        usernameTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                usernameDialog();
-
-            }
-        });
-
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,9 +123,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    private void setUserSettings(String username, String name, String surname){
-
-        usernameTv.setText(username);
+    private void setUserSettings(String name, String surname){
         nameTv.setText(name);
         surnameTv.setText(surname);
         emailTv.setText(auth.getCurrentUser().getEmail().toString());
@@ -164,9 +152,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
                     name = dataSnapshot.child("firstname").getValue(String.class);
                     surname = dataSnapshot.child("lastname").getValue(String.class);
-                    username = dataSnapshot.child("username").getValue(String.class);
 
-                    setUserSettings(username, name, surname);
+                    setUserSettings(name, surname);
                 }
             }
 
@@ -244,49 +231,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             }
         });
     }
-
-
-
-    //---------- Change Username Dialog ----------//
-
-    private void usernameDialog(){
-
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(EditProfileActivity.this);
-        View mView = getLayoutInflater().inflate(R.layout.dialog_change_username, null);
-
-        confirm_username = (EditText) mView.findViewById(R.id.confirm_username);
-
-        confirm = (TextView) mView.findViewById(R.id.dialogConfirm);
-        cancel = (TextView) mView.findViewById(R.id.dialogCancel);
-        mBuilder.setView(mView);
-        final AlertDialog dialog = mBuilder.create();
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        lp.gravity = Gravity.BOTTOM;
-        lp.windowAnimations = R.style.DialogAnimation;
-        dialog.getWindow().setAttributes(lp);
-        dialog.show();
-
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                usernameDialog = confirm_username.getText().toString();
-                dialog.dismiss();
-                firebaseMethods.checkIfUsernameExists(usernameDialog);
-            }
-        });
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-    }
-
-
 
     //---------- Change Gender Dialog ----------//
 

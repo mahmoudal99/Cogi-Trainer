@@ -21,80 +21,71 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="@dimen/LogoHeight"
                     android:layout_height="@dimen/LogoWidth"
-                    android:src="@drawable/logo_with_text_white"/>
+                    android:src="@drawable/logo_with_text_white" />
 
                 <EditText
                     android:id="@+id/emailET"
                     android:layout_width="@dimen/SignInEditTextWidth"
                     android:layout_height="@dimen/SignInEditTextHeight"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/edit_text_bg"
+                    android:gravity="center"
                     android:hint="Email"
                     android:textColorHint="@color/white"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"/>
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/firstnameET"
                     android:layout_width="@dimen/SignInEditTextWidth"
                     android:layout_height="@dimen/SignInEditTextHeight"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/edit_text_bg"
+                    android:gravity="center"
                     android:hint="@string/first_name"
                     android:textColorHint="@color/white"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"/>
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/lastnameET"
                     android:layout_width="@dimen/SignInEditTextWidth"
                     android:layout_height="@dimen/SignInEditTextHeight"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/edit_text_bg"
+                    android:gravity="center"
                     android:hint="@string/last_name"
                     android:textColorHint="@color/white"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"/>
-
-                <EditText
-                    android:id="@+id/usernameET"
-                    android:layout_width="@dimen/SignInEditTextWidth"
-                    android:layout_height="@dimen/SignInEditTextHeight"
-                    android:background="@drawable/edit_text_bg"
-                    android:hint="@string/username"
-                    android:textColorHint="@color/white"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"/>
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/passwordET"
                     android:layout_width="@dimen/SignInEditTextWidth"
                     android:layout_height="@dimen/SignInEditTextHeight"
-                    android:background="@drawable/edit_text_bg"
                     android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:gravity="center"
                     android:hint="@string/Password"
                     android:inputType="textPassword"
                     android:textColorHint="@color/white"
-                    android:gravity="center"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/signUpBTN"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="50dp"
                     android:background="@null"
                     android:text="@string/sign_up"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
