@@ -46,39 +46,34 @@ import onipractice.mahmoud.com.fitnessapp.Utils.FirebaseMethods;
 public class TimetableActivity extends AppCompatActivity implements RecurrencePickerDialogFragment.OnRecurrenceSetListener,
         TimePickerDialogFragment.TimePickerDialogHandler{
 
+    private EventRecurrence mEventRecurrence = new EventRecurrence();
+
+    private static final String FRAG_TAG_RECUR_PICKER = "recurrencePickerDialogFragment";
     private static final String TAG = "TimetableActivity";
 
     //Firebase
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference reference;
-    private FirebaseAuth auth;
-    FirebaseUser mUser;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference reference;
+    private FirebaseAuth authentication;
+    private FirebaseUser currentUser;
     private FirebaseAuth.AuthStateListener authStateListener;
-    FirebaseMethods firebaseMethods;
-    ImageView delete;
+    private FirebaseMethods firebaseMethods;
+
 
     //Variables
-    char icon;
-    int itemCounter;
-
-    private EventRecurrence mEventRecurrence = new EventRecurrence();
-    private static final String FRAG_TAG_RECUR_PICKER = "recurrencePickerDialogFragment";
+    private char icon;
+    private String value, mRrule, day, time, workout;
 
     //Widgets
-    TextView tvModuleDay, tvModuleWorkout, tvModuleIcon, tvModuleTime, timeTv, dayTv;
-    EditText workoutEt;
-    ListView list;
-    String value, mRrule, day, time, workout;
-    UsersAdapter adapter;
-    ArrayList<WorkoutsObject> arrayList;
-    WorkoutsObject object;
-    FloatingActionButton floatingActionButton;
-    TextView confirm, cancel;
-    ImageView backArrow;
+    private TextView  rowIconTextView;
+    private EditText workoutTypeEditText;
+    private ListView list;
+    private UsersAdapter adapter;
+    private ArrayList<WorkoutsObject> arrayList;
+    private WorkoutsObject object;
+    private FloatingActionButton floatingActionButton;
+    private ImageView backArrow, deleteTrainingDay;
 
-    //Shared Preference
-    SharedPreferences.Editor editor;
-    SharedPreferences cacheData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,16 +84,12 @@ public class TimetableActivity extends AppCompatActivity implements RecurrencePi
         firebaseMethods = new FirebaseMethods(TimetableActivity.this);
         setUpFirebaseAuth();
         floatingActionButton = findViewById(R.id.fab);
-        itemCounter = 0;
 
         list = (ListView) findViewById(R.id.list);
-        tvModuleIcon = (TextView) findViewById(R.id.row_icon);
+        rowIconTextView = (TextView) findViewById(R.id.row_icon);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference();
-
-        cacheData = getSharedPreferences("Workouts", TimetableActivity.MODE_PRIVATE);
-        editor = cacheData.edit();
 
         //icon = cacheData.getString("workoutDay", "").charAt(0);
 
@@ -129,8 +120,8 @@ public class TimetableActivity extends AppCompatActivity implements RecurrencePi
         list.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
+        authentication = FirebaseAuth.getInstance();
+        FirebaseUser user = authentication.getCurrentUser();
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference uidRef = rootRef.child("workout_timetable").child(user.getUid());
@@ -177,28 +168,28 @@ public class TimetableActivity extends AppCompatActivity implements RecurrencePi
 
             }
 
-            tvModuleDay = convertView.findViewById(R.id.training_day_Tv);
-            tvModuleWorkout = convertView.findViewById(R.id.training_workout_Tv);
-            tvModuleTime = convertView.findViewById(R.id.training_time_Tv);
-            tvModuleIcon = convertView.findViewById(R.id.row_icon);
-            delete = convertView.findViewById(R.id.delete);
+            TextView trainingDayTextView = convertView.findViewById(R.id.training_day_Tv);
+            TextView trainingWorkoutTextView = convertView.findViewById(R.id.training_workout_Tv);
+            TextView trainingTimeTextView = convertView.findViewById(R.id.training_time_Tv);
+            rowIconTextView = convertView.findViewById(R.id.row_icon);
+            TextView deleteTrainingDay = convertView.findViewById(R.id.delete);
 
-            tvModuleDay.setText(user.day);
-            tvModuleTime.setText(user.time);
-            tvModuleWorkout.setText(user.workout);
-            tvModuleIcon.setText(String.valueOf(icon).toUpperCase());
+            trainingDayTextView.setText(user.day);
+            trainingTimeTextView.setText(user.time);
+            trainingWorkoutTextView.setText(user.workout);
+            rowIconTextView.setText(String.valueOf(icon).toUpperCase());
 
-            auth = FirebaseAuth.getInstance();
-            mUser = auth.getCurrentUser();
+            authentication = FirebaseAuth.getInstance();
+            currentUser = authentication.getCurrentUser();
 
-            delete.setOnClickListener(new View.OnClickListener() {
+            deleteTrainingDay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     arrayList.remove(user);
                     adapter.notifyDataSetChanged();
                     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-                    DatabaseReference uidRef = rootRef.child("workout_timetable").child(mUser.getUid());
+                    DatabaseReference uidRef = rootRef.child("workout_timetable").child(currentUser.getUid());
                 }
             });
 
@@ -212,11 +203,11 @@ public class TimetableActivity extends AppCompatActivity implements RecurrencePi
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(TimetableActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.dialog_add_training_day, null);
 
-        confirm = (TextView) mView.findViewById(R.id.dialogConfirm);
-        cancel = (TextView) mView.findViewById(R.id.dialogCancel);
-        dayTv = (TextView) mView.findViewById(R.id.dayTv);
-        timeTv = (TextView) mView.findViewById(R.id.timeTv);
-        workoutEt = (EditText) mView.findViewById(R.id.workoutEt);
+        TextView confirmDialogTV = (TextView) mView.findViewById(R.id.dialogConfirm);
+        TextView cancelDialogTV = (TextView) mView.findViewById(R.id.dialogCancel);
+        TextView dayTv = (TextView) mView.findViewById(R.id.dayTv);
+        TextView timeTv = (TextView) mView.findViewById(R.id.timeTv);
+        workoutTypeEditText = (EditText) mView.findViewById(R.id.workoutEt);
 
         mBuilder.setView(mView);
         final AlertDialog dialog = mBuilder.create();
@@ -243,19 +234,19 @@ public class TimetableActivity extends AppCompatActivity implements RecurrencePi
             }
         });
 
-        confirm.setOnClickListener(new View.OnClickListener() {
+        confirmDialogTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                workout = workoutEt.getText().toString();
-                auth = FirebaseAuth.getInstance();
-                FirebaseUser user = auth.getCurrentUser();
+                workout = workoutTypeEditText.getText().toString();
+                authentication = FirebaseAuth.getInstance();
+                FirebaseUser user = authentication.getCurrentUser();
                 firebaseMethods.addWorkoutDay(user.getUid(), day, time, workout);
                 createObject();
                 dialog.dismiss();
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        cancelDialogTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -335,7 +326,7 @@ public class TimetableActivity extends AppCompatActivity implements RecurrencePi
 
     private void setUpFirebaseAuth()
     {
-        auth = FirebaseAuth.getInstance();
+        authentication = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -356,7 +347,7 @@ public class TimetableActivity extends AppCompatActivity implements RecurrencePi
     @Override
     public void onStart() {
         super.onStart();
-        auth.addAuthStateListener(authStateListener);
+        authentication.addAuthStateListener(authStateListener);
     }
 
     @Override
@@ -365,7 +356,7 @@ public class TimetableActivity extends AppCompatActivity implements RecurrencePi
         super.onStop();
         if (authStateListener != null)
         {
-            auth.removeAuthStateListener(authStateListener);
+            authentication.removeAuthStateListener(authStateListener);
         }
     }
 

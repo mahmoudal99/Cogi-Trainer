@@ -35,23 +35,24 @@ public class SignInActivity extends AppCompatActivity {
 
     // Widgets
     private Context context;
-    private Button loginBTN;
-    private EditText emailLogin, passwordLogin;
-    private TextView CreateAccountText;
-    private String email, password, userID;
-    private String result;
-    String userSignedUp;
+    private Button loginButton;
+    private EditText emailEditText, passwordEditText;
+    private TextView createAccountTextView;
+
+    //Variables
+    private String result, user_id, deviceToken, email, password, userID;
 
     //Shared Preference
     SharedPreferences.Editor editor;
-    SharedPreferences cacheData;
+    SharedPreferences sharedPreference;
 
     // Firebase
-    private DatabaseReference rootRef;
-    private DatabaseReference uidRef;
+    private DatabaseReference rootReference;
+    private DatabaseReference uidReference;
     private DatabaseReference tokenReference;
-    private FirebaseAuth auth;
+    private FirebaseAuth authentication;
     private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,48 +60,47 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         context = SignInActivity.this;
 
-        tokenReference = FirebaseDatabase.getInstance().getReference().child("user_account_settings");
-
-        // Shared Preferences
-        cacheData = getSharedPreferences("Preferences", ChoosePreferenceActivity.MODE_PRIVATE);
-        editor = cacheData.edit();
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
-        if (user != null) {
-            // User is signed in
-           checkPreference();
-        } else {
-            // User is signed out
-            Log.d(TAG, "onAuthStateChanged:signed_out");
-        }
-
-        initialize();
+        initializeVariables();
+        checkUserSignedIn();
         setUpWidgets();
-        setUpFirebaseAuth();
-        signIn();
-
-
+        setUpFirebaseAuthentication();
     }
 
-    private void initialize(){
-        emailLogin = (EditText) findViewById(R.id.email);
-        passwordLogin = (EditText) findViewById(R.id.password);
-        CreateAccountText = (TextView) findViewById(R.id.CreateAccountText);
-        loginBTN = (Button) findViewById(R.id.loginBTN);
+    private void initializeVariables(){
+        tokenReference = FirebaseDatabase.getInstance().getReference().child("user_account_settings");
+        // Shared Preferences
+        sharedPreference = getSharedPreferences("Preferences", ChoosePreferenceActivity.MODE_PRIVATE);
+        editor = sharedPreference.edit();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        emailEditText = (EditText) findViewById(R.id.email);
+        passwordEditText = (EditText) findViewById(R.id.password);
+        createAccountTextView = (TextView) findViewById(R.id.CreateAccountText);
+        loginButton = (Button) findViewById(R.id.loginBTN);
     }
 
     private void setUpWidgets(){
-
-        CreateAccountText.setOnClickListener(new View.OnClickListener() {
+        createAccountTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 intent = new Intent(SignInActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signIn();
+            }
+        });
+    }
+
+    private void checkUserSignedIn(){
+        if (currentUser != null) {
+            checkUserType();
+        } else {
+            Log.d(TAG, "onAuthStateChanged:signed_out");
+        }
     }
 
     public boolean isStringNull(String string)
@@ -114,174 +114,137 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
-    private void setPreference(){
+    private void setUserTypePicked(){
+        rootReference = FirebaseDatabase.getInstance().getReference();
+        uidReference = rootReference.child("user_account_settings");
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference uidRef = rootRef.child("user_account_settings");
-
-        if(auth.getCurrentUser() != null){
-            userID = auth.getCurrentUser().getUid();
+        if(authentication.getCurrentUser() != null){
+            userID = authentication.getCurrentUser().getUid();
         }
-
-        uidRef.child(userID).child("prefChosen").setValue("true");
+        uidReference.child(userID).child("prefChosen").setValue("true");
     }
 
-    private void getReference(String id){
-
-        rootRef = FirebaseDatabase.getInstance().getReference();
-        uidRef = rootRef.child("user_account_settings").child(id).child("prefChosen");
+    private void getUserType(String id){
+        rootReference = FirebaseDatabase.getInstance().getReference();
+        uidReference = rootReference.child("user_account_settings").child(id).child("prefChosen");
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 editor.putString("value", dataSnapshot.getValue(String.class));
                 editor.apply();
-//                Toast.makeText(context, cacheData.getString("value", ""), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         };
-        uidRef.addListenerForSingleValueEvent(valueEventListener);
+        uidReference.addListenerForSingleValueEvent(valueEventListener);
     }
 
-    private void checkPreference(){
+    private void checkUserType(){
+        authentication = FirebaseAuth.getInstance();
 
-        auth = FirebaseAuth.getInstance();
-
-        if(auth.getCurrentUser() != null){
-            userID = auth.getCurrentUser().getUid();
+        if(authentication.getCurrentUser() != null){
+            userID = authentication.getCurrentUser().getUid();
         }
 
-        rootRef = FirebaseDatabase.getInstance().getReference();
-        uidRef = rootRef.child("user_account_settings").child(userID).child("preference");
+        rootReference = FirebaseDatabase.getInstance().getReference();
+        uidReference = rootReference.child("user_account_settings").child(userID).child("preference");
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 result = dataSnapshot.getValue(String.class);
-
                 if(result.equals("Personal Trainer")){
-
                     Intent intent = new Intent(context, PersonalTrainerHomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
-
                 }else if (result.equals("Trainee")){
-
                     Intent intent = new Intent(context, TraineeHomeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-
                 }
-
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         };
-        uidRef.addListenerForSingleValueEvent(valueEventListener);
-
+        uidReference.addListenerForSingleValueEvent(valueEventListener);
     }
 
     private void signIn(){
 
-        auth = FirebaseAuth.getInstance();
+        authentication = FirebaseAuth.getInstance();
 
-        loginBTN.setOnClickListener(new View.OnClickListener() {
+        email = emailEditText.getText().toString();
+        password = passwordEditText.getText().toString();
 
-            @Override
-            public void onClick(View v) {
+        if(isStringNull(email) && isStringNull(password)) {
+            Toast.makeText(context, "You must fill out all the fields", Toast.LENGTH_SHORT).show();
+        }else {
 
-                email = emailLogin.getText().toString();
-                password = passwordLogin.getText().toString();
+            authentication.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if(isStringNull(email) && isStringNull(password))
-                {
-                    Toast.makeText(context, "You must fill out all the fields", Toast.LENGTH_SHORT).show();
+                            currentUser = authentication.getCurrentUser();
+                            userID = currentUser.getUid();
 
-                }else {
+                            if (!task.isSuccessful()) {
+                                Log.w(TAG, "signInWithEmail:failed", task.getException());
+                                Toast.makeText(SignInActivity.this, getString(R.string.auth_failed),
+                                        Toast.LENGTH_SHORT).show();
+                            }else {
 
-                    auth.signInWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(currentUser.isEmailVerified()) {
 
-                                    FirebaseUser user = auth.getCurrentUser();
-
-                                    userID = user.getUid();
-
-                                    if (!task.isSuccessful()) {
-
-                                        Log.w(TAG, "signInWithEmail:failed", task.getException());
-
-                                        Toast.makeText(SignInActivity.this, getString(R.string.auth_failed),
-                                                Toast.LENGTH_SHORT).show();
-                                    }else {
-
-                                        if(user.isEmailVerified()){
-                                            Log.d(TAG, "onComplete: success. email is verified.");
-
-                                            String user_id = user.getUid();
-                                            String deviceToken = FirebaseInstanceId.getInstance().getToken();
-                                            tokenReference.child(user_id).child("token").setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-
-                                                    getReference(userID);
-                                                    if(cacheData.getString("value", "").equals("false")){
-
-                                                        Intent intent = new Intent(SignInActivity.this, ChoosePreferenceActivity.class);
-                                                        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                        startActivity(intent);
-                                                        finish();
-
-                                                        setPreference();
-
-                                                    }else {
-
-                                                        checkPreference();
-                                                    }
-                                                }
-                                            });
-
-                                        }else{
-                                            Toast.makeText(context, "Email is not verified \n check your email inbox.", Toast.LENGTH_SHORT).show();
-                                            auth.signOut();
+                                    Log.d(TAG, "onComplete: success. email is verified.");
+                                    user_id = currentUser.getUid();
+                                    deviceToken = FirebaseInstanceId.getInstance().getToken();
+                                    tokenReference.child(user_id).child("token").setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            getUserType(userID);
+                                            if(sharedPreference.getString("value", "").equals("false")){
+                                                intent = new Intent(SignInActivity.this, ChoosePreferenceActivity.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                startActivity(intent);
+                                                finish();
+                                                setUserTypePicked();
+                                            }else {
+                                                checkUserType();
+                                            }
                                         }
-                                    }
+                                    });
+
+                                }else {
+
+                                    Toast.makeText(context, "Email is not verified \n check your email inbox.", Toast.LENGTH_SHORT).show();
+                                    authentication.signOut();
 
                                 }
-                            });
-                }
 
-            }
-        });
+                            }
 
+                        }
+                    });
+
+        }
     }
 
     //---------- Firebase ----------//
-
-    private void setUpFirebaseAuth()
+    private void setUpFirebaseAuthentication()
     {
-        auth = FirebaseAuth.getInstance();
-
+        authentication = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                if(user != null)
+                currentUser = firebaseAuth.getCurrentUser();
+                if(currentUser != null)
                 {
                     Log.d(TAG, "Success");
-
                 }else {
                     Log.d(TAG, "signed out");
                 }
@@ -292,19 +255,18 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        auth.addAuthStateListener(authStateListener);
+        authentication.addAuthStateListener(authStateListener);
     }
 
     @Override
-    public void onStop() {
+    public void onStop(){
         super.onStop();
         if (authStateListener != null)
         {
-            auth.removeAuthStateListener(authStateListener);
+            authentication.removeAuthStateListener(authStateListener);
         }
     }
 }
-
 
 
 

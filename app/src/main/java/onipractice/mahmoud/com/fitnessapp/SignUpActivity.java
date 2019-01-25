@@ -30,19 +30,19 @@ public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
 
-    String email, firstname, lastname, password;
-    EditText emailET, firstnameET, lastnameET, passwordET;
-    Button signUpBTN;
-    TextView signInText;
-    Context context;
-    FirebaseMethods firebaseMethods;
-    String userSignedUp;
+    // Variables
+    private String email, firstname, lastname, password;
+
+    // Widgets
+    private EditText emailEditText, firstnameEditText, lastnameEditText, passwordEditText;
+    private Button signUpButton;
+    private TextView signInText;
+    private Context context;
 
     //firebase
-    private FirebaseAuth auth;
+    private FirebaseAuth authentication;
     private FirebaseAuth.AuthStateListener authStateListener;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference reference;
+    private FirebaseMethods firebaseMethods;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,33 +50,30 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        context = SignUpActivity.this;
-        firebaseMethods = new FirebaseMethods(context);
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference();
-
         initialize();
-        setUpFirebaseAuth();
+        setUpFirebaseAuthentication();
         setWidgets();
     }
 
     private void initialize(){
 
-        emailET = (EditText) findViewById(R.id.emailET);
-        firstnameET = (EditText) findViewById(R.id.firstnameET);
-        lastnameET = (EditText) findViewById(R.id.lastnameET);
-        passwordET = (EditText) findViewById(R.id.passwordET);
+        context = SignUpActivity.this;
+        firebaseMethods = new FirebaseMethods(context);
+
+        emailEditText = (EditText) findViewById(R.id.emailET);
+        firstnameEditText = (EditText) findViewById(R.id.firstnameET);
+        lastnameEditText = (EditText) findViewById(R.id.lastnameET);
+        passwordEditText = (EditText) findViewById(R.id.passwordET);
         signInText = (TextView) findViewById(R.id.signInText);
-        signUpBTN = (Button) findViewById(R.id.signUpBTN);
+        signUpButton = (Button) findViewById(R.id.signUpBTN);
     }
 
     private void clearWidgets(){
 
-        emailET.getText().clear();
-        passwordET.getText().clear();
-        firstnameET.getText().clear();
-        lastnameET.getText().clear();
+        emailEditText.getText().clear();
+        passwordEditText.getText().clear();
+        firstnameEditText.getText().clear();
+        lastnameEditText.getText().clear();
     }
 
     private void setWidgets(){
@@ -89,29 +86,25 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        signUpBTN.setOnClickListener(new View.OnClickListener() {
+        signUpButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
 
             public void onClick(View v) {
 
-                email = emailET.getText().toString();
-                firstname = firstnameET.getText().toString();
-                lastname = lastnameET.getText().toString();
+                email = emailEditText.getText().toString();
+                firstname = firstnameEditText.getText().toString();
+                lastname = lastnameEditText.getText().toString();
 
-                email = emailET.getText().toString();
-
-                if(passwordET.getText().toString().length()<8 &&!isValidPassword(passwordET.getText().toString())){
-
+                if(passwordEditText.getText().toString().length()<8 &&!isValidPassword(passwordEditText.getText().toString())){
                     Toast.makeText(context,
                             "Password must be over 8 characters & contain atleast\n one lowercase, one uppercase, one number & a special character (@!#$)",
                             Toast.LENGTH_SHORT).show();
 
-                    passwordET.getText().clear();
+                    passwordEditText.getText().clear();
 
                 }else{
-
-                    password = passwordET.getText().toString();
+                    password = passwordEditText.getText().toString();
 
                     firebaseMethods.registerNewEmail(email, password, firstname, lastname);
                     Toast.makeText(context, "Check your inbox", Toast.LENGTH_SHORT).show();
@@ -123,8 +116,6 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-
-
             }
 
         });
@@ -140,16 +131,15 @@ public class SignUpActivity extends AppCompatActivity {
         matcher = pattern.matcher(password);
 
         return matcher.matches();
-
     }
 
         /*
     ------------------------------------------Firebase----------------------------------------------------
      */
 
-    private void setUpFirebaseAuth()
+    private void setUpFirebaseAuthentication()
     {
-        auth = FirebaseAuth.getInstance();
+        authentication = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -170,7 +160,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        auth.addAuthStateListener(authStateListener);
+        authentication.addAuthStateListener(authStateListener);
     }
 
     @Override
@@ -179,7 +169,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onStop();
         if (authStateListener != null)
         {
-            auth.removeAuthStateListener(authStateListener);
+            authentication.removeAuthStateListener(authStateListener);
         }
     }
 

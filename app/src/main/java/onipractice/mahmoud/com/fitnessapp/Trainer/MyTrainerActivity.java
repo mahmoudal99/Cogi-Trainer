@@ -1,6 +1,6 @@
 package onipractice.mahmoud.com.fitnessapp.Trainer;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,9 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,18 +33,18 @@ public class MyTrainerActivity extends AppCompatActivity {
     private static final String TAG = "MyTrainerActivity";
 
     // Widgets
-    ImageView chat_img, back_arrow;
-    TextView nameTv, lastnameTv, availabilityTv, specialityTv;
+    private ImageView messengerImageView, backArrow;
+    private TextView nameTextView, lastnameTextView, availabilityTextView, specialityTextView;
 
-    Button sendClientRequestBtn, deleteClientRequestBtn;
-    String name, surname, id, availability, speciality, currentState;
+    private Button deleteClientButton;
+    private String name, surname, id, availability, speciality, currentState;
 
     //firebase
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    DatabaseReference rootRef;
-    DatabaseReference uidRef;
-    FirebaseUser user;
+    private DatabaseReference rootRef;
+    private DatabaseReference uidRef;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,31 +53,27 @@ public class MyTrainerActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        Toast.makeText(MyTrainerActivity.this, String.valueOf(user.getUid()), Toast.LENGTH_SHORT).show();
-
         id = getIntent().getStringExtra("user_id");
         initialize();
         setUpWidgets();
         setUpFirebaseAuth();
         setUserInfo(id);
-
-
     }
 
     private void initialize(){
 
-        nameTv = (TextView) findViewById(R.id.nameTv);
-        lastnameTv = (TextView) findViewById(R.id.surnameTv);
-        chat_img = (ImageView) findViewById(R.id.chat_img);
-        back_arrow = (ImageView) findViewById(R.id.backArrow);
-        specialityTv = (TextView) findViewById(R.id.specialityTv);
-        availabilityTv = (TextView) findViewById(R.id.availabilityTv);
-        deleteClientRequestBtn = (Button) findViewById(R.id.deleteFriendRequest);
+        nameTextView = (TextView) findViewById(R.id.nameTv);
+        lastnameTextView = (TextView) findViewById(R.id.surnameTv);
+        messengerImageView = (ImageView) findViewById(R.id.chat_img);
+        backArrow = (ImageView) findViewById(R.id.backArrow);
+        specialityTextView = (TextView) findViewById(R.id.specialityTv);
+        availabilityTextView = (TextView) findViewById(R.id.availabilityTv);
+        deleteClientButton = (Button) findViewById(R.id.deleteFriendRequest);
     }
 
     private void setUpWidgets(){
 
-        back_arrow.setOnClickListener(new View.OnClickListener() {
+        backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyTrainerActivity.this, TraineeHomeActivity.class);
@@ -88,7 +81,7 @@ public class MyTrainerActivity extends AppCompatActivity {
             }
         });
 
-        chat_img.setOnClickListener(new View.OnClickListener() {
+        messengerImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyTrainerActivity.this , ChatActivity.class);
@@ -98,7 +91,7 @@ public class MyTrainerActivity extends AppCompatActivity {
             }
         });
 
-        deleteClientRequestBtn.setOnClickListener(new View.OnClickListener() {
+        deleteClientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 deleteRequestState();
@@ -110,7 +103,6 @@ public class MyTrainerActivity extends AppCompatActivity {
     private void deleteRequestState(){
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        Toast.makeText(MyTrainerActivity.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
 
         Map unfriendMap = new HashMap();
         unfriendMap.put("Friends/" + user.getUid() + "/" + "trainerId", null);
@@ -120,39 +112,30 @@ public class MyTrainerActivity extends AppCompatActivity {
             public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
 
                 if(databaseError == null){
-
                     currentState = "not_friends";
 
-                    deleteClientRequestBtn.setVisibility(View.INVISIBLE);
-                    deleteClientRequestBtn.setEnabled(false);
+                    deleteClientButton.setVisibility(View.INVISIBLE);
+                    deleteClientButton.setEnabled(false);
                     Intent intent = new Intent(MyTrainerActivity.this, TraineeHomeActivity.class);
                     startActivity(intent);
-
-
                 }else {
-
                     String error = databaseError.getMessage();
                     Toast.makeText(MyTrainerActivity.this, error, Toast.LENGTH_SHORT).show();
-
                 }
-
             }
         });
     }
 
     private void init(String name, String surname, String availability, String speciality){
-
-        nameTv.setText(name);
-        lastnameTv.setText(surname);
-        availabilityTv.setText(availability);
-        specialityTv.setText(speciality);
-
+        nameTextView.setText(name);
+        lastnameTextView.setText(surname);
+        availabilityTextView.setText(availability);
+        specialityTextView.setText(speciality);
     }
 
     //------------ Query ----------//
 
     private void setUserInfo(final String id){
-
         rootRef = FirebaseDatabase.getInstance().getReference();
         uidRef = rootRef.child("trainer").child(id);
 
@@ -169,29 +152,23 @@ public class MyTrainerActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         };
         uidRef.addListenerForSingleValueEvent(valueEventListener);
     }
 
 
     //------------ Firebase ----------//
-
     private void setUpFirebaseAuth()
     {
         auth = FirebaseAuth.getInstance();
-
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-
                 if(user != null)
                 {
                     Log.d(TAG, "Connected");
-
                 }else {
                     Log.d(TAG, "signed out");
                 }
@@ -207,7 +184,6 @@ public class MyTrainerActivity extends AppCompatActivity {
 
     @Override
     public void onStop() {
-
         super.onStop();
         if (authStateListener != null)
         {

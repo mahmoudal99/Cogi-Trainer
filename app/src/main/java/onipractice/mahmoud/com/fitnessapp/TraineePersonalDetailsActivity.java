@@ -27,7 +27,7 @@ import onipractice.mahmoud.com.fitnessapp.Models.PersonalDetails;
 public class TraineePersonalDetailsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
                                                                 ,View.OnClickListener{
 
-    private static final String TAG = "TraineePersonalDetailsActivity";
+    private static final String TAG = "TraineePersonalDetails";
 
     int newWeight, newHeight;
     Spinner weightSpinner, heightSpinner;
@@ -44,7 +44,6 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
     //firebase
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +58,12 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
     }
 
     private void init(){
-
         maleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 maleBtn.setBackgroundColor(getResources().getColor(R.color.outline));
                 femaleBtn.setBackgroundColor(getResources().getColor(R.color.transparent));
-
                 gender = "male";
             }
         });
@@ -77,7 +74,6 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
 
                 maleBtn.setBackgroundColor(getResources().getColor(R.color.transparent));
                 femaleBtn.setBackgroundColor(getResources().getColor(R.color.outline));
-
                 gender = "female";
             }
         });
@@ -85,14 +81,11 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 addPersonalDetails(height, weight, age, gender);
-
                 Intent intent = new Intent(context, TraineeHomeActivity.class);
                 startActivity(intent);
             }
         });
-
     }
 
     private void setWidgets(){
@@ -266,7 +259,6 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
 
     @Override
     public void onStop() {
-
         super.onStop();
         if (authStateListener != null)
         {
@@ -275,39 +267,29 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
     }
 
     //---------------- Spinner ----------------//
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         String itemSelected = parent.getItemAtPosition(position).toString();
 
         if(itemSelected.equals("kg")){
-
             weightType = "kg";
         }
         else if(itemSelected.equals("lb")){
-
             weightType = "lb";
         }
-
         if(itemSelected.equals("cm")){
-
             heightType = "cm";
         }
         else if(itemSelected.equals("ft")){
-
             heightType = "ft";
         }
-
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) { }
 
     //---------------- On Click Listener ----------------//
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

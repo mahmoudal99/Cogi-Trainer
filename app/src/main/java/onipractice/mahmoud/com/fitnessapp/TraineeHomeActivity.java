@@ -31,67 +31,57 @@ import onipractice.mahmoud.com.fitnessapp.Trainer.MyTrainerActivity;
 import onipractice.mahmoud.com.fitnessapp.Training.StretchingActivity;
 
 public class TraineeHomeActivity extends AppCompatActivity implements RecurrencePickerDialogFragment.OnRecurrenceSetListener{
-
-    CircleImageView profileImg;
-    CardView progressCardView;
-    CardView trainerCardView;
-    CardView myDietCardView;
-    CardView timetableCardView;
-    CardView stretchesCardView;
-    ImageView messaging;
-    DatabaseReference rootRef;
-    DatabaseReference uidRef;
-
+    
     private static final String FRAG_TAG_RECUR_PICKER = "recurrencePickerDialogFragment";
 
-    String userID;
-    String trainerSet;
-    String user_id;
-    private String mRrule;
+    // Widgets
+    private CircleImageView profileImg;
+    private CardView progressCardView, trainerCardView, myDietCardView, timetableCardView, stretchesCardView;
+    private ImageView messaging;
 
-    DatabaseReference userDatabase;
-    FirebaseAuth auth;
+    // Variables
+    private String userID, userHasTrainer, user_id, mRrule;
+    Context context;
+
+    // Firebase
+    private DatabaseReference userDatabase;
+    private FirebaseAuth authentication;
+    private DatabaseReference rootReference;
+    private DatabaseReference uidReference;
 
     private EventRecurrence mEventRecurrence = new EventRecurrence();
 
-    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainee_home);
 
-        auth = FirebaseAuth.getInstance();
+        authentication = FirebaseAuth.getInstance();
 
         context = TraineeHomeActivity.this;
 
-        auth = FirebaseAuth.getInstance();
-        userDatabase = FirebaseDatabase.getInstance().getReference().child("user_account_settings").child(auth.getCurrentUser().getUid());
+        authentication = FirebaseAuth.getInstance();
+        userDatabase = FirebaseDatabase.getInstance().getReference().child("user_account_settings").child(authentication.getCurrentUser().getUid());
         userDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot != null){
-
                     userDatabase.child("online").onDisconnect().setValue(ServerValue.TIMESTAMP);
                     userDatabase.child("online").setValue("true");
-
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
 
-        userID = auth.getCurrentUser().getUid();
-
+        userID = authentication.getCurrentUser().getUid();
         setWidgets();
         init();
     }
 
     private void setWidgets(){
-
         profileImg = (CircleImageView) findViewById(R.id.profileImg);
         progressCardView = (CardView) findViewById(R.id.progressCardView);
         trainerCardView = (CardView) findViewById(R.id.trainerCard);
@@ -99,19 +89,15 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
         myDietCardView = (CardView) findViewById(R.id.dietCardView);
         stretchesCardView = (CardView) findViewById(R.id.stretchesCard);
         messaging = (ImageView) findViewById(R.id.messageIv);
-
     }
 
     private void init(){
-
         profileImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(context, ProfileActivity.class);
                 intent.putExtra("user", "trainee");
                 startActivity(intent);
-
             }
         });
 
@@ -123,34 +109,30 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
             }
         });
 
-        rootRef = FirebaseDatabase.getInstance().getReference();
-        uidRef = rootRef.child("Friends").child(userID);
+        rootReference = FirebaseDatabase.getInstance().getReference();
+        uidReference = rootReference.child("Friends").child(userID);
 
-        uidRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        uidReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if(dataSnapshot.hasChild("trainerId")){
                     user_id = dataSnapshot.child("trainerId").getValue().toString();
-                    trainerSet = "true";
+                    userHasTrainer = "true";
                 }else{
                     Toast.makeText(TraineeHomeActivity.this, "You do not have a trainer yet", Toast.LENGTH_SHORT).show();
-                    trainerSet = "false";
+                    userHasTrainer = "false";
                 }
-
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
 
         messaging.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(trainerSet.equals("false")){
+                if(userHasTrainer.equals("false")){
                     Intent intent = new Intent(TraineeHomeActivity.this, AddTrainerActivity.class);
                     intent.putExtra("user", "trainee");
                     startActivity(intent);
@@ -166,8 +148,7 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
         trainerCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(trainerSet.equals("false")){
+                if(userHasTrainer.equals("false")){
                     Intent intent = new Intent(TraineeHomeActivity.this, AddTrainerActivity.class);
                     startActivity(intent);
                 }else{
@@ -176,7 +157,6 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
                     intent.putExtra("reference", "trainer");
                     startActivity(intent);
                 }
-
             }
         });
 
@@ -191,10 +171,8 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
         myDietCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(TraineeHomeActivity.this, DietActivity.class);
                 startActivity(intent);
-
             }
         });
 
@@ -205,61 +183,36 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
                 startActivity(intent);
             }
         });
-
     }
 
     @Override
     public void onRecurrenceSet(String rrule) {
-
         mRrule = rrule;
 
         if (mRrule != null) {
-
             mEventRecurrence.parse(mRrule);
-
         }
-
         populateRepeats();
-
     }
 
-
     @Override
-
     public void onResume() {
-
         // Example of reattaching to the fragment
-
         super.onResume();
-
         RecurrencePickerDialogFragment rpd = (RecurrencePickerDialogFragment) getSupportFragmentManager().findFragmentByTag(
-
                 FRAG_TAG_RECUR_PICKER);
-
         if (rpd != null) {
-
             rpd.setOnRecurrenceSetListener(this);
-
         }
-
     }
 
     private void populateRepeats() {
-
         Resources r = getResources();
-
         String repeatString = "";
 
-        boolean enabled;
-
         if (!TextUtils.isEmpty(mRrule)) {
-
             repeatString = EventRecurrenceFormatter.getRepeatString(this, r, mEventRecurrence, true);
-
         }
-
-
         Toast.makeText(context, repeatString, Toast.LENGTH_SHORT).show();
-
     }
 }
