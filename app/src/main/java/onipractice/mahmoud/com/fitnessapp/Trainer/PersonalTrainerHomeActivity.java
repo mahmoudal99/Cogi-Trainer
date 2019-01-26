@@ -25,15 +25,13 @@ import onipractice.mahmoud.com.fitnessapp.R;
 
 public class PersonalTrainerHomeActivity extends AppCompatActivity {
 
-    // Firebase
     CircleImageView profileImg;
-    ImageView messageIv;
-    CardView clientsCardView;
-    CardView requestsCard;
+    ImageView messengerImageView;
+    CardView clientsCardView, clientRequestsCardView;
 
     // Firebase
     DatabaseReference userDatabase;
-    FirebaseAuth auth;
+    FirebaseAuth authentication;
 
     Context context;
 
@@ -44,8 +42,8 @@ public class PersonalTrainerHomeActivity extends AppCompatActivity {
 
         context = PersonalTrainerHomeActivity.this;
 
-        auth = FirebaseAuth.getInstance();
-        userDatabase = FirebaseDatabase.getInstance().getReference().child("user_account_settings").child(auth.getCurrentUser().getUid());
+        authentication = FirebaseAuth.getInstance();
+        userDatabase = FirebaseDatabase.getInstance().getReference().child("user_account_settings").child(authentication.getCurrentUser().getUid());
         userDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -63,22 +61,22 @@ public class PersonalTrainerHomeActivity extends AppCompatActivity {
             }
         });
 
-        setWidgets();
-        init();
+        initialize();
+        setUpWidgets();
 
 
     }
 
-    private void setWidgets(){
+    private void initialize(){
 
         profileImg = (CircleImageView) findViewById(R.id.profileImg);
-        requestsCard = (CardView) findViewById(R.id.requestsCard);
+        clientRequestsCardView = (CardView) findViewById(R.id.requestsCard);
         clientsCardView = (CardView) findViewById(R.id.clientsCard);
-        messageIv = (ImageView) findViewById(R.id.messageIv);
+        messengerImageView = (ImageView) findViewById(R.id.messageIv);
 
     }
 
-    private void init(){
+    private void setUpWidgets(){
 
         profileImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +99,7 @@ public class PersonalTrainerHomeActivity extends AppCompatActivity {
             }
         });
 
-        requestsCard.setOnClickListener(new View.OnClickListener() {
+        clientRequestsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ClientRequestsActivity.class);
@@ -109,7 +107,7 @@ public class PersonalTrainerHomeActivity extends AppCompatActivity {
             }
         });
 
-        messageIv.setOnClickListener(new View.OnClickListener() {
+        messengerImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

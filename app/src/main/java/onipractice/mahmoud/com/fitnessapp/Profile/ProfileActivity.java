@@ -48,7 +48,7 @@ public class ProfileActivity extends AppCompatActivity  {
     CircleImageView profile;
     ImageView backArrow;
 
-    String name, surname, userId, image, current_user, user;
+    String name, surname, userId, image, current_user, userType;
 
     Context context;
 
@@ -75,7 +75,7 @@ public class ProfileActivity extends AppCompatActivity  {
         setUpFirebaseAuth();
 
         // Get Intent
-        user = getIntent().getStringExtra("user");
+        userType = getIntent().getStringExtra("user");
 
         // Shared Preference
         cacheData = getSharedPreferences("Preferences", ChoosePreferenceActivity.MODE_PRIVATE);
@@ -115,7 +115,7 @@ public class ProfileActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
-                if(user.equals("trainer")){
+                if(userType.equals("trainer")){
                     Intent intent = new Intent(context, PersonalTrainerHomeActivity.class);
                     startActivity(intent);
                 }else {
@@ -129,7 +129,7 @@ public class ProfileActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditProfileActivity.class);
-                intent.putExtra("user", user);
+                intent.putExtra("user", userType);
                 startActivity(intent);
             }
         });
@@ -139,7 +139,7 @@ public class ProfileActivity extends AppCompatActivity  {
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, ChangePasswordActivity.class);
-                intent.putExtra("user", user);
+                intent.putExtra("user", userType);
                 startActivity(intent);
 
             }

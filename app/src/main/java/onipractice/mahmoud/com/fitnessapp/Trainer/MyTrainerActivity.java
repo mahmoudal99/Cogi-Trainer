@@ -37,7 +37,7 @@ public class MyTrainerActivity extends AppCompatActivity {
     private TextView nameTextView, lastnameTextView, availabilityTextView, specialityTextView;
 
     private Button deleteClientButton;
-    private String name, surname, id, availability, speciality, currentState;
+    private String name, surname, trainerId, availability, speciality, currentState;
 
     //firebase
     private FirebaseAuth auth;
@@ -53,11 +53,11 @@ public class MyTrainerActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        id = getIntent().getStringExtra("user_id");
+        trainerId = getIntent().getStringExtra("user_id");
         initialize();
         setUpWidgets();
         setUpFirebaseAuth();
-        setUserInfo(id);
+        setUserInfo(trainerId);
     }
 
     private void initialize(){
@@ -85,7 +85,7 @@ public class MyTrainerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyTrainerActivity.this , ChatActivity.class);
-                intent.putExtra("user_id", id);
+                intent.putExtra("user_id", trainerId);
                 intent.putExtra("user", "trainee");
                 startActivity(intent);
             }
@@ -137,7 +137,7 @@ public class MyTrainerActivity extends AppCompatActivity {
 
     private void setUserInfo(final String id){
         rootRef = FirebaseDatabase.getInstance().getReference();
-        uidRef = rootRef.child("trainer").child(id);
+        uidRef = rootRef.child("trainer").child(trainerId);
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override

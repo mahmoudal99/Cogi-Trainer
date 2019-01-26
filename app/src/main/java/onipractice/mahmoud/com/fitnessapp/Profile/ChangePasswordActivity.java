@@ -29,7 +29,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private static final String TAG = "ProfileActivity";
 
     EditText currentPassEt, newPassEt, repeatPassEt;;
-    String currentPassword, newPassword, repeatPassword, user;
+    String currentPassword, newPassword, repeatPassword, userType;
     Button changePassBtn;
     ImageView backArrowIv;
 
@@ -46,9 +46,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
 
         context = ChangePasswordActivity.this;
-        user = getIntent().getStringExtra("user");
+        userType = getIntent().getStringExtra("user");
 
-        setUpFirebaseAuth();
+        setUpFirebaseAuthentication();
         initialize();
         setWidgets();
     }
@@ -75,7 +75,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("user", user);
+                intent.putExtra("user", userType);
                 startActivity(intent);
             }
         });
@@ -102,7 +102,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     //---------- Firebase ----------//
 
-    private void setUpFirebaseAuth()
+    private void setUpFirebaseAuthentication()
     {
         auth = FirebaseAuth.getInstance();
 

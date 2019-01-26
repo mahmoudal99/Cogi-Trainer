@@ -29,11 +29,10 @@ public class AddTrainerActivity extends AppCompatActivity {
     RecyclerView usersList;
 
     // Firebase
-    DatabaseReference rootRef;
-    DatabaseReference uidRef;
+    DatabaseReference rootReference;
+    DatabaseReference uidReference;
 
     ImageView backArrow;
-    String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +60,12 @@ public class AddTrainerActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        rootRef = FirebaseDatabase.getInstance().getReference();
-        uidRef = rootRef.child("trainer");
+        rootReference = FirebaseDatabase.getInstance().getReference();
+        uidReference = rootReference.child("trainer");
 
         FirebaseRecyclerOptions<TrainerModel> options =
                 new FirebaseRecyclerOptions.Builder<TrainerModel>()
-                        .setQuery(uidRef, TrainerModel.class)
+                        .setQuery(uidReference, TrainerModel.class)
                         .build();
 
         FirebaseRecyclerAdapter<TrainerModel, AddTrainerActivity.UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<TrainerModel, AddTrainerActivity.UsersViewHolder>(
