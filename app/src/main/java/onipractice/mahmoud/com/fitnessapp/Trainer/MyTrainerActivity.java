@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import onipractice.mahmoud.com.fitnessapp.Messaging.ChatActivity;
+import onipractice.mahmoud.com.fitnessapp.Messaging.MessengerActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
 import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
 
@@ -84,7 +84,7 @@ public class MyTrainerActivity extends AppCompatActivity {
         messengerImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyTrainerActivity.this , ChatActivity.class);
+                Intent intent = new Intent(MyTrainerActivity.this , MessengerActivity.class);
                 intent.putExtra("user_id", trainerId);
                 intent.putExtra("user", "trainee");
                 startActivity(intent);

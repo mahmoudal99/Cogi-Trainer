@@ -18,8 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import onipractice.mahmoud.com.fitnessapp.Client.ClientProfileActivity;
-import onipractice.mahmoud.com.fitnessapp.Client.ClientsActivity;
-import onipractice.mahmoud.com.fitnessapp.Messaging.ChatActivity;
 import onipractice.mahmoud.com.fitnessapp.Models.TrainerModel;
 import onipractice.mahmoud.com.fitnessapp.R;
 import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;

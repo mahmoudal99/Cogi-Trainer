@@ -24,7 +24,7 @@ import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import onipractice.mahmoud.com.fitnessapp.Messaging.ChatActivity;
+import onipractice.mahmoud.com.fitnessapp.Messaging.MessengerActivity;
 import onipractice.mahmoud.com.fitnessapp.Profile.ProfileActivity;
 import onipractice.mahmoud.com.fitnessapp.Trainer.AddTrainerActivity;
 import onipractice.mahmoud.com.fitnessapp.Trainer.MyTrainerActivity;
@@ -137,7 +137,7 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
                     intent.putExtra("user", "trainee");
                     startActivity(intent);
                 }else{
-                    Intent intent = new Intent(context, ChatActivity.class);
+                    Intent intent = new Intent(context, MessengerActivity.class);
                     intent.putExtra("user_id", user_id);
                     intent.putExtra("user", "trainee");
                     startActivity(intent);

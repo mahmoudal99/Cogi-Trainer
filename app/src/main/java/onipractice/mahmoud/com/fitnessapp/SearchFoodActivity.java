@@ -31,22 +31,22 @@ import onipractice.mahmoud.com.fitnessapp.Utils.FoodAdapter;
 
 public class SearchFoodActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    private ImageView backArrow;
-    private ImageView confirm_selection;
+    private TextView heading;
+    private ImageView backArrow, confirm_selection;
     private EditText mSearchField;
     private ImageButton mSearchBtn;
-    private FoodAdapter adapter;
+
     private RecyclerView mResultList;
-    private List<FoodItemModel> artistList;
-    private TextView heading;
-    private String foodCatgeory;
-    private String mealChosen;
-    private Spinner foodSpinner;
-    private Spinner mealSpinner;
+
+    private String foodCatgeory, mealChosen;
+    private Spinner foodSpinner, mealSpinner;
+
+    private FoodAdapter adapter;
+    private List<FoodItemModel> foodList;
     private ArrayAdapter<CharSequence> foodListAdapter;
     private ArrayAdapter<CharSequence> mealListAdapter;
 
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,35 +56,58 @@ public class SearchFoodActivity extends AppCompatActivity implements AdapterView
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
-        heading = (TextView) findViewById(R.id.heading);
+        initialize();
 
         heading.setText(getIntent().getStringExtra("meal"));
 
-        backArrow = (ImageView) findViewById(R.id.backArrow);
-        foodSpinner = (Spinner) findViewById(R.id.foodSpinner);
-        mealSpinner = (Spinner) findViewById(R.id.mealSpinner);
         mealChosen = getIntent().getStringExtra("meal");
         setUpSpinners();
-        confirm_selection = (ImageView) findViewById(R.id.confirm_selection);
-        mSearchField = (EditText) findViewById(R.id.search_field);
-        mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
 
         mResultList = (RecyclerView) findViewById(R.id.result_list);
         mResultList.setHasFixedSize(true);
         mResultList.setLayoutManager(new LinearLayoutManager(this));
+
         Toast.makeText(SearchFoodActivity.this, getIntent().getStringExtra("day"), Toast.LENGTH_SHORT).show();
 
-        artistList = new ArrayList<>();
-        adapter = new FoodAdapter(this, artistList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
+        foodList = new ArrayList<>();
+        adapter = new FoodAdapter(this, foodList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
         mResultList.setAdapter(adapter);
 
+        setUpWidgets();
+
+//        confirm_selection.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                String searchText = " ";
+//                //6. SELECT * FROM Artists WHERE name = "A%"
+//                Query query6 = FirebaseDatabase.getInstance().getReference(foodCatgeory)
+//                        .orderByChild("foodName")
+//                        .startAt(searchText)
+//                        .endAt(searchText + "\uf8ff");
+//
+//                query6.addListenerForSingleValueEvent(valueEventListener);
+//            }
+//        });
+    }
+
+    private void initialize(){
+        heading = (TextView) findViewById(R.id.heading);
+        backArrow = (ImageView) findViewById(R.id.backArrow);
+        foodSpinner = (Spinner) findViewById(R.id.foodSpinner);
+        mealSpinner = (Spinner) findViewById(R.id.mealSpinner);
+//        confirm_selection = (ImageView) findViewById(R.id.confirm_selection);
+        mSearchField = (EditText) findViewById(R.id.search_field);
+        mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
+    }
+
+    private void setUpWidgets(){
         mSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String searchText = mSearchField.getText().toString();
-
-                //6. SELECT * FROM Artists WHERE name = "A%"
+                Toast.makeText(SearchFoodActivity.this, foodCatgeory, Toast.LENGTH_SHORT).show();
                 Query query6 = FirebaseDatabase.getInstance().getReference(foodCatgeory)
                         .orderByChild("foodName")
                         .startAt(searchText)
@@ -102,51 +125,27 @@ public class SearchFoodActivity extends AppCompatActivity implements AdapterView
                 startActivity(intent);
             }
         });
-
-//        confirm_selection.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String searchText = " ";
-//                //6. SELECT * FROM Artists WHERE name = "A%"
-//                Query query6 = FirebaseDatabase.getInstance().getReference(foodCatgeory)
-//                        .orderByChild("foodName")
-//                        .startAt(searchText)
-//                        .endAt(searchText + "\uf8ff");
-//
-//                query6.addListenerForSingleValueEvent(valueEventListener);
-//            }
-//        });
-
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
-
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
 
-            artistList.clear();
-
+            foodList.clear();
             if (dataSnapshot.exists()) {
-
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    FoodItemModel artist = snapshot.getValue(FoodItemModel.class);
-                    artistList.add(artist);
+                    FoodItemModel foodItem = snapshot.getValue(FoodItemModel.class);
+                    foodList.add(foodItem);
                 }
-
                 adapter.notifyDataSetChanged();
             }
         }
 
         @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-
+        public void onCancelled(DatabaseError databaseError) { }
     };
 
     private void setUpSpinners(){
-
         foodListAdapter = ArrayAdapter.createFromResource(SearchFoodActivity.this, R.array.foodCategories, android.R.layout.simple_spinner_item);
         foodListAdapter.setDropDownViewResource(android.R.layout.preference_category);
         foodSpinner.setAdapter(foodListAdapter);
@@ -156,7 +155,6 @@ public class SearchFoodActivity extends AppCompatActivity implements AdapterView
         mealListAdapter.setDropDownViewResource(android.R.layout.preference_category);
         mealSpinner.setAdapter(mealListAdapter);
         mealSpinner.setOnItemSelectedListener(this);
-
     }
 
     @Override
@@ -167,38 +165,33 @@ public class SearchFoodActivity extends AppCompatActivity implements AdapterView
         FirebaseUser user = auth.getCurrentUser();
 
         if(chosen.equals("Breakfast")){
-
             mealChosen = "Breakfast";
             heading.setText(mealChosen);
-            adapter = new FoodAdapter(this, artistList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
+            adapter = new FoodAdapter(this, foodList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
             mResultList.setAdapter(adapter);
 
         }else if(chosen.equals("Lunch")){
-
             mealChosen = "Lunch";
             heading.setText(mealChosen);
-            adapter = new FoodAdapter(this, artistList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
+            adapter = new FoodAdapter(this, foodList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
             mResultList.setAdapter(adapter);
 
         }else {
             mealChosen = "Dinner";
             heading.setText(mealChosen);
-            adapter = new FoodAdapter(this, artistList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
+            adapter = new FoodAdapter(this, foodList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
             mResultList.setAdapter(adapter);
         }
 
         if(chosen.equals("Fruit_Veg")){
             foodCatgeory = "Fruit_Veg";
-
         }else if(chosen.equals("SeaFood")){
             foodCatgeory = "SeaFood";
-
+        }else if (chosen.equals("Meat")){
+            foodCatgeory = "Meat";
         }
-
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) { }
 }

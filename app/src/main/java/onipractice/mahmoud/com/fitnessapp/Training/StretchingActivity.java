@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import onipractice.mahmoud.com.fitnessapp.R;
 import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
-import onipractice.mahmoud.com.fitnessapp.TrainingActivity;
 
 public class StretchingActivity extends AppCompatActivity {
 

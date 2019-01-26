@@ -56,7 +56,6 @@
             android:name=".ProgressGalleryActivity"
             android:label="@string/title_activity_progress_gallery"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Messaging.MessagingActivity" />
         <activity android:name=".Client.ClientProfileActivity">
             <intent-filter>
                 <action android:name="onipractice.mahmoud.com.fitnessapp_TARGET_NOTIFICATION" />
@@ -65,7 +64,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Trainer.MyTrainerActivity" />
-        <activity android:name=".Messaging.ChatActivity" />
+        <activity android:name=".Messaging.MessengerActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
@@ -82,17 +81,8 @@
         <activity android:name=".TimetableActivity" />
         <activity android:name=".DietActivity" />
         <activity android:name=".SearchFoodActivity" />
-        <activity android:name=".TrainingActivity" />
-        <activity android:name=".Training.CardioActivity" />
-        <activity android:name=".Training.WeightsActivity" />
         <activity android:name=".Training.StretchingActivity" />
 
-        <service
-            android:name=".TrackerService"
-            android:enabled="true"
-            android:exported="true" />
-
-        <activity android:name=".Training.RunningActivity"></activity>
     </application>
 
 </manifest>

@@ -41,7 +41,7 @@ import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
 import onipractice.mahmoud.com.fitnessapp.Utils.GetTimeAgo;
 import onipractice.mahmoud.com.fitnessapp.Utils.MessageAdapter;
 
-public class ChatActivity extends AppCompatActivity {
+public class MessengerActivity extends AppCompatActivity {
 
     private String messageReceiverId, trainerSet;
     private TextView receiverTv, lastSeenTv;
@@ -91,7 +91,7 @@ public class ChatActivity extends AppCompatActivity {
         sendBtn = (ImageView) findViewById(R.id.sendBtn);
         messageEt = (EditText) findViewById(R.id.messageEt);
 
-        messageAdapter = new MessageAdapter(list, ChatActivity.this);
+        messageAdapter = new MessageAdapter(list, MessengerActivity.this);
         linearLayoutManager = new LinearLayoutManager(this);
 
         messagesRecyclerView = (RecyclerView) findViewById(R.id.messagesRecyclerView);
@@ -125,10 +125,10 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(userType.equals("client")){
-                    Intent intent = new Intent(ChatActivity.this, ClientsActivity.class);
+                    Intent intent = new Intent(MessengerActivity.this, ClientsActivity.class);
                     startActivity(intent);
                 }else if(userType.equals("trainee")){
-                    Intent intent = new Intent(ChatActivity.this , TraineeHomeActivity.class);
+                    Intent intent = new Intent(MessengerActivity.this , TraineeHomeActivity.class);
                     startActivity(intent);
                 }
             }

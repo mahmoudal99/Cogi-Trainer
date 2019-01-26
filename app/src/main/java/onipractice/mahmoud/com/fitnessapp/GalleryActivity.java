@@ -1,6 +1,5 @@
 package onipractice.mahmoud.com.fitnessapp;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -23,11 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import onipractice.mahmoud.com.fitnessapp.Messaging.ChatActivity;
-import onipractice.mahmoud.com.fitnessapp.Models.ImageModel;
 import onipractice.mahmoud.com.fitnessapp.Models.MyTrainerModel;
 
 public class GalleryActivity extends AppCompatActivity {

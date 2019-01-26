@@ -1,207 +1,407 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
 
-    <RelativeLayout
-        android:id="@+id/relLayout1"
-        android:background="@color/outline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+	android:layout_width="wrap_content"
 
-            <ImageView
-                android:id="@+id/backArrow"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@drawable/ic_back"
-                android:layout_weight="1"/>
+	android:layout_height="wrap_content"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:fontFamily="serif-monospace"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="Personal Trainer"
-                android:textColor="@color/white"
-                android:textSize="22sp" />
-
-            <ImageView
-                android:id="@+id/chat_img"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_messenger"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_centerHorizontal="true">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/trainerProfileImg"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/trainer_default_img"
-                android:layout_marginBottom="30dp"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="2dp" />
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/firstname_identifier"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relLayout1"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:fontFamily="serif-monospace"
-        android:text="Name"
-        android:textColor="@color/grey"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/nameTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@id/firstname_identifier"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="5dp"
-        android:text="@string/trainer"
-        android:fontFamily="serif-monospace"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-    <View
-        android:layout_width="340dp"
-        android:layout_height="1dp"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@id/nameTv"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/black"/>
-
-    <TextView
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/surnamename_identifier"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="serif-monospace"
-        android:textColor="@color/grey"
-        android:layout_below="@id/nameTv"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:text="Surname"/>
-
-    <TextView
-        android:id="@+id/surnameTv"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/surnamename_identifier"
-        android:layout_marginTop="5dp"
-        android:text="@string/trainer"
-        android:fontFamily="serif-monospace"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-    <View
-        android:layout_width="340dp"
-        android:layout_height="1dp"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@id/surnameTv"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/black"/>
-
-    <TextView
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/date_identifier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:fontFamily="serif-monospace"
-        android:textColor="@color/grey"
-        android:layout_below="@id/surnameTv"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:text="Date Started"/>
-
-
-    <TextView
-        android:id="@+id/dateTv"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@id/date_identifier"
-        android:text="@string/trainer"
-        android:layout_marginTop="5dp"
-        android:fontFamily="serif-monospace"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-    <View
-        android:layout_width="340dp"
-        android:layout_height="1dp"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@id/dateTv"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/black"/>
-
-
-    <ImageView
-        android:id="@+id/online_ind"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:visibility="invisible"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:src="@drawable/online_img" />
+	android:orientation="horizontal">
 
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/userName"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/outline" />
+	<RelativeLayout
+
+		android:id="@+id/relLayout1"
+
+		android:background="@color/outline"
+
+		android:layout_width="match_parent"
+
+		android:layout_height="wrap_content">
+
+
+
+		<LinearLayout
+
+			android:layout_width="match_parent"
+
+			android:layout_marginTop="10dp"
+
+			android:layout_height="wrap_content"
+
+			android:orientation="horizontal">
+
+
+
+			<ImageView
+
+				android:id="@+id/backArrow"
+
+				android:layout_width="45dp"
+
+				android:layout_height="45dp"
+
+				android:src="@drawable/ic_back"
+
+				android:layout_weight="1"/>
+
+
+
+			<TextView
+
+				android:layout_width="wrap_content"
+
+				android:layout_height="wrap_content"
+
+				android:layout_weight="3"
+
+				android:fontFamily="serif-monospace"
+
+				android:gravity="center_horizontal|center_vertical"
+
+				android:text="Personal Trainer"
+
+				android:textColor="@color/white"
+
+				android:textSize="22sp" />
+
+
+
+			<ImageView
+
+				android:id="@+id/chat_img"
+
+				android:layout_width="48dp"
+
+				android:layout_height="48dp"
+
+				android:src="@drawable/ic_messenger"
+
+				android:layout_gravity="center_vertical"
+
+				android:layout_weight="1"/>
+
+
+
+		</LinearLayout>
+
+
+
+		<RelativeLayout
+
+			android:layout_width="wrap_content"
+
+			android:layout_height="wrap_content"
+
+			android:layout_marginTop="70dp"
+
+			android:layout_centerHorizontal="true">
+
+
+
+			<de.hdodenhof.circleimageview.CircleImageView
+
+				android:id="@+id/trainerProfileImg"
+
+				android:layout_width="150dp"
+
+				android:layout_height="150dp"
+
+				android:layout_gravity="center_horizontal"
+
+				android:src="@drawable/trainer_default_img"
+
+				android:layout_marginBottom="30dp"
+
+				app:civ_border_color="@color/white"
+
+				app:civ_border_width="2dp" />
+
+
+
+		</RelativeLayout>
+
+
+
+	</RelativeLayout>
+
+
+
+	<TextView
+
+		android:id="@+id/firstname_identifier"
+
+		android:layout_marginTop="20dp"
+
+		android:layout_marginLeft="30dp"
+
+		android:layout_width="wrap_content"
+
+		android:layout_height="wrap_content"
+
+		android:layout_below="@id/relLayout1"
+
+		android:layout_alignParentStart="true"
+
+		android:layout_alignParentLeft="true"
+
+		android:fontFamily="serif-monospace"
+
+		android:text="Name"
+
+		android:textColor="@color/grey"
+
+		android:textSize="20sp"
+
+		android:textStyle="bold" />
+
+
+
+	<TextView
+
+		android:id="@+id/nameTv"
+
+		android:layout_width="wrap_content"
+
+		android:layout_height="wrap_content"
+
+		android:layout_marginLeft="30dp"
+
+		android:layout_below="@id/firstname_identifier"
+
+		android:layout_alignParentStart="true"
+
+		android:layout_alignParentLeft="true"
+
+		android:layout_marginTop="5dp"
+
+		android:text="@string/trainer"
+
+		android:fontFamily="serif-monospace"
+
+		android:textColor="@color/black"
+
+		android:textSize="20sp"
+
+		android:textStyle="bold"/>
+
+
+
+	<View
+
+		android:layout_width="340dp"
+
+		android:layout_height="1dp"
+
+		android:layout_marginLeft="30dp"
+
+		android:layout_below="@id/nameTv"
+
+		android:layout_gravity="center_horizontal"
+
+		android:background="@color/black"/>
+
+
+
+	<TextView
+
+		android:layout_alignParentStart="true"
+
+		android:layout_alignParentLeft="true"
+
+		android:id="@+id/surnamename_identifier"
+
+		android:layout_width="wrap_content"
+
+		android:layout_marginLeft="30dp"
+
+		android:layout_height="wrap_content"
+
+		android:fontFamily="serif-monospace"
+
+		android:textColor="@color/grey"
+
+		android:layout_below="@id/nameTv"
+
+		android:layout_marginTop="10dp"
+
+		android:textStyle="bold"
+
+		android:textSize="20sp"
+
+		android:text="Surname"/>
+
+
+
+	<TextView
+
+		android:id="@+id/surnameTv"
+
+		android:layout_alignParentStart="true"
+
+		android:layout_alignParentLeft="true"
+
+		android:layout_width="wrap_content"
+
+		android:layout_marginLeft="30dp"
+
+		android:layout_height="wrap_content"
+
+		android:layout_below="@id/surnamename_identifier"
+
+		android:layout_marginTop="5dp"
+
+		android:text="@string/trainer"
+
+		android:fontFamily="serif-monospace"
+
+		android:textColor="@color/black"
+
+		android:textSize="20sp"
+
+		android:textStyle="bold"/>
+
+
+
+	<View
+
+		android:layout_width="340dp"
+
+		android:layout_height="1dp"
+
+		android:layout_marginLeft="30dp"
+
+		android:layout_below="@id/surnameTv"
+
+		android:layout_gravity="center_horizontal"
+
+		android:background="@color/black"/>
+
+
+
+	<TextView
+
+		android:layout_alignParentStart="true"
+
+		android:layout_alignParentLeft="true"
+
+		android:id="@+id/date_identifier"
+
+		android:layout_width="wrap_content"
+
+		android:layout_height="wrap_content"
+
+		android:layout_marginLeft="30dp"
+
+		android:fontFamily="serif-monospace"
+
+		android:textColor="@color/grey"
+
+		android:layout_below="@id/surnameTv"
+
+		android:layout_marginTop="10dp"
+
+		android:textStyle="bold"
+
+		android:textSize="20sp"
+
+		android:text="Date Started"/>
+
+
+
+
+
+	<TextView
+
+		android:id="@+id/dateTv"
+
+		android:layout_alignParentStart="true"
+
+		android:layout_alignParentLeft="true"
+
+		android:layout_width="wrap_content"
+
+		android:layout_height="wrap_content"
+
+		android:layout_marginLeft="30dp"
+
+		android:layout_below="@id/date_identifier"
+
+		android:text="@string/trainer"
+
+		android:layout_marginTop="5dp"
+
+		android:fontFamily="serif-monospace"
+
+		android:textColor="@color/black"
+
+		android:textSize="20sp"
+
+		android:textStyle="bold"/>
+
+
+
+	<View
+
+		android:layout_width="340dp"
+
+		android:layout_height="1dp"
+
+		android:layout_marginLeft="30dp"
+
+		android:layout_below="@id/dateTv"
+
+		android:layout_gravity="center_horizontal"
+
+		android:background="@color/black"/>
+
+
+
+
+
+	<ImageView
+
+		android:id="@+id/online_ind"
+
+		android:layout_width="15dp"
+
+		android:layout_height="15dp"
+
+		android:layout_alignParentTop="true"
+
+		android:layout_alignParentEnd="true"
+
+		android:layout_alignParentRight="true"
+
+		android:visibility="invisible"
+
+		android:layout_marginEnd="40dp"
+
+		android:layout_marginRight="40dp"
+
+		android:src="@drawable/online_img" />
+
+
+
+
+
+
+
+	<View
+
+		android:layout_width="match_parent"
+
+		android:layout_height="1dp"
+
+		android:layout_below="@id/userName"
+
+		android:layout_gravity="center_horizontal"
+
+		android:background="@color/outline" />
+
+
 
 </RelativeLayout>
-
-
-
