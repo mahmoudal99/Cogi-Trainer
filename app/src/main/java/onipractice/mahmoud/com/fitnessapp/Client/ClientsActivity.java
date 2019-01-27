@@ -67,11 +67,11 @@ public class ClientsActivity extends AppCompatActivity {
                         .setQuery(uidRef, ClientModel.class)
                         .build();
 
-        FirebaseRecyclerAdapter<ClientModel, ClientsActivity.UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ClientModel, ClientsActivity.UsersViewHolder>(
+        FirebaseRecyclerAdapter<ClientModel, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ClientModel, UsersViewHolder>(
                 options
         ) {
             @Override
-            protected void onBindViewHolder(@NonNull final ClientsActivity.UsersViewHolder holder, int position, @NonNull ClientModel model) {
+            protected void onBindViewHolder(@NonNull final UsersViewHolder holder, int position, @NonNull ClientModel model) {
 
 
                 clientReference = rootRef.child("user_account_settings").child(model.traineeId);
@@ -107,11 +107,11 @@ public class ClientsActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public ClientsActivity.UsersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public UsersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.trainers_list_item, parent, false);
 
-                return new ClientsActivity.UsersViewHolder(view);
+                return new UsersViewHolder(view);
             }
         };
 

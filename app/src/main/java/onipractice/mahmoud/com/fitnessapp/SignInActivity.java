@@ -69,7 +69,7 @@ public class SignInActivity extends AppCompatActivity {
     private void initializeVariables(){
         tokenReference = FirebaseDatabase.getInstance().getReference().child("user_account_settings");
         // Shared Preferences
-        sharedPreference = getSharedPreferences("Preferences", ChooseUserTypeActivity.MODE_PRIVATE);
+        sharedPreference = getSharedPreferences("Preferences", ChoosePreferenceActivity.MODE_PRIVATE);
         editor = sharedPreference.edit();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         emailEditText = (EditText) findViewById(R.id.email);
@@ -208,7 +208,7 @@ public class SignInActivity extends AppCompatActivity {
                                         public void onSuccess(Void aVoid) {
                                             getUserType(userID);
                                             if(sharedPreference.getString("value", "").equals("false")){
-                                                intent = new Intent(SignInActivity.this, ChooseUserTypeActivity.class);
+                                                intent = new Intent(SignInActivity.this, ChoosePreferenceActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                 startActivity(intent);
                                                 finish();

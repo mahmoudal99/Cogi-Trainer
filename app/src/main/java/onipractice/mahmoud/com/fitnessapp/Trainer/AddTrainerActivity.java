@@ -66,11 +66,11 @@ public class AddTrainerActivity extends AppCompatActivity {
                         .setQuery(uidReference, TrainerModel.class)
                         .build();
 
-        FirebaseRecyclerAdapter<TrainerModel, AddTrainerActivity.UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<TrainerModel, AddTrainerActivity.UsersViewHolder>(
+        FirebaseRecyclerAdapter<TrainerModel, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<TrainerModel, UsersViewHolder>(
                 options
         ) {
             @Override
-            protected void onBindViewHolder(@NonNull AddTrainerActivity.UsersViewHolder holder, int position, @NonNull TrainerModel model) {
+            protected void onBindViewHolder(@NonNull UsersViewHolder holder, int position, @NonNull TrainerModel model) {
                 holder.setName(model.getName());
                 holder.setSurname(model.lastname);
 
@@ -90,11 +90,11 @@ public class AddTrainerActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public AddTrainerActivity.UsersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public UsersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.trainers_list_item, parent, false);
 
-                return new AddTrainerActivity.UsersViewHolder(view);
+                return new UsersViewHolder(view);
             }
         };
 

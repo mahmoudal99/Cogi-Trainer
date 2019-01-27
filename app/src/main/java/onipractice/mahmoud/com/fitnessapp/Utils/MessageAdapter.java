@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import onipractice.mahmoud.com.fitnessapp.ChooseUserTypeActivity;
+import onipractice.mahmoud.com.fitnessapp.ChoosePreferenceActivity;
 import onipractice.mahmoud.com.fitnessapp.Models.MessageModel;
 import onipractice.mahmoud.com.fitnessapp.R;
 
@@ -45,12 +45,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @NonNull
     @Override
-    public MessageAdapter.MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.messages_list_item, parent, false);
 
 
 
-        cacheData = context.getSharedPreferences("Preferences", ChooseUserTypeActivity.MODE_PRIVATE);
+        cacheData = context.getSharedPreferences("Preferences", ChoosePreferenceActivity.MODE_PRIVATE);
         editor = cacheData.edit();
 
         return new MessageViewHolder(v);
@@ -75,7 +75,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
-    public void onBindViewHolder(@NonNull MessageAdapter.MessageViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
 
         MessageModel c = messageModelList.get(position);
         auth = FirebaseAuth.getInstance();

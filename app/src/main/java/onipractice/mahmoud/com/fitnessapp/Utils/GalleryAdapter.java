@@ -2,7 +2,10 @@ package onipractice.mahmoud.com.fitnessapp.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +13,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import onipractice.mahmoud.com.fitnessapp.ChooseUserTypeActivity;
+import onipractice.mahmoud.com.fitnessapp.ChoosePreferenceActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
 
 public class GalleryAdapter extends BaseAdapter {
@@ -38,7 +45,7 @@ public class GalleryAdapter extends BaseAdapter {
         this.ctx = ctx;
         this.mArrayUri = mArrayUri;
 
-        cacheData = ctx.getSharedPreferences("ProgressGallery", ChooseUserTypeActivity.MODE_PRIVATE);
+        cacheData = ctx.getSharedPreferences("ProgressGallery", ChoosePreferenceActivity.MODE_PRIVATE);
         editor = cacheData.edit();
     }
 

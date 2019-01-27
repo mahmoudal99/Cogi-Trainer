@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import onipractice.mahmoud.com.fitnessapp.ChooseUserTypeActivity;
+import onipractice.mahmoud.com.fitnessapp.ChoosePreferenceActivity;
 import onipractice.mahmoud.com.fitnessapp.Trainer.PersonalTrainerHomeActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
 import onipractice.mahmoud.com.fitnessapp.SignInActivity;
@@ -77,7 +78,7 @@ public class ProfileActivity extends AppCompatActivity  {
         userType = getIntent().getStringExtra("user");
 
         // Shared Preference
-        cacheData = getSharedPreferences("Preferences", ChooseUserTypeActivity.MODE_PRIVATE);
+        cacheData = getSharedPreferences("Preferences", ChoosePreferenceActivity.MODE_PRIVATE);
         editor = cacheData.edit();
 
         setProfileImg();
