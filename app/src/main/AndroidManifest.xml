@@ -43,7 +43,7 @@
 
         <activity android:name=".SignUpActivity" />
 
-        <activity android:name=".ChoosePreferenceActivity" />
+        <activity android:name=".ChooseUserTypeActivity" />
         <activity android:name=".Trainer.PersonalTrainerHomeActivity" />
         <activity
             android:name=".TraineeHomeActivity"
@@ -68,7 +68,6 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".GalleryActivity" />
         <activity android:name=".Trainer.TrainerPersonalDetailsActivity" />
         <activity android:name=".Trainer.AddTrainerActivity" />
         <activity android:name=".Client.ClientRequestsActivity" />

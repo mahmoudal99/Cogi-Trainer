@@ -10,7 +10,7 @@
 
     android:layout_height="match_parent"
 
-    tools:context=".Training.CardioActivity">
+    tools:context=".Training.StretchingActivity">
 
 
 

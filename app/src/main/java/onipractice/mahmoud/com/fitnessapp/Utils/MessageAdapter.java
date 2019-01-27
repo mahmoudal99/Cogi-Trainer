@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import onipractice.mahmoud.com.fitnessapp.ChoosePreferenceActivity;
+import onipractice.mahmoud.com.fitnessapp.ChooseUserTypeActivity;
 import onipractice.mahmoud.com.fitnessapp.Models.MessageModel;
 import onipractice.mahmoud.com.fitnessapp.R;
 
@@ -50,7 +50,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
 
 
-        cacheData = context.getSharedPreferences("Preferences", ChoosePreferenceActivity.MODE_PRIVATE);
+        cacheData = context.getSharedPreferences("Preferences", ChooseUserTypeActivity.MODE_PRIVATE);
         editor = cacheData.edit();
 
         return new MessageViewHolder(v);

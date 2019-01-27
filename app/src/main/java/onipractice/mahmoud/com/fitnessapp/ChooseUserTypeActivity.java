@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import onipractice.mahmoud.com.fitnessapp.Trainer.TrainerPersonalDetailsActivity;
 
-public class ChoosePreferenceActivity extends AppCompatActivity {
+public class ChooseUserTypeActivity extends AppCompatActivity {
 
     private static final String TAG = "ChooseOption";
 
@@ -45,11 +45,11 @@ public class ChoosePreferenceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_position);
+        setContentView(R.layout.activity_choose_user_type);
 
-        context = ChoosePreferenceActivity.this;
+        context = ChooseUserTypeActivity.this;
 
-        cacheData = getSharedPreferences("Position", ChoosePreferenceActivity.MODE_PRIVATE);
+        cacheData = getSharedPreferences("Position", ChooseUserTypeActivity.MODE_PRIVATE);
         editor = cacheData.edit();
 
         rootRef = FirebaseDatabase.getInstance().getReference();
