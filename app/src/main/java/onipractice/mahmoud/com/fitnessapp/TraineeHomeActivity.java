@@ -24,6 +24,8 @@ import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import onipractice.mahmoud.com.fitnessapp.Jogging.JoggingActivity;
+import onipractice.mahmoud.com.fitnessapp.Jogging.JoggingTrackingActivity;
 import onipractice.mahmoud.com.fitnessapp.Messaging.MessengerActivity;
 import onipractice.mahmoud.com.fitnessapp.Profile.ProfileActivity;
 import onipractice.mahmoud.com.fitnessapp.Trainer.AddTrainerActivity;
@@ -36,7 +38,7 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
 
     // Widgets
     private CircleImageView profileImg;
-    private CardView progressCardView, trainerCardView, myDietCardView, timetableCardView, stretchesCardView;
+    private CardView progressCardView, trainerCardView, myDietCardView, timetableCardView, stretchesCardView, joggingCardView;
     private ImageView messaging;
 
     // Variables
@@ -88,6 +90,7 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
         timetableCardView = (CardView) findViewById(R.id.timetableCard);
         myDietCardView = (CardView) findViewById(R.id.dietCardView);
         stretchesCardView = (CardView) findViewById(R.id.stretchesCard);
+        joggingCardView = (CardView) findViewById(R.id.joggingCard);
         messaging = (ImageView) findViewById(R.id.messageIv);
     }
 
@@ -180,6 +183,14 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TraineeHomeActivity.this, StretchingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        joggingCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, JoggingActivity.class);
                 startActivity(intent);
             }
         });

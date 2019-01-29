@@ -172,7 +172,7 @@ public class TimetableActivity extends AppCompatActivity implements RecurrencePi
             TextView trainingWorkoutTextView = convertView.findViewById(R.id.training_workout_Tv);
             TextView trainingTimeTextView = convertView.findViewById(R.id.training_time_Tv);
             rowIconTextView = convertView.findViewById(R.id.row_icon);
-            TextView deleteTrainingDay = convertView.findViewById(R.id.delete);
+            ImageView deleteTrainingDay = convertView.findViewById(R.id.delete);
 
             trainingDayTextView.setText(user.day);
             trainingTimeTextView.setText(user.time);
