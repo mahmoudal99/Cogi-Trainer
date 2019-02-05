@@ -11,15 +11,13 @@ public class TrainerPersonalDetails {
     private String firstname;
     private String lastname;
 
-    public TrainerPersonalDetails(String firstname, String lastname, String education, String specialitiesString, String availibility, String gender){
-
+    public TrainerPersonalDetails(String firstname, String lastname, String education, String specialitiesString, String availibility, String gender) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.education = education;
         this.availibility = availibility;
         this.specialitiesString = specialitiesString;
         this.gender = gender;
-
     }
 
     public String getFirstname() {

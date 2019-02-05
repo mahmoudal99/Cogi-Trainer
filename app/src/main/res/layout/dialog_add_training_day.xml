@@ -1,321 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:orientation="vertical"
-
     android:layout_width="match_parent"
-
     android:layout_height="wrap_content"
-
-    android:padding="10dp"
-
-    android:background="@color/white">
-
-
-
-  <TextView
-
-      android:layout_width="wrap_content"
-
-      android:layout_height="wrap_content"
-
-      android:text="Add Day"
-
-      android:textSize="21sp"
-
-      android:textStyle="bold"
-
-      android:fontFamily="serif-monospace"
-
-      android:textColor="@color/black"
-
-      android:id="@+id/dialogTitle"/>
-
-
-
-
-
-  <TextView
-
-      android:id="@+id/workout_identifier"
-
-      android:layout_marginTop="20dp"
-
-      android:layout_width="wrap_content"
-
-      android:layout_height="wrap_content"
-
-      android:layout_below="@id/dialogTitle"
-
-      android:layout_alignParentStart="true"
-
-      android:layout_alignParentLeft="true"
-
-      android:fontFamily="serif-monospace"
-
-      android:text="Workout"
-
-      android:textColor="@color/identifier_grey"
-
-      android:textSize="20sp"
-
-      android:textStyle="bold" />
-
-
-
-  <EditText
-
-      android:id="@+id/workoutEt"
-
-      android:layout_width="match_parent"
-
-      android:layout_height="@dimen/SignInEditTextHeight"
-
-      android:layout_below="@id/workout_identifier"
-
-      android:background="@null"
-
-      android:fontFamily="serif-monospace"
-
-      android:hint="Workout"
-
-      android:textColor="@color/outline"
-
-      android:textColorHint="@color/grey"
-
-      android:textSize="20sp"
-
-      android:textStyle="bold" />
-
-  <View
-
-      android:layout_width="match_parent"
-
-      android:layout_height="2dp"
-
-      android:layout_below="@id/workoutEt"
-
-      android:layout_gravity="center_horizontal"
-
-      android:background="@color/grey"/>
-
-
-
-  <TextView
-
-      android:id="@+id/time_identifier"
-
-      android:layout_marginTop="20dp"
-
-      android:layout_width="wrap_content"
-
-      android:layout_height="wrap_content"
-
-      android:layout_below="@id/workoutEt"
-
-      android:layout_alignParentStart="true"
-
-      android:layout_alignParentLeft="true"
-
-      android:fontFamily="serif-monospace"
-
-      android:text="Time"
-
-      android:textColor="@color/identifier_grey"
-
-      android:textSize="20sp"
-
-      android:textStyle="bold" />
-
-
-
-
-
-  <TextView
-
-      android:id="@+id/timeTv"
-
-      android:layout_width="match_parent"
-
-      android:layout_height="@dimen/SignInEditTextHeight"
-
-      android:layout_below="@id/time_identifier"
-
-      android:layout_marginTop="10dp"
-
-      android:background="@drawable/dialog_options_bg"
-
-      android:gravity="center_vertical|center_horizontal"
-
-      android:fontFamily="serif-monospace"
-
-      android:textColor="@color/white"
-
-      android:text="Time"
-
-      android:textSize="20sp"
-
-      android:textStyle="bold" />
-
-
-
-  <View
-
-      android:layout_width="match_parent"
-
-      android:layout_height="2dp"
-
-      android:layout_marginTop="10dp"
-
-      android:layout_below="@id/timeTv"
-
-      android:layout_gravity="center_horizontal"
-
-      android:background="@color/grey"/>
-
-
-
-  <TextView
-
-      android:id="@+id/day_identifier"
-
-      android:layout_marginTop="20dp"
-
-      android:layout_width="wrap_content"
-
-      android:layout_height="wrap_content"
-
-      android:layout_below="@id/timeTv"
-
-      android:layout_alignParentStart="true"
-
-      android:layout_alignParentLeft="true"
-
-      android:fontFamily="serif-monospace"
-
-      android:text="Day"
-
-      android:textColor="@color/identifier_grey"
-
-      android:textSize="20sp"
-
-      android:textStyle="bold" />
-
-
-
-  <TextView
-
-      android:id="@+id/dayTv"
-
-      android:layout_width="match_parent"
-
-      android:layout_height="@dimen/SignInEditTextHeight"
-
-      android:layout_below="@id/day_identifier"
-
-      android:layout_marginTop="10dp"
-
-      android:background="@drawable/dialog_options_bg"
-
-      android:gravity="center_vertical|center_horizontal"
-
-      android:fontFamily="serif-monospace"
-
-      android:textColor="@color/white"
-
-      android:text="Day"
-
-      android:textSize="20sp"
-
-      android:textStyle="bold" />
-
-
-
-  <View
-
-      android:layout_width="match_parent"
-
-      android:layout_height="2dp"
-
-      android:layout_below="@id/dayTv"
-
-      android:layout_gravity="center_horizontal"
-
-      android:layout_marginTop="10dp"
-
-      android:background="@color/grey"/>
-
-
-
-
-
-  <RelativeLayout
-
-      android:layout_below="@id/dayTv"
-
-      android:layout_width="wrap_content"
-
-      android:layout_height="wrap_content">
-
-
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
-
-        android:id="@+id/dialogCancel"
-
+        android:id="@+id/dialogTitle"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-
-        android:layout_alignParentRight="true"
-
-        android:layout_marginBottom="10dp"
-
-        android:layout_marginRight="10dp"
-
-        android:layout_marginTop="30dp"
-
         android:fontFamily="serif-monospace"
-
-        android:text="@string/cancel"
-
+        android:text="Add Day"
         android:textColor="@color/black"
+        android:textSize="21sp"
+        android:textStyle="bold" />
 
-        android:textSize="18sp"
+    <TextView
+        android:id="@+id/workout_identifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialogTitle"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="serif-monospace"
+        android:text="Workout"
+        android:textColor="@color/identifier_grey"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
+    <EditText
+        android:id="@+id/workoutEt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/SignInEditTextHeight"
+        android:layout_below="@id/workout_identifier"
+        android:background="@null"
+        android:fontFamily="serif-monospace"
+        android:hint="Workout"
+        android:textColor="@color/outline"
+        android:textColorHint="@color/grey"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/workoutEt"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/grey" />
+
+    <TextView
+        android:id="@+id/time_identifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/workoutEt"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="serif-monospace"
+        android:text="Time"
+        android:textColor="@color/identifier_grey"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
 
-
     <TextView
-
-        android:id="@+id/dialogConfirm"
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_marginBottom="10dp"
-
-        android:layout_marginRight="10dp"
-
-        android:layout_marginTop="30dp"
-
+        android:id="@+id/timeTv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/SignInEditTextHeight"
+        android:layout_below="@id/time_identifier"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/dialog_options_bg"
         android:fontFamily="serif-monospace"
-
-        android:text="@string/confirm"
-
-        android:textColor="@color/black"
-
-        android:textSize="18sp"
-
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Time"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/timeTv"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey" />
 
+    <TextView
+        android:id="@+id/day_identifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeTv"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="serif-monospace"
+        android:text="Day"
+        android:textColor="@color/identifier_grey"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-  </RelativeLayout>
+    <TextView
+        android:id="@+id/dayTv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/SignInEditTextHeight"
+        android:layout_below="@id/day_identifier"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/dialog_options_bg"
+        android:fontFamily="serif-monospace"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Day"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/dayTv"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dayTv">
+
+        <TextView
+            android:id="@+id/dialogCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="serif-monospace"
+            android:text="@string/cancel"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dialogConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="serif-monospace"
+            android:text="@string/confirm"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

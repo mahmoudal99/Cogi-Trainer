@@ -5,11 +5,11 @@ public class TrainerModel {
     public String firstname;
     public String lastname;
 
-    public TrainerModel(){
+    public TrainerModel() {
 
     }
 
-    public TrainerModel(String firstname, String lastname){
+    public TrainerModel(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
     }

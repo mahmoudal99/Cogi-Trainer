@@ -3,8 +3,6 @@ package onipractice.mahmoud.com.fitnessapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import onipractice.mahmoud.com.fitnessapp.Trainer.PersonalTrainerHomeActivity;
 
 public class SignInActivity extends AppCompatActivity {
@@ -66,7 +66,7 @@ public class SignInActivity extends AppCompatActivity {
         setUpFirebaseAuthentication();
     }
 
-    private void initializeVariables(){
+    private void initializeVariables() {
         tokenReference = FirebaseDatabase.getInstance().getReference().child("user_account_settings");
         // Shared Preferences
         sharedPreference = getSharedPreferences("Preferences", ChooseUserTypeActivity.MODE_PRIVATE);
@@ -78,7 +78,7 @@ public class SignInActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginBTN);
     }
 
-    private void setUpWidgets(){
+    private void setUpWidgets() {
         createAccountTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +95,7 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    private void checkUserSignedIn(){
+    private void checkUserSignedIn() {
         if (currentUser != null) {
             checkUserType();
         } else {
@@ -103,28 +103,25 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isStringNull(String string)
-    {
-        if(string.equals(""))
-        {
+    public boolean isStringNull(String string) {
+        if (string.equals("")) {
             return true;
-        }else
-        {
+        } else {
             return false;
         }
     }
 
-    private void setUserTypePicked(){
+    private void setUserTypePicked() {
         rootReference = FirebaseDatabase.getInstance().getReference();
         uidReference = rootReference.child("user_account_settings");
 
-        if(authentication.getCurrentUser() != null){
+        if (authentication.getCurrentUser() != null) {
             userID = authentication.getCurrentUser().getUid();
         }
         uidReference.child(userID).child("prefChosen").setValue("true");
     }
 
-    private void getUserType(String id){
+    private void getUserType(String id) {
         rootReference = FirebaseDatabase.getInstance().getReference();
         uidReference = rootReference.child("user_account_settings").child(id).child("prefChosen");
 
@@ -136,15 +133,16 @@ public class SignInActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { }
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         };
         uidReference.addListenerForSingleValueEvent(valueEventListener);
     }
 
-    private void checkUserType(){
+    private void checkUserType() {
         authentication = FirebaseAuth.getInstance();
 
-        if(authentication.getCurrentUser() != null){
+        if (authentication.getCurrentUser() != null) {
             userID = authentication.getCurrentUser().getUid();
         }
 
@@ -155,12 +153,12 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 result = dataSnapshot.getValue(String.class);
-                if(result.equals("Personal Trainer")){
+                if (result.equals("Personal Trainer")) {
                     Intent intent = new Intent(context, PersonalTrainerHomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
-                }else if (result.equals("Trainee")){
+                } else if (result.equals("Trainee")) {
                     Intent intent = new Intent(context, TraineeHomeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -168,21 +166,22 @@ public class SignInActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { }
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         };
         uidReference.addListenerForSingleValueEvent(valueEventListener);
     }
 
-    private void signIn(){
+    private void signIn() {
 
         authentication = FirebaseAuth.getInstance();
 
         email = emailEditText.getText().toString();
         password = passwordEditText.getText().toString();
 
-        if(isStringNull(email) && isStringNull(password)) {
+        if (isStringNull(email) && isStringNull(password)) {
             Toast.makeText(context, "You must fill out all the fields", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
 
             authentication.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
@@ -196,9 +195,9 @@ public class SignInActivity extends AppCompatActivity {
                                 Log.w(TAG, "signInWithEmail:failed", task.getException());
                                 Toast.makeText(SignInActivity.this, getString(R.string.auth_failed),
                                         Toast.LENGTH_SHORT).show();
-                            }else {
+                            } else {
 
-                                if(currentUser.isEmailVerified()) {
+                                if (currentUser.isEmailVerified()) {
 
                                     Log.d(TAG, "onComplete: success. email is verified.");
                                     user_id = currentUser.getUid();
@@ -207,19 +206,19 @@ public class SignInActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             getUserType(userID);
-                                            if(sharedPreference.getString("value", "").equals("false")){
+                                            if (sharedPreference.getString("value", "").equals("false")) {
                                                 intent = new Intent(SignInActivity.this, ChooseUserTypeActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                 startActivity(intent);
                                                 finish();
                                                 setUserTypePicked();
-                                            }else {
+                                            } else {
                                                 checkUserType();
                                             }
                                         }
                                     });
 
-                                }else {
+                                } else {
 
                                     Toast.makeText(context, "Email is not verified \n check your email inbox.", Toast.LENGTH_SHORT).show();
                                     authentication.signOut();
@@ -235,17 +234,15 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     //---------- Firebase ----------//
-    private void setUpFirebaseAuthentication()
-    {
+    private void setUpFirebaseAuthentication() {
         authentication = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 currentUser = firebaseAuth.getCurrentUser();
-                if(currentUser != null)
-                {
+                if (currentUser != null) {
                     Log.d(TAG, "Success");
-                }else {
+                } else {
                     Log.d(TAG, "signed out");
                 }
             }
@@ -259,10 +256,9 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
-        if (authStateListener != null)
-        {
+        if (authStateListener != null) {
             authentication.removeAuthStateListener(authStateListener);
         }
     }

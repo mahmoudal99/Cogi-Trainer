@@ -1,13 +1,12 @@
 package onipractice.mahmoud.com.fitnessapp.Jogging;
 
 import android.content.Intent;
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import onipractice.mahmoud.com.fitnessapp.R;
 import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
 
@@ -24,12 +23,13 @@ public class JoggingActivity extends AppCompatActivity {
         initialize();
         setUpWidgets();
     }
-    private void initialize(){
+
+    private void initialize() {
         joggingCardView = (CardView) findViewById(R.id.joggingCardView);
         backArrow = (ImageView) findViewById(R.id.backArrow);
     }
 
-    private void setUpWidgets(){
+    private void setUpWidgets() {
 
         joggingCardView.setOnClickListener(new View.OnClickListener() {
             @Override

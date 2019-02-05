@@ -2,9 +2,6 @@ package onipractice.mahmoud.com.fitnessapp.Trainer;
 
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -13,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import onipractice.mahmoud.com.fitnessapp.Messaging.MessengerActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
 import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
@@ -60,7 +61,7 @@ public class MyTrainerActivity extends AppCompatActivity {
         setUserInfo(trainerId);
     }
 
-    private void initialize(){
+    private void initialize() {
 
         nameTextView = (TextView) findViewById(R.id.nameTv);
         lastnameTextView = (TextView) findViewById(R.id.surnameTv);
@@ -71,7 +72,7 @@ public class MyTrainerActivity extends AppCompatActivity {
         deleteClientButton = (Button) findViewById(R.id.deleteFriendRequest);
     }
 
-    private void setUpWidgets(){
+    private void setUpWidgets() {
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +85,7 @@ public class MyTrainerActivity extends AppCompatActivity {
         messengerImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyTrainerActivity.this , MessengerActivity.class);
+                Intent intent = new Intent(MyTrainerActivity.this, MessengerActivity.class);
                 intent.putExtra("user_id", trainerId);
                 intent.putExtra("user", "trainee");
                 startActivity(intent);
@@ -100,25 +101,26 @@ public class MyTrainerActivity extends AppCompatActivity {
 
     }
 
-    private void deleteRequestState(){
+    private void deleteRequestState() {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        Map unfriendMap = new HashMap();
+        Map<String, Object> unfriendMap = new HashMap<String, Object>();
         unfriendMap.put("Friends/" + user.getUid() + "/" + "trainerId", null);
+        unfriendMap.put("Friends/" + trainerId + "/" + user.getUid() + "/" + "traineeId", null);
 
         rootRef.updateChildren(unfriendMap, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
 
-                if(databaseError == null){
+                if (databaseError == null) {
                     currentState = "not_friends";
 
                     deleteClientButton.setVisibility(View.INVISIBLE);
                     deleteClientButton.setEnabled(false);
                     Intent intent = new Intent(MyTrainerActivity.this, TraineeHomeActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     String error = databaseError.getMessage();
                     Toast.makeText(MyTrainerActivity.this, error, Toast.LENGTH_SHORT).show();
                 }
@@ -126,7 +128,7 @@ public class MyTrainerActivity extends AppCompatActivity {
         });
     }
 
-    private void init(String name, String surname, String availability, String speciality){
+    private void init(String name, String surname, String availability, String speciality) {
         nameTextView.setText(name);
         lastnameTextView.setText(surname);
         availabilityTextView.setText(availability);
@@ -135,7 +137,7 @@ public class MyTrainerActivity extends AppCompatActivity {
 
     //------------ Query ----------//
 
-    private void setUserInfo(final String id){
+    private void setUserInfo(final String id) {
         rootRef = FirebaseDatabase.getInstance().getReference();
         uidRef = rootRef.child("trainer").child(trainerId);
 
@@ -152,24 +154,23 @@ public class MyTrainerActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { }
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         };
         uidRef.addListenerForSingleValueEvent(valueEventListener);
     }
 
 
     //------------ Firebase ----------//
-    private void setUpFirebaseAuth()
-    {
+    private void setUpFirebaseAuth() {
         auth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null)
-                {
+                if (user != null) {
                     Log.d(TAG, "Connected");
-                }else {
+                } else {
                     Log.d(TAG, "signed out");
                 }
             }
@@ -185,14 +186,13 @@ public class MyTrainerActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        if (authStateListener != null)
-        {
+        if (authStateListener != null) {
             auth.removeAuthStateListener(authStateListener);
         }
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
                 && keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {

@@ -2,9 +2,6 @@ package onipractice.mahmoud.com.fitnessapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,24 +19,25 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import onipractice.mahmoud.com.fitnessapp.Models.PersonalDetails;
 
-public class TraineePersonalDetailsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
-                                                                ,View.OnClickListener{
+public class TraineePersonalDetailsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     private static final String TAG = "TraineePersonalDetails";
 
     int newWeight, newHeight;
-    Spinner weightSpinner, heightSpinner;
+    private Spinner weightSpinner, heightSpinner;
 
-    ArrayAdapter<CharSequence> weightAdapter;
-    ArrayAdapter<CharSequence> heightAdapter;
+    private ArrayAdapter<CharSequence> weightAdapter;
+    private ArrayAdapter<CharSequence> heightAdapter;
 
-    TextView heightET, weightET, confirm, cancel;
-    TextView ageET;
-    Button maleBtn , femaleBtn, nextBtn;
-    String weight, height, age, gender, userID, weightType, heightType;
-    Context context;
+    private TextView confirm, cancel;
+    private Button maleBtn, femaleBtn, nextBtn;
+    private String weight, height, age, gender, userID;
+    private Context context;
 
     //firebase
     private FirebaseAuth auth;
@@ -57,7 +55,7 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
         init();
     }
 
-    private void init(){
+    private void init() {
         maleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,11 +86,11 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
         });
     }
 
-    private void setWidgets(){
+    private void setWidgets() {
 
-        heightET = (TextView) findViewById(R.id.heightTv);
-        weightET = (TextView) findViewById(R.id.weightTv);
-        ageET = (TextView) findViewById(R.id.ageET);
+        TextView heightET = (TextView) findViewById(R.id.heightTv);
+        TextView weightET = (TextView) findViewById(R.id.weightTv);
+        TextView ageET = (TextView) findViewById(R.id.ageET);
         nextBtn = (Button) findViewById(R.id.nextBtn);
 
         weightSpinner = (Spinner) findViewById(R.id.weightSpinner);
@@ -105,7 +103,7 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
 
     //---------------- Weight Dialog ----------------//
 
-    private void weightDialog(){
+    private void weightDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(TraineePersonalDetailsActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.dialog_change_weight, null);
 
@@ -153,7 +151,7 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
 
     //---------------- Height Dialog ----------------//
 
-    private void heightDialog(){
+    private void heightDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(TraineePersonalDetailsActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.dialog_change_height, null);
 
@@ -199,7 +197,7 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
         });
     }
 
-    private void setUpSpinners(){
+    private void setUpSpinners() {
 
         weightAdapter = ArrayAdapter.createFromResource(context, R.array.weightVariables, android.R.layout.simple_spinner_item);
         weightAdapter.setDropDownViewResource(android.R.layout.preference_category);
@@ -216,12 +214,12 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
 
     //---------------- Firebase ----------------//
 
-    private void addPersonalDetails(String height, String weight, String age, String gender){
+    private void addPersonalDetails(String height, String weight, String age, String gender) {
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference uidRef = rootRef.child("personal_details");
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userID = auth.getCurrentUser().getUid();
         }
 
@@ -229,8 +227,7 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
         uidRef.child(userID).setValue(personalDetails);
     }
 
-    private void setUpFirebaseAuth()
-    {
+    private void setUpFirebaseAuth() {
         auth = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -238,13 +235,12 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if(user != null)
-                {
+                if (user != null) {
                     Log.d(TAG, "Connected");
 
                     userID = user.getUid();
 
-                }else {
+                } else {
                     Log.d(TAG, "signed out");
                 }
             }
@@ -260,8 +256,7 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
     @Override
     public void onStop() {
         super.onStop();
-        if (authStateListener != null)
-        {
+        if (authStateListener != null) {
             auth.removeAuthStateListener(authStateListener);
         }
     }
@@ -272,22 +267,23 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
 
         String itemSelected = parent.getItemAtPosition(position).toString();
 
-        if(itemSelected.equals("kg")){
+        String weightType;
+        if (itemSelected.equals("kg")) {
             weightType = "kg";
-        }
-        else if(itemSelected.equals("lb")){
+        } else if (itemSelected.equals("lb")) {
             weightType = "lb";
         }
-        if(itemSelected.equals("cm")){
+        String heightType;
+        if (itemSelected.equals("cm")) {
             heightType = "cm";
-        }
-        else if(itemSelected.equals("ft")){
+        } else if (itemSelected.equals("ft")) {
             heightType = "ft";
         }
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) { }
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
 
     //---------------- On Click Listener ----------------//
     @Override

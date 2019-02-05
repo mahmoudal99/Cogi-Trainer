@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile.ProfileActivity"
-    android:background="@color/outline">
+    android:background="@color/outline"
+    tools:context=".Profile.ProfileActivity">
 
     <RelativeLayout
         android:id="@+id/relLayout1"
         android:layout_width="match_parent"
-        android:background="@drawable/signupbg"
-        android:layout_height="350dp">
+        android:layout_height="350dp"
+        android:background="@drawable/signupbg">
 
         <RelativeLayout
             android:id="@+id/relLayout"
@@ -25,14 +24,14 @@
                 android:id="@+id/backArrow"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_back_white"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_back_white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="serif-monospace"
                 android:layout_centerInParent="true"
+                android:fontFamily="serif-monospace"
                 android:text="Profile"
                 android:textColor="@color/white"
                 android:textSize="24sp"
@@ -43,8 +42,8 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile"
@@ -60,9 +59,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/profile"
-                android:fontFamily="serif-monospace"
-                android:layout_marginTop="5dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:fontFamily="serif-monospace"
                 android:text="@string/edit"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
@@ -72,32 +71,32 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_below="@id/relLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/relLayout1"
         android:background="@color/white">
 
         <RelativeLayout
             android:id="@+id/relLayout2"
 
-            android:layout_marginTop="50dp"
             android:layout_width="@dimen/CardViewWidth"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp">
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_profile"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_profile" />
 
             <TextView
                 android:id="@+id/nameEt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
                 android:layout_marginStart="50dp"
+                android:layout_marginLeft="40dp"
                 android:background="@null"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/black"
@@ -108,19 +107,19 @@
 
         <RelativeLayout
             android:id="@+id/relLayout3"
-            android:layout_below="@id/relLayout2"
-            android:layout_marginTop="10dp"
             android:layout_width="@dimen/CardViewWidth"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
+            android:layout_below="@id/relLayout2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/surnameEt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
                 android:layout_marginStart="50dp"
+                android:layout_marginLeft="40dp"
                 android:background="@null"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/black"
@@ -131,25 +130,25 @@
 
         <RelativeLayout
             android:id="@+id/relLayout5"
-            android:layout_below="@id/relLayout3"
-            android:layout_marginTop="10dp"
             android:layout_width="@dimen/CardViewWidth"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
+            android:layout_below="@id/relLayout3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_email"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_email" />
 
             <TextView
                 android:id="@+id/emailEt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
                 android:layout_marginStart="50dp"
+                android:layout_marginLeft="40dp"
                 android:background="@null"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/black"
@@ -158,49 +157,50 @@
 
         </RelativeLayout>
 
-            <TextView
-                android:id="@+id/editProfileTv"
-                android:layout_below="@id/relLayout5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="30dp"
-                android:background="@null"
-                android:text="@string/edit_profile"
-                android:layout_marginTop="20dp"
-                android:fontFamily="serif-monospace"
-                android:textColor="@color/blueCardView"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/changePasswordTv"
-                android:layout_below="@id/editProfileTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="30dp"
-                android:background="@null"
-                android:layout_marginTop="10dp"
-                android:text="@string/change_password"
-                android:fontFamily="serif-monospace"
-                android:textColor="@color/blueCardView"
-                android:textSize="20sp"
-                android:textStyle="bold" />
         <TextView
-            android:id="@+id/logoutTv"
-            android:layout_below="@id/changePasswordTv"
+            android:id="@+id/editProfileTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/relLayout5"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:layout_marginStart="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
             android:background="@null"
-            android:layout_marginTop="10dp"
-            android:text="Log Out"
             android:fontFamily="serif-monospace"
+            android:text="@string/edit_profile"
+            android:textColor="@color/blueCardView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/changePasswordTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editProfileTv"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:fontFamily="serif-monospace"
+            android:text="@string/change_password"
+            android:textColor="@color/blueCardView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/logoutTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/changePasswordTv"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:fontFamily="serif-monospace"
+            android:text="Log Out"
             android:textColor="@color/blueCardView"
             android:textSize="20sp"
             android:textStyle="bold" />

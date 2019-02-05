@@ -3,7 +3,6 @@ package onipractice.mahmoud.com.fitnessapp.Utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -22,12 +21,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import onipractice.mahmoud.com.fitnessapp.DietActivity;
 import onipractice.mahmoud.com.fitnessapp.Models.DietModel;
 import onipractice.mahmoud.com.fitnessapp.Models.TrainingDayModel;
 import onipractice.mahmoud.com.fitnessapp.Models.UserDetails;
 import onipractice.mahmoud.com.fitnessapp.SignInActivity;
-import onipractice.mahmoud.com.fitnessapp.SignUpActivity;
 import onipractice.mahmoud.com.fitnessapp.TimetableActivity;
 
 public class FirebaseMethods {
@@ -59,7 +58,7 @@ public class FirebaseMethods {
         myRef = mFirebaseDatabase.getReference();
         context = context;
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userID = auth.getCurrentUser().getUid();
         }
         cacheData = context.getSharedPreferences("Counter", TimetableActivity.MODE_PRIVATE);
@@ -70,7 +69,7 @@ public class FirebaseMethods {
 
     }
 
-    public void changeEmail(String password, final String newEmail){
+    public void changeEmail(String password, final String newEmail) {
 
         AuthCredential credential = EmailAuthProvider
                 .getCredential(auth.getCurrentUser().getEmail(), password);
@@ -79,8 +78,7 @@ public class FirebaseMethods {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful())
-                        {
+                        if (task.isSuccessful()) {
                             auth.fetchSignInMethodsForEmail(newEmail).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
@@ -116,26 +114,26 @@ public class FirebaseMethods {
                                     }
                                 }
                             });
-                        }else {
+                        } else {
                             Log.d(TAG, "onComplete: re-authentication failed.");
                         }
                     }
                 });
     }
 
-    public void updateUsername(String username){
+    public void updateUsername(String username) {
 
         myRef = FirebaseDatabase.getInstance().getReference();
         uidRef = myRef.child("user_account_settings");
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userID = auth.getCurrentUser().getUid();
         }
 
         uidRef.child(userID).child("username").setValue(username);
     }
 
-    public void checkIfUsernameExists(final String username){
+    public void checkIfUsernameExists(final String username) {
 
         Toast.makeText(context, username, Toast.LENGTH_SHORT).show();
 
@@ -152,15 +150,12 @@ public class FirebaseMethods {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if(!dataSnapshot.exists())
-                {
+                if (!dataSnapshot.exists()) {
                     //add the username
                     updateUsername(username);
                 }
-                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren())
-                {
-                    if(singleSnapshot.exists())
-                    {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    if (singleSnapshot.exists()) {
                         Log.d(TAG, "Username already exists");
                     }
                 }
@@ -174,48 +169,48 @@ public class FirebaseMethods {
 
     }
 
-    public void updateHeight(String height){
+    public void updateHeight(String height) {
 
         myRef = FirebaseDatabase.getInstance().getReference();
         uidRef = myRef.child("personal_details");
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userID = auth.getCurrentUser().getUid();
         }
 
         uidRef.child(userID).child("height").setValue(height);
     }
 
-    public void updateWeight(String weight){
+    public void updateWeight(String weight) {
 
         myRef = FirebaseDatabase.getInstance().getReference();
         uidRef = myRef.child("personal_details");
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userID = auth.getCurrentUser().getUid();
         }
 
         uidRef.child(userID).child("weight").setValue(weight);
     }
 
-    public void updateGender(String gender){
+    public void updateGender(String gender) {
 
         myRef = FirebaseDatabase.getInstance().getReference();
         uidRef = myRef.child("personal_details");
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userID = auth.getCurrentUser().getUid();
         }
 
         uidRef.child(userID).child("gender").setValue(gender);
     }
 
-    public void addUser(String id, String firstname,String lastname, String email){
+    public void addUser(String id, String firstname, String lastname, String email) {
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference uidRef = rootRef.child("user_account_settings");
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userID = auth.getCurrentUser().getUid();
         }
 
@@ -226,12 +221,12 @@ public class FirebaseMethods {
     }
 
 
-    public void addWorkoutDay(String id, String day, String time,String workout){
+    public void addWorkoutDay(String id, String day, String time, String workout) {
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference uidRef = rootRef.child("workout_timetable");
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userID = auth.getCurrentUser().getUid();
         }
 
@@ -255,12 +250,12 @@ public class FirebaseMethods {
 
     }
 
-    public void addDietDay(String id,String day, String mealType, String food){
+    public void addDietDay(String id, String day, String mealType, String food) {
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference uidRef = rootRef.child("diet");
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userID = auth.getCurrentUser().getUid();
         }
 
@@ -270,7 +265,7 @@ public class FirebaseMethods {
 
     }
 
-    public void registerNewEmail(final String email, String password, final String firstname, final String lastname){
+    public void registerNewEmail(final String email, String password, final String firstname, final String lastname) {
 
         auth.createUserWithEmailAndPassword(email, password)
 
@@ -287,9 +282,7 @@ public class FirebaseMethods {
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
 
-                        }
-
-                        else if(task.isSuccessful()){
+                        } else if (task.isSuccessful()) {
                             //send verificaton email
 
                             FirebaseUser user = auth.getCurrentUser();
@@ -314,19 +307,19 @@ public class FirebaseMethods {
                 });
     }
 
-    public void sendVerificationEmail(){
+    public void sendVerificationEmail() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user != null){
+        if (user != null) {
             user.sendEmailVerification()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
 
                         @Override
 
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 Log.d(TAG, "Success");
-                            }else{
+                            } else {
                                 Log.d(TAG, "Fail");
                             }
                         }
@@ -335,7 +328,7 @@ public class FirebaseMethods {
         }
     }
 
-    public void changePassword(String password, final String newPassword){
+    public void changePassword(String password, final String newPassword) {
 
         AuthCredential credential = EmailAuthProvider
                 .getCredential(auth.getCurrentUser().getEmail(), password);
@@ -345,7 +338,7 @@ public class FirebaseMethods {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
 
                             Toast.makeText(context, "Password Changed", Toast.LENGTH_SHORT).show();
                             auth.getCurrentUser().updatePassword(newPassword);
@@ -353,7 +346,7 @@ public class FirebaseMethods {
                             Intent intent = new Intent(context, SignInActivity.class);
                             context.startActivity(intent);
 
-                        }else {
+                        } else {
 
 
                         }

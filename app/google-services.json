@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "769320618727-elfsr36cq0rvnf6v43qmrs1meu76ci58.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "onipractice.mahmoud.com.fitnessapp",
+            "certificate_hash": "2cb3b03451881e850c04a34e97022a6491c92c72"
+          }
+        },
+        {
           "client_id": "769320618727-bf5er2chccdfriougp8i23nr4isak9sv.apps.googleusercontent.com",
           "client_type": 3
         }

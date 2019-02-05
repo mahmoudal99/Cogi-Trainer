@@ -3,9 +3,9 @@ package onipractice.mahmoud.com.fitnessapp.Profile;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +29,8 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 import onipractice.mahmoud.com.fitnessapp.ChooseUserTypeActivity;
 import onipractice.mahmoud.com.fitnessapp.Trainer.PersonalTrainerHomeActivity;
@@ -36,7 +38,7 @@ import onipractice.mahmoud.com.fitnessapp.R;
 import onipractice.mahmoud.com.fitnessapp.SignInActivity;
 import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
 
-public class ProfileActivity extends AppCompatActivity  {
+public class ProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "ProfileActivity";
 
@@ -175,8 +177,7 @@ public class ProfileActivity extends AppCompatActivity  {
         Picasso.get().load(imageUri).into(profile);
 
         if(cacheData.getString(current_user, "").isEmpty()){
-            Toast.makeText(ProfileActivity.this, "Empty", Toast.LENGTH_LONG)
-                    .show();
+            profile.setImageDrawable(getResources().getDrawable(R.drawable.trainer_default_img));
         }
     }
 

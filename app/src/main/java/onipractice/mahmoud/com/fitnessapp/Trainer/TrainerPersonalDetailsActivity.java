@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.Time;
@@ -30,10 +26,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import onipractice.mahmoud.com.fitnessapp.Models.TrainerPersonalDetails;
 import onipractice.mahmoud.com.fitnessapp.R;
 
-public class TrainerPersonalDetailsActivity extends AppCompatActivity implements View.OnClickListener, RecurrencePickerDialogFragment.OnRecurrenceSetListener{
+public class TrainerPersonalDetailsActivity extends AppCompatActivity implements View.OnClickListener, RecurrencePickerDialogFragment.OnRecurrenceSetListener {
 
     private static final String TAG = "TrainerPersonalDetails";
 
@@ -76,7 +76,7 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
 
     }
 
-    private void initialize(){
+    private void initialize() {
 
         nextBtn = (Button) findViewById(R.id.nextBtn);
         maleBtn = (Button) findViewById(R.id.maleBtn);
@@ -84,7 +84,7 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
 
     }
 
-    private void setUpWidgets(){
+    private void setUpWidgets() {
 
         maleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +120,7 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
         });
     }
 
-    private void retreiveTrainerDetails(String user_id){
+    private void retreiveTrainerDetails(String user_id) {
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         uidRef = rootRef.child("user_account_settings").child(user_id);
@@ -142,16 +142,15 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
     }
 
 
-
     //---------------- Add Personal Trainer Details to Firebase ----------------//
 
 
-    private void addPersonalDetails(String firstname, String lastname, String education, String specialitiesString, String availibility, String gender){
+    private void addPersonalDetails(String firstname, String lastname, String education, String specialitiesString, String availibility, String gender) {
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference uidRef = rootRef.child("trainer");
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userId = auth.getCurrentUser().getUid();
         }
 
@@ -161,7 +160,7 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
 
     //---------------- Speciality Dialog ----------------//
 
-    private void specialityDialog(){
+    private void specialityDialog() {
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(TrainerPersonalDetailsActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.dialog_insert_speciality, null);
@@ -192,9 +191,9 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
 
                 StringBuilder sb = new StringBuilder();
 
-                for(String s: selectedSpecialities){
-                     sb.append(s);
-                     sb.append(" ");
+                for (String s : selectedSpecialities) {
+                    sb.append(s);
+                    sb.append(" ");
                 }
 
                 specialitiesString = String.valueOf(sb);
@@ -213,7 +212,7 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
 
     //---------------- Education Dialog ----------------//
 
-    private void educationDialog(){
+    private void educationDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(TrainerPersonalDetailsActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.dialog_insert_education, null);
 
@@ -244,7 +243,7 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
 
     //---------------- Availability Dialog ----------------//
 
-    private void availabilityDialog(){
+    private void availabilityDialog() {
         FragmentManager fm = getSupportFragmentManager();
         Bundle bundle = new Bundle();
         Time time = new Time();
@@ -319,7 +318,7 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.insertAvailibility:
                 availabilityDialog();
@@ -338,8 +337,7 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
 
     //---------------- Firebase ----------------//
 
-    private void setUpFirebaseAuth()
-    {
+    private void setUpFirebaseAuth() {
         auth = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -347,12 +345,11 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if(user != null)
-                {
+                if (user != null) {
                     Log.d(TAG, "Connected");
                     userId = user.getUid();
 
-                }else {
+                } else {
                     Log.d(TAG, "signed out");
                 }
             }
@@ -369,8 +366,7 @@ public class TrainerPersonalDetailsActivity extends AppCompatActivity implements
     public void onStop() {
 
         super.onStop();
-        if (authStateListener != null)
-        {
+        if (authStateListener != null) {
             auth.removeAuthStateListener(authStateListener);
         }
     }

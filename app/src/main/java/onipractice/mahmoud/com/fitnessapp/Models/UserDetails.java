@@ -31,7 +31,7 @@ public class UserDetails {
                 '}';
     }
 
-    public UserDetails(String firstname, String lastname, String PrefChosen, String Preference, String email, String image){
+    public UserDetails(String firstname, String lastname, String PrefChosen, String Preference, String email, String image) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.PrefChosen = PrefChosen;

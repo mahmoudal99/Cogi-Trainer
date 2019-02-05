@@ -21,11 +21,11 @@ public class MyTrainerModel {
         this.image = image;
     }
 
-    public MyTrainerModel(){
+    public MyTrainerModel() {
 
     }
 
-    public MyTrainerModel(String firstname){
+    public MyTrainerModel(String firstname) {
         this.date = firstname;
     }
 

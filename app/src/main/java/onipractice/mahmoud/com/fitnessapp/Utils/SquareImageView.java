@@ -1,8 +1,9 @@
 package onipractice.mahmoud.com.fitnessapp.Utils;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * Created by User on 6/4/2017.

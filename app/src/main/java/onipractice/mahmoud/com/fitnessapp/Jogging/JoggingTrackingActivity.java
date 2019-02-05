@@ -1,48 +1,20 @@
 package onipractice.mahmoud.com.fitnessapp.Jogging;
 
-import android.Manifest;
-import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -62,9 +34,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
-
-import static java.sql.Types.NULL;
 
 public class JoggingTrackingActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -106,6 +81,8 @@ public class JoggingTrackingActivity extends FragmentActivity implements OnMapRe
     private String[] mLikelyPlaceAttributions;
     private LatLng[] mLikelyPlaceLatLngs;
 
+    ImageView backArrow;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +95,15 @@ public class JoggingTrackingActivity extends FragmentActivity implements OnMapRe
 
         // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_jogging_tracking);
+
+        backArrow = (ImageView) findViewById(R.id.backArrow);
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(JoggingTrackingActivity.this, JoggingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Construct a GeoDataClient.
         mGeoDataClient = Places.getGeoDataClient(this, null);
@@ -149,6 +135,7 @@ public class JoggingTrackingActivity extends FragmentActivity implements OnMapRe
 
     /**
      * Sets up the options menu.
+     *
      * @param menu The options menu.
      * @return Boolean.
      */
@@ -160,6 +147,7 @@ public class JoggingTrackingActivity extends FragmentActivity implements OnMapRe
 
     /**
      * Handles a click on the menu option to get a place.
+     *
      * @param item The menu item to handle.
      * @return Boolean.
      */
@@ -232,12 +220,12 @@ public class JoggingTrackingActivity extends FragmentActivity implements OnMapRe
                     public void onComplete(@NonNull Task<Location> task) {
                         if (task.isSuccessful()) {
 
-                            if(mLastKnownLocation == null){
+                            if (mLastKnownLocation == null) {
                                 mMap.moveCamera(CameraUpdateFactory
                                         .newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
                                 mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-                            }else {
+                            } else {
                                 // Set the map's camera position to the current location of the device.
                                 mLastKnownLocation = task.getResult();
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
@@ -254,7 +242,7 @@ public class JoggingTrackingActivity extends FragmentActivity implements OnMapRe
                     }
                 });
             }
-        } catch (SecurityException e)  {
+        } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage());
         }
     }
@@ -312,8 +300,7 @@ public class JoggingTrackingActivity extends FragmentActivity implements OnMapRe
         if (mLocationPermissionGranted) {
             // Get the likely places - that is, the businesses and other points of interest that
             // are the best match for the device's current location.
-            @SuppressWarnings("MissingPermission") final
-            Task<PlaceLikelihoodBufferResponse> placeResult =
+            @SuppressWarnings("MissingPermission") final Task<PlaceLikelihoodBufferResponse> placeResult =
                     mPlaceDetectionClient.getCurrentPlace(null);
             placeResult.addOnCompleteListener
                     (new OnCompleteListener<PlaceLikelihoodBufferResponse>() {
@@ -430,7 +417,7 @@ public class JoggingTrackingActivity extends FragmentActivity implements OnMapRe
                 mLastKnownLocation = null;
                 getLocationPermission();
             }
-        } catch (SecurityException e)  {
+        } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage());
         }
     }

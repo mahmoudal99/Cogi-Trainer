@@ -6,7 +6,7 @@ public class TrainingDayModel {
     private String time;
     private String workout;
 
-    public TrainingDayModel(String day, String time, String workout){
+    public TrainingDayModel(String day, String time, String workout) {
 
         this.day = day;
         this.time = time;
@@ -14,7 +14,8 @@ public class TrainingDayModel {
 
     }
 
-    public TrainingDayModel(){ }
+    public TrainingDayModel() {
+    }
 
     public String getDay() {
         return day;

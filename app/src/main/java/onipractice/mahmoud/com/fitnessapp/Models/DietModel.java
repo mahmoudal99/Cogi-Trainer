@@ -6,14 +6,15 @@ public class DietModel {
     private String food;
     private String day;
 
-    public DietModel(String mealType, String food, String day){
+    public DietModel(String mealType, String food, String day) {
         this.mealType = mealType;
         this.food = food;
         this.day = day;
 
     }
 
-    public DietModel(){}
+    public DietModel() {
+    }
 
     public String getDay() {
         return day;

@@ -2,8 +2,6 @@ package onipractice.mahmoud.com.fitnessapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,18 +10,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import onipractice.mahmoud.com.fitnessapp.Models.UserDetails;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import onipractice.mahmoud.com.fitnessapp.Utils.FirebaseMethods;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -55,7 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
         setWidgets();
     }
 
-    private void initialize(){
+    private void initialize() {
 
         context = SignUpActivity.this;
         firebaseMethods = new FirebaseMethods(context);
@@ -68,7 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton = (Button) findViewById(R.id.signUpBTN);
     }
 
-    private void clearWidgets(){
+    private void clearWidgets() {
 
         emailEditText.getText().clear();
         passwordEditText.getText().clear();
@@ -76,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         lastnameEditText.getText().clear();
     }
 
-    private void setWidgets(){
+    private void setWidgets() {
 
         signInText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,14 +90,14 @@ public class SignUpActivity extends AppCompatActivity {
                 firstname = firstnameEditText.getText().toString();
                 lastname = lastnameEditText.getText().toString();
 
-                if(passwordEditText.getText().toString().length()<8 &&!isValidPassword(passwordEditText.getText().toString())){
+                if (passwordEditText.getText().toString().length() < 8 && !isValidPassword(passwordEditText.getText().toString())) {
                     Toast.makeText(context,
                             "Password must be over 8 characters & contain atleast\n one lowercase, one uppercase, one number & a special character (@!#$)",
                             Toast.LENGTH_SHORT).show();
 
                     passwordEditText.getText().clear();
 
-                }else{
+                } else {
                     password = passwordEditText.getText().toString();
 
                     firebaseMethods.registerNewEmail(email, password, firstname, lastname);
@@ -133,12 +127,8 @@ public class SignUpActivity extends AppCompatActivity {
         return matcher.matches();
     }
 
-        /*
-    ------------------------------------------Firebase----------------------------------------------------
-     */
-
-    private void setUpFirebaseAuthentication()
-    {
+    //---------- Firebase ----------//
+    private void setUpFirebaseAuthentication() {
         authentication = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -146,11 +136,10 @@ public class SignUpActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if(user != null)
-                {
+                if (user != null) {
                     Log.d(TAG, "Connected");
 
-                }else {
+                } else {
                     Log.d(TAG, "signed out");
                 }
             }
@@ -167,8 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
     public void onStop() {
 
         super.onStop();
-        if (authStateListener != null)
-        {
+        if (authStateListener != null) {
             authentication.removeAuthStateListener(authStateListener);
         }
     }

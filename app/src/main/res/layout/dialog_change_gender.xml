@@ -1,207 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:orientation="vertical"
-
     android:layout_width="match_parent"
-
     android:layout_height="wrap_content"
-
-    android:padding="10dp"
-
-    android:background="@color/white">
-
-
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
-
+        android:id="@+id/dialogTitle"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-
-        android:text="@string/change_gender"
-
-        android:textSize="21sp"
-
-        android:textStyle="bold"
-
         android:fontFamily="serif-monospace"
-
+        android:text="@string/change_gender"
         android:textColor="@color/black"
-
-        android:id="@+id/dialogTitle"/>
-
-
+        android:textSize="21sp"
+        android:textStyle="bold" />
 
     <LinearLayout
-
         android:id="@+id/optionsLl"
-
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-
         android:layout_below="@id/dialogTitle"
-
         android:layout_gravity="center_horizontal|center_vertical"
-
         android:orientation="horizontal">
 
-
-
         <TextView
-
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
-
             android:layout_marginTop="5dp"
-
             android:fontFamily="serif-monospace"
-
             android:gravity="center_horizontal"
-
             android:text="@string/gender"
-
             android:textColor="@color/black"
-
             android:textSize="20sp"
-
             android:textStyle="bold" />
 
-
-
         <Button
-
             android:id="@+id/maleBtn"
-
             android:layout_width="90dp"
-
             android:layout_height="40dp"
-
-            android:text="@string/male"
-
-            android:layout_marginTop="5dp"
-
             android:layout_marginLeft="30dp"
-
-            android:onClick="onClick"
-
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
             android:fontFamily="serif-monospace"
-
+            android:onClick="onClick"
+            android:text="@string/male"
             android:textColor="@color/black"
-
-            android:textStyle="bold"
-
-            android:background="@color/white"/>
-
-
+            android:textStyle="bold" />
 
         <Button
-
             android:id="@+id/femaleBtn"
-
             android:layout_width="90dp"
-
             android:layout_height="40dp"
-
-            android:text="@string/female"
-
-            android:layout_marginTop="5dp"
-
             android:layout_marginLeft="30dp"
-
-            android:onClick="onClick"
-
-            android:fontFamily="serif-monospace"
-
-            android:background="@color/white"
-
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-
+            android:background="@color/white"
+            android:fontFamily="serif-monospace"
+            android:onClick="onClick"
+            android:text="@string/female"
             android:textColor="@color/black"
-
-            android:textStyle="bold"/>
-
-
-
+            android:textStyle="bold" />
     </LinearLayout>
 
-
-
-
-
     <RelativeLayout
-
-        android:layout_below="@id/optionsLl"
-
         android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content">
-
-
+        android:layout_height="wrap_content"
+        android:layout_below="@id/optionsLl">
 
         <TextView
-
             android:id="@+id/dialogCancel"
-
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
-
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-
-            android:layout_marginBottom="10dp"
-
-            android:layout_marginRight="10dp"
-
             android:layout_marginTop="30dp"
-
-            android:fontFamily="serif-monospace"
-
-            android:text="@string/cancel"
-
-            android:textColor="@color/black"
-
-            android:textSize="18sp"
-
-            android:textStyle="bold"
-
             android:layout_marginEnd="10dp"
-
-            android:layout_alignParentEnd="true" />
-
-
-
-        <TextView
-
-            android:id="@+id/dialogConfirm"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-
-            android:layout_marginBottom="10dp"
-
             android:layout_marginRight="10dp"
-
-            android:layout_marginTop="30dp"
-
+            android:layout_marginBottom="10dp"
             android:fontFamily="serif-monospace"
-
-            android:text="@string/confirm"
-
+            android:text="@string/cancel"
             android:textColor="@color/black"
-
             android:textSize="18sp"
-
             android:textStyle="bold" />
 
-
+        <TextView
+            android:id="@+id/dialogConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="serif-monospace"
+            android:text="@string/confirm"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
-
-
 
 </RelativeLayout>

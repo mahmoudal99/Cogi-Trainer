@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
@@ -17,16 +16,16 @@
             android:id="@+id/backArrow"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_back"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="serif-monospace"
             android:layout_centerInParent="true"
-            android:text="Food Search"
+            android:fontFamily="serif-monospace"
+            android:text="@string/food_search"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -34,10 +33,10 @@
     </RelativeLayout>
 
     <View
-        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
         android:background="@color/outline" />
 
     <EditText
@@ -45,62 +44,67 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:layout_toStartOf="@+id/search_btn"
+        android:layout_toLeftOf="@+id/search_btn"
         android:background="@drawable/search_layout"
         android:ems="10"
-        android:hint="Search for a food"
+        android:hint="@string/search_for_a_food"
         android:inputType="textPersonName"
-        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
         android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
         android:textColor="#999999"
-        android:textSize="18sp"
-        android:layout_toLeftOf="@+id/search_btn" />
+        android:textSize="18sp" />
 
     <ImageButton
         android:id="@+id/search_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/search_field"
         android:layout_alignBottom="@+id/search_field"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/search_field"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:background="@android:color/background_light"
-        app:srcCompat="@drawable/search_button"
-        android:layout_alignParentRight="true" />
+        app:srcCompat="@drawable/search_button" />
 
     <Spinner
         android:id="@+id/foodSpinner"
-        android:layout_below="@id/search_btn"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/search_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_gravity="center_vertical"
-        android:layout_marginEnd="10dp">
-    </Spinner>
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp" />
 
     <Spinner
         android:id="@+id/mealSpinner"
-        android:layout_below="@id/search_btn"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
-    </Spinner>
+        android:layout_below="@id/search_btn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp" />
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/result_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/search_field"
-        android:layout_marginTop="40dp"></android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="40dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

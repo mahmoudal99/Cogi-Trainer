@@ -4,45 +4,27 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.icu.text.DisplayContext;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.firebase.ui.database.FirebaseListAdapter;
-import com.firebase.ui.database.FirebaseListOptions;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,38 +32,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Picasso;
 
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import onipractice.mahmoud.com.fitnessapp.Models.ImageModel;
-import onipractice.mahmoud.com.fitnessapp.Models.MyTrainerModel;
+import androidx.annotation.NonNull;
 import onipractice.mahmoud.com.fitnessapp.Models.Photo;
 import onipractice.mahmoud.com.fitnessapp.Utils.FilePaths;
 import onipractice.mahmoud.com.fitnessapp.Utils.FirebaseMethods;
-import onipractice.mahmoud.com.fitnessapp.Utils.GalleryAdapter;
 import onipractice.mahmoud.com.fitnessapp.Utils.GridImageAdapter;
 import onipractice.mahmoud.com.fitnessapp.Utils.ImageManager;
-import onipractice.mahmoud.com.fitnessapp.Utils.ObjectSerializer;
 
 public class ProgressGalleryActivity extends Activity {
 
     private static final String TAG = "ProgressGalleryActivity";
 
-    public interface OnGridImageSelectedListener{
+    public interface OnGridImageSelectedListener {
         void onGridImageSelected(Photo photo, int activityNumber);
     }
 
@@ -164,7 +135,7 @@ public class ProgressGalleryActivity extends Activity {
                 intent.setType("image/*");
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE_MULTIPLE);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTIPLE);
             }
         });
 
@@ -180,13 +151,13 @@ public class ProgressGalleryActivity extends Activity {
             if (requestCode == PICK_IMAGE_MULTIPLE && resultCode == RESULT_OK && null != data) {
 
                 // Get the Image from data
-                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                 imagesEncodedList = new ArrayList<String>();
 
-                if(data.getData()!=null){
+                if (data.getData() != null) {
 
-                    Uri mImageUri= data.getData();
+                    Uri mImageUri = data.getData();
 
                     // Get the cursor
                     Cursor cursor = getContentResolver().query(mImageUri, filePathColumn, null, null, null);
@@ -195,7 +166,7 @@ public class ProgressGalleryActivity extends Activity {
                     cursor.moveToFirst();
 
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    imageEncoded  = cursor.getString(columnIndex);
+                    imageEncoded = cursor.getString(columnIndex);
                     cursor.close();
 
                     int i = 0;
@@ -229,7 +200,7 @@ public class ProgressGalleryActivity extends Activity {
                             cursor.moveToFirst();
 
                             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                            imageEncoded  = cursor.getString(columnIndex);
+                            imageEncoded = cursor.getString(columnIndex);
                             imagesEncodedList.add(imageEncoded);
 
                             cursor.close();
@@ -252,11 +223,10 @@ public class ProgressGalleryActivity extends Activity {
 
     }
 
-    private void uploadNewPhoto(final Uri url, final int count){
+    private void uploadNewPhoto(final Uri url, final int count) {
 
         FilePaths filePaths = new FilePaths();
         String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
 
 
         final StorageReference storageReference = mStorageReference
@@ -291,8 +261,7 @@ public class ProgressGalleryActivity extends Activity {
         });
     }
 
-    private void addPhotoToDatabase(String url){
-
+    private void addPhotoToDatabase(String url) {
 
 
         String newPhotoKey = myRef.child(context.getString(R.string.dbname_photos)).push().getKey();
@@ -309,7 +278,7 @@ public class ProgressGalleryActivity extends Activity {
         setupGridView();
     }
 
-    private void setupGridView(){
+    private void setupGridView() {
 
         Log.d(TAG, "setupGridView: Setting up image grid.");
 
@@ -324,7 +293,7 @@ public class ProgressGalleryActivity extends Activity {
             @Override
 
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
 
                     Photo photo = new Photo();
                     Map<String, Object> objectMap = (HashMap<String, Object>) singleSnapshot.getValue();
@@ -337,18 +306,18 @@ public class ProgressGalleryActivity extends Activity {
 
                         photos.add(photo);
 
-                    }catch(NullPointerException e){
-                        Log.e(TAG, "onDataChange: NullPointerException: " + e.getMessage() );
+                    } catch (NullPointerException e) {
+                        Log.e(TAG, "onDataChange: NullPointerException: " + e.getMessage());
                     }
                 }
 
 
                 ArrayList<String> imgUrls = new ArrayList<String>();
-                for(int i = 0; i < photos.size(); i++){
+                for (int i = 0; i < photos.size(); i++) {
                     imgUrls.add(photos.get(i).getImage_path());
                     Log.d("YUDNO", photos.get(i).getImage_path());
                 }
-                GridImageAdapter adapter = new GridImageAdapter(context ,R.layout.layout_grid_imageview, "", imgUrls);
+                GridImageAdapter adapter = new GridImageAdapter(context, R.layout.layout_grid_imageview, "", imgUrls);
                 gridView.setAdapter(adapter);
 
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -366,8 +335,7 @@ public class ProgressGalleryActivity extends Activity {
         });
     }
 
-    private void setUpFirebaseAuth()
-    {
+    private void setUpFirebaseAuth() {
         auth = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -375,11 +343,10 @@ public class ProgressGalleryActivity extends Activity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if(user != null)
-                {
+                if (user != null) {
                     Log.d(TAG, "Success");
 
-                }else {
+                } else {
                     Log.d(TAG, "signed out");
                 }
             }
@@ -395,14 +362,13 @@ public class ProgressGalleryActivity extends Activity {
     @Override
     public void onStop() {
         super.onStop();
-        if (authStateListener != null)
-        {
+        if (authStateListener != null) {
             auth.removeAuthStateListener(authStateListener);
         }
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
                 && keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {

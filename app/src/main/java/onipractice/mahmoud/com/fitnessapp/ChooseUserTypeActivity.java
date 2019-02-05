@@ -3,8 +3,6 @@ package onipractice.mahmoud.com.fitnessapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import onipractice.mahmoud.com.fitnessapp.Trainer.TrainerPersonalDetailsActivity;
 
 public class ChooseUserTypeActivity extends AppCompatActivity {
@@ -30,7 +30,7 @@ public class ChooseUserTypeActivity extends AppCompatActivity {
     RelativeLayout traineeRL;
 
     // Variables
-    String userID,pref;
+    String userID, pref;
 
     //Shared Preference
     SharedPreferences.Editor editor;
@@ -61,19 +61,19 @@ public class ChooseUserTypeActivity extends AppCompatActivity {
 
     }
 
-    private void initialize(){
+    private void initialize() {
 
         personalTrainerRL = (RelativeLayout) findViewById(R.id.personalTrainerRL);
         traineeRL = (RelativeLayout) findViewById(R.id.traineeRL);
     }
 
-    private void setUpWidgets(){
+    private void setUpWidgets() {
 
         personalTrainerRL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(auth.getCurrentUser() != null){
+                if (auth.getCurrentUser() != null) {
                     userID = auth.getCurrentUser().getUid();
                 }
 
@@ -86,7 +86,7 @@ public class ChooseUserTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(auth.getCurrentUser() != null){
+                if (auth.getCurrentUser() != null) {
                     userID = auth.getCurrentUser().getUid();
                 }
 
@@ -96,9 +96,9 @@ public class ChooseUserTypeActivity extends AppCompatActivity {
         });
     }
 
-    private void checkPreference(){
+    private void checkPreference() {
 
-        if(auth.getCurrentUser() != null){
+        if (auth.getCurrentUser() != null) {
             userID = auth.getCurrentUser().getUid();
         }
 
@@ -114,13 +114,13 @@ public class ChooseUserTypeActivity extends AppCompatActivity {
                 Toast.makeText(context, pref, Toast.LENGTH_SHORT).show();
 
 
-                if(pref.equals("Personal Trainer")){
+                if (pref.equals("Personal Trainer")) {
 
                     Intent intent = new Intent(context, TrainerPersonalDetailsActivity.class);
                     intent.putExtra("user_id", userID);
                     startActivity(intent);
 
-                }else if (pref.equals("Trainee")){
+                } else if (pref.equals("Trainee")) {
 
                     Intent intent = new Intent(context, TraineePersonalDetailsActivity.class);
                     startActivity(intent);
@@ -141,8 +141,7 @@ public class ChooseUserTypeActivity extends AppCompatActivity {
     ------------------------------------------Firebase----------------------------------------------------
      */
 
-    private void setUpFirebaseAuth()
-    {
+    private void setUpFirebaseAuth() {
         auth = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -150,11 +149,10 @@ public class ChooseUserTypeActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if(user != null)
-                {
+                if (user != null) {
                     Log.d(TAG, "Success");
 
-                }else {
+                } else {
                     Log.d(TAG, "signed out");
                 }
             }
@@ -171,8 +169,7 @@ public class ChooseUserTypeActivity extends AppCompatActivity {
     public void onStop() {
 
         super.onStop();
-        if (authStateListener != null)
-        {
+        if (authStateListener != null) {
             auth.removeAuthStateListener(authStateListener);
         }
     }

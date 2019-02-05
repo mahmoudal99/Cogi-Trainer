@@ -3,8 +3,6 @@ package onipractice.mahmoud.com.fitnessapp.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.List;
-
 /**
  * Created by User on 7/29/2017.
  */
@@ -15,9 +13,7 @@ public class Photo implements Parcelable {
     private String photo_id;
     private String user_id;
 
-    public Photo() {
-
-    }
+    public Photo() { }
 
     public Photo(String image_path, String photo_id, String user_id) {
         this.image_path = image_path;

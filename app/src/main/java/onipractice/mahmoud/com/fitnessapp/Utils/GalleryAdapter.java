@@ -74,7 +74,7 @@ public class GalleryAdapter extends BaseAdapter {
         date = (TextView) itemView.findViewById(R.id.dateTv);
         date.setText(formattedDate);
         ivGallery = (ImageView) itemView.findViewById(R.id.ivGallery);
-        for(int i = 0; i < mArrayUri.size(); i++){
+        for (int i = 0; i < mArrayUri.size(); i++) {
 
             Picasso.get().load(mArrayUri.get(position)).into(ivGallery);
         }

@@ -1,7 +1,6 @@
 package onipractice.mahmoud.com.fitnessapp.Utils;
 
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 import onipractice.mahmoud.com.fitnessapp.R;
 
 public class Dialogs {
@@ -32,9 +33,9 @@ public class Dialogs {
 
     //---------- Change Height Dialog ----------//
 
-    public void heightDialog(){
+    public void heightDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this.context);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mView = inflater.inflate(R.layout.dialog_change_height, null);
 
         final NumberPicker numberPicker = (NumberPicker) mView.findViewById(R.id.heightPicker);
@@ -82,9 +83,9 @@ public class Dialogs {
 
     //---------- Change Weight Dialog ----------//
 
-    public void weightDialog(){
+    public void weightDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mView = inflater.inflate(R.layout.dialog_change_weight, null);
 
         final NumberPicker numberPicker = (NumberPicker) mView.findViewById(R.id.heightPicker);
@@ -131,9 +132,9 @@ public class Dialogs {
 
     //---------- Change Gender Dialog ----------//
 
-    public void genderDialog(){
+    public void genderDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mView = inflater.inflate(R.layout.dialog_change_gender, null);
 
         maleBtn = (Button) mView.findViewById(R.id.maleBtn);
@@ -195,10 +196,10 @@ public class Dialogs {
 
     //---------- Email Dialog ----------//
 
-    public void emailDialog(){
+    public void emailDialog() {
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mView = inflater.inflate(R.layout.dialog_change_email, null);
 
         passwordEt = (EditText) mView.findViewById(R.id.confirm_password);

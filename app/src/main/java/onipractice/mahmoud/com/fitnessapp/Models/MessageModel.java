@@ -18,7 +18,7 @@ public class MessageModel {
     boolean seen;
     private String from;
 
-    public MessageModel(String message, boolean seen, long time, String type, String from){
+    public MessageModel(String message, boolean seen, long time, String type, String from) {
 
         this.message = message;
         this.seen = seen;
@@ -27,7 +27,8 @@ public class MessageModel {
         this.from = from;
     }
 
-    public MessageModel(){}
+    public MessageModel() {
+    }
 
     public String getMessage() {
         return message;

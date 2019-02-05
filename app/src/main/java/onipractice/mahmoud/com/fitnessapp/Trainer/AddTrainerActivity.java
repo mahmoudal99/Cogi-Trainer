@@ -1,11 +1,7 @@
 package onipractice.mahmoud.com.fitnessapp.Trainer;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +13,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import onipractice.mahmoud.com.fitnessapp.Client.ClientProfileActivity;
 import onipractice.mahmoud.com.fitnessapp.Models.TrainerModel;
 import onipractice.mahmoud.com.fitnessapp.R;
@@ -24,20 +24,14 @@ import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
 
 public class AddTrainerActivity extends AppCompatActivity {
 
-    RecyclerView usersList;
-
-    // Firebase
-    DatabaseReference rootReference;
-    DatabaseReference uidReference;
-
-    ImageView backArrow;
+    private RecyclerView usersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_trainer);
 
-        backArrow = (ImageView) findViewById(R.id.backArrow);
+        ImageView backArrow = (ImageView) findViewById(R.id.backArrow);
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,8 +52,9 @@ public class AddTrainerActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        rootReference = FirebaseDatabase.getInstance().getReference();
-        uidReference = rootReference.child("trainer");
+        // Firebase
+        DatabaseReference rootReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference uidReference = rootReference.child("trainer");
 
         FirebaseRecyclerOptions<TrainerModel> options =
                 new FirebaseRecyclerOptions.Builder<TrainerModel>()
@@ -102,21 +97,21 @@ public class AddTrainerActivity extends AppCompatActivity {
         usersList.setAdapter(firebaseRecyclerAdapter);
     }
 
-    public static class UsersViewHolder extends RecyclerView.ViewHolder{
+    public static class UsersViewHolder extends RecyclerView.ViewHolder {
 
         View view;
 
-        public UsersViewHolder(View itemView){
+        public UsersViewHolder(View itemView) {
             super(itemView);
             view = itemView;
         }
 
-        public void setName(String name){
+        public void setName(String name) {
             TextView userName = (TextView) view.findViewById(R.id.userName);
             userName.setText(name);
         }
 
-        public void setSurname(String lastname){
+        public void setSurname(String lastname) {
             TextView surname = (TextView) view.findViewById(R.id.lastname);
             surname.setText(lastname);
         }

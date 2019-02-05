@@ -3,10 +3,6 @@ package onipractice.mahmoud.com.fitnessapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -21,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +28,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import onipractice.mahmoud.com.fitnessapp.Models.DietDayObject;
 
 public class DietActivity extends AppCompatActivity {
@@ -81,7 +81,7 @@ public class DietActivity extends AppCompatActivity {
         });
     }
 
-    private void setWidgets(){
+    private void setWidgets() {
         backArrow = (ImageView) findViewById(R.id.backArrow);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         list = (ListView) findViewById(R.id.list);
@@ -90,7 +90,7 @@ public class DietActivity extends AppCompatActivity {
 
     // Diet Dialog
 
-    private void addDietDayDialog(){
+    private void addDietDayDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(DietActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.dialog_add_diet_day, null);
 
@@ -117,10 +117,9 @@ public class DietActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DietActivity.this, SearchFoodActivity.class);
-                if(day.equals(" "))
-                {
+                if (day.equals(" ")) {
                     Toast.makeText(DietActivity.this, "Please Select a day", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     intent.putExtra("day", day);
                     intent.putExtra("meal", "Breakfast");
                     startActivity(intent);
@@ -139,10 +138,9 @@ public class DietActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DietActivity.this, SearchFoodActivity.class);
-                if(day.equals(" "))
-                {
+                if (day.equals(" ")) {
                     Toast.makeText(DietActivity.this, "Please Select a day", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     intent.putExtra("day", day);
                     intent.putExtra("meal", "Lunch");
                     startActivity(intent);
@@ -155,10 +153,9 @@ public class DietActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DietActivity.this, SearchFoodActivity.class);
-                if(day.equals(" "))
-                {
+                if (day.equals(" ")) {
                     Toast.makeText(DietActivity.this, "Please Select a day", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     intent.putExtra("day", day);
                     intent.putExtra("meal", "Dinner");
                     startActivity(intent);
@@ -183,7 +180,7 @@ public class DietActivity extends AppCompatActivity {
 
     }
 
-    private void dayDialog(){
+    private void dayDialog() {
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(DietActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.dialog_insert_speciality, null);
@@ -226,8 +223,7 @@ public class DietActivity extends AppCompatActivity {
 
     }
 
-    private void createObject()
-    {
+    private void createObject() {
         arrayList = new ArrayList<DietDayObject>();
         adapter = new UsersAdapter(DietActivity.this, arrayList);
         list.setAdapter(adapter);
@@ -243,7 +239,7 @@ public class DietActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
                     object = new DietDayObject();
                     object.breakfast = ds.child("Breakfast").child("food").getValue(String.class);
@@ -258,7 +254,8 @@ public class DietActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+            }
         };
         uidRef.addListenerForSingleValueEvent(valueEventListener);
 
@@ -326,8 +323,7 @@ public class DietActivity extends AppCompatActivity {
     ------------------------------------------Firebase----------------------------------------------------
      */
 
-    private void setUpFirebaseAuth()
-    {
+    private void setUpFirebaseAuth() {
         auth = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -335,11 +331,10 @@ public class DietActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if(user != null)
-                {
+                if (user != null) {
                     Log.d(TAG, "Connected");
 
-                }else {
+                } else {
                     Log.d(TAG, "signed out");
                 }
             }
@@ -356,15 +351,14 @@ public class DietActivity extends AppCompatActivity {
     public void onStop() {
 
         super.onStop();
-        if (authStateListener != null)
-        {
+        if (authStateListener != null) {
             auth.removeAuthStateListener(authStateListener);
         }
     }
 
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
                 && keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {

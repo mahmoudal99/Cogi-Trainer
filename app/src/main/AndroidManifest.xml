@@ -6,11 +6,7 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
+
     <permission
         android:name="onipractice.mahmoud.com.fitnessapp.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
@@ -32,16 +28,11 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Jogging.JoggingActivity"></activity>
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Jogging.JoggingActivity"
+            tools:ignore="InnerclassSeparator" />
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAqcP5mwNElnbv51O6oHdG83jwn6LTaV24" />
@@ -51,14 +42,18 @@
 
         <activity
             android:name=".Jogging.JoggingTrackingActivity"
-            android:label="@string/title_activity_jogging_tracking" />
+            android:label="@string/title_activity_jogging_tracking"
+            tools:ignore="InnerclassSeparator" />
 
-        <service android:name=".CloudMessaging.FirebaseInstanceIdService">
+        <service android:name=".CloudMessaging.FirebaseInstanceIdService"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".CloudMessaging.FirebaseMessagingService">
+
+        <service android:name=".CloudMessaging.FirebaseMessagingService"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -73,36 +68,63 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".SignUpActivity" />
+
         <activity android:name=".ChooseUserTypeActivity" />
-        <activity android:name=".Trainer.PersonalTrainerHomeActivity" />
+
+        <activity android:name=".Trainer.PersonalTrainerHomeActivity"
+            tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name=".TraineeHomeActivity"
             android:noHistory="true" />
         <activity android:name=".TraineePersonalDetailsActivity" />
-        <activity android:name=".Profile.ProfileActivity" />
-        <activity android:name=".Profile.EditProfileActivity" />
-        <activity android:name=".Profile.ChangePasswordActivity" />
+
+        <activity android:name=".Profile.ProfileActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity android:name=".Profile.EditProfileActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity android:name=".Profile.ChangePasswordActivity"
+            tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name=".ProgressGalleryActivity"
             android:label="@string/title_activity_progress_gallery"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Client.ClientProfileActivity">
+
+        <activity android:name=".Client.ClientProfileActivity"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="onipractice.mahmoud.com.fitnessapp_TARGET_NOTIFICATION" />
 
                 <category android:name="android.intent.category.DEFAUT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Trainer.MyTrainerActivity" />
-        <activity android:name=".Messaging.MessengerActivity" />
+
+        <activity android:name=".Trainer.MyTrainerActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity android:name=".Messaging.MessengerActivity"
+            tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".Trainer.TrainerPersonalDetailsActivity" />
-        <activity android:name=".Trainer.AddTrainerActivity" />
-        <activity android:name=".Client.ClientRequestsActivity" />
-        <activity android:name=".Client.ClientsActivity" />
+
+        <activity android:name=".Trainer.TrainerPersonalDetailsActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity android:name=".Trainer.AddTrainerActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity android:name=".Client.ClientRequestsActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <activity android:name=".Client.ClientsActivity"
+            tools:ignore="InnerclassSeparator" />
 
         <meta-data
             android:name="preloaded_fonts"
@@ -111,7 +133,10 @@
         <activity android:name=".TimetableActivity" />
         <activity android:name=".DietActivity" />
         <activity android:name=".SearchFoodActivity" />
-        <activity android:name=".Training.StretchingActivity" />
+
+        <activity android:name=".Training.StretchingActivity"
+            tools:ignore="InnerclassSeparator" />
+
     </application>
 
 </manifest>

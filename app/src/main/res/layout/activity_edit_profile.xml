@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -44,8 +44,26 @@
             android:background="@color/outline" />
 
         <RelativeLayout
+            android:background="@color/chatBg"
+            android:id="@+id/relLayoutTop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/SignInEditTextHeight">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="serif-monospace"
+                android:text="My Account"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/relLayout2"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/SignInEditTextHeight"
             android:layout_centerHorizontal="true">
@@ -57,7 +75,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="serif-monospace"
                 android:text="@string/name"
-                android:textColor="@color/identifier_grey"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -69,7 +87,7 @@
                 android:gravity="end"
                 android:background="@null"
                 android:fontFamily="serif-monospace"
-                android:textColor="@color/black"
+                android:textColor="@color/identifier_grey"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
@@ -78,8 +96,8 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_width="400dp"
+            android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
 
@@ -96,7 +114,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="serif-monospace"
                 android:text="@string/surname"
-                android:textColor="@color/identifier_grey"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -108,7 +126,7 @@
                 android:gravity="end"
                 android:background="@null"
                 android:fontFamily="serif-monospace"
-                android:textColor="@color/black"
+                android:textColor="@color/identifier_grey"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
@@ -117,8 +135,8 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_width="400dp"
+            android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
 
@@ -135,7 +153,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="serif-monospace"
                 android:text="Email"
-                android:textColor="@color/identifier_grey"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -147,7 +165,7 @@
                 android:gravity="end"
                 android:background="@null"
                 android:fontFamily="serif-monospace"
-                android:textColor="@color/black"
+                android:textColor="@color/identifier_grey"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
@@ -156,8 +174,8 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_width="400dp"
+            android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
 
@@ -175,7 +193,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="serif-monospace"
                 android:text="@string/gender"
-                android:textColor="@color/identifier_grey"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -188,7 +206,7 @@
                 android:background="@null"
                 android:onClick="onClick"
                 android:fontFamily="serif-monospace"
-                android:textColor="@color/black"
+                android:textColor="@color/identifier_grey"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
@@ -197,8 +215,8 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_width="400dp"
+            android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
 
@@ -215,7 +233,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="serif-monospace"
                 android:text="Weight"
-                android:textColor="@color/identifier_grey"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -228,7 +246,7 @@
                 android:background="@null"
                 android:onClick="onClick"
                 android:fontFamily="serif-monospace"
-                android:textColor="@color/black"
+                android:textColor="@color/identifier_grey"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
@@ -237,8 +255,8 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_width="400dp"
+            android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
 
@@ -256,7 +274,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="serif-monospace"
                 android:text="Height"
-                android:textColor="@color/identifier_grey"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -268,7 +286,7 @@
                 android:gravity="end"
                 android:background="@null"
                 android:fontFamily="serif-monospace"
-                android:textColor="@color/black"
+                android:textColor="@color/identifier_grey"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:onClick="onClick"
@@ -278,11 +296,11 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_width="400dp"
+            android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
 
     </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,19 +1,16 @@
 package onipractice.mahmoud.com.fitnessapp.Utils;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.Context;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import onipractice.mahmoud.com.fitnessapp.Models.FoodItemModel;
 import onipractice.mahmoud.com.fitnessapp.R;
 
@@ -72,8 +69,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ArtistViewHold
                 sb.delete(index, artist.getFoodName().length());
             }
         });
-
-
 
 
     }

@@ -9,7 +9,7 @@ public class PersonalDetails {
     private String age;
     private String gender;
 
-    public PersonalDetails(String height, String weight, String age, String gender){
+    public PersonalDetails(String height, String weight, String age, String gender) {
 
         this.height = height;
         this.weight = weight;

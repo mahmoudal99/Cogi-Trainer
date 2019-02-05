@@ -1,89 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:orientation="vertical"
-
     android:layout_width="match_parent"
-
     android:layout_height="wrap_content"
-
     android:padding="10dp"
-
     android:background="@color/white">
 
-
-
   <RelativeLayout
-
       android:layout_below="@id/optionsLl"
-
       android:layout_width="wrap_content"
-
       android:layout_height="wrap_content">
 
-
-
     <TextView
-
         android:id="@+id/dialogCancel"
-
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-
         android:layout_alignParentRight="true"
-
         android:layout_marginBottom="10dp"
-
         android:layout_marginRight="10dp"
-
         android:layout_marginTop="30dp"
-
         android:fontFamily="serif-monospace"
-
         android:text="@string/cancel"
-
         android:textColor="@color/black"
-
         android:textSize="18sp"
-
         android:textStyle="bold"
-
         android:layout_marginEnd="10dp"
-
         android:layout_alignParentEnd="true" />
 
-
-
     <TextView
-
         android:id="@+id/dialogConfirm"
-
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-
         android:layout_marginBottom="10dp"
-
         android:layout_marginRight="10dp"
-
         android:layout_marginTop="30dp"
-
         android:fontFamily="serif-monospace"
-
         android:text="@string/confirm"
-
         android:textColor="@color/black"
-
         android:textSize="18sp"
-
         android:textStyle="bold" />
 
-
-
   </RelativeLayout>
-
-
 
 </RelativeLayout>

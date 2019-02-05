@@ -1,10 +1,7 @@
 package onipractice.mahmoud.com.fitnessapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,10 +23,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import onipractice.mahmoud.com.fitnessapp.Models.FoodItemModel;
 import onipractice.mahmoud.com.fitnessapp.Utils.FoodAdapter;
 
-public class SearchFoodActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class SearchFoodActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private TextView heading;
     private ImageView backArrow, confirm_selection;
@@ -91,7 +91,7 @@ public class SearchFoodActivity extends AppCompatActivity implements AdapterView
 //        });
     }
 
-    private void initialize(){
+    private void initialize() {
         heading = (TextView) findViewById(R.id.heading);
         backArrow = (ImageView) findViewById(R.id.backArrow);
         foodSpinner = (Spinner) findViewById(R.id.foodSpinner);
@@ -101,7 +101,7 @@ public class SearchFoodActivity extends AppCompatActivity implements AdapterView
         mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
     }
 
-    private void setUpWidgets(){
+    private void setUpWidgets() {
         mSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,10 +142,11 @@ public class SearchFoodActivity extends AppCompatActivity implements AdapterView
         }
 
         @Override
-        public void onCancelled(DatabaseError databaseError) { }
+        public void onCancelled(DatabaseError databaseError) {
+        }
     };
 
-    private void setUpSpinners(){
+    private void setUpSpinners() {
         foodListAdapter = ArrayAdapter.createFromResource(SearchFoodActivity.this, R.array.foodCategories, android.R.layout.simple_spinner_item);
         foodListAdapter.setDropDownViewResource(android.R.layout.preference_category);
         foodSpinner.setAdapter(foodListAdapter);
@@ -164,34 +165,35 @@ public class SearchFoodActivity extends AppCompatActivity implements AdapterView
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
-        if(chosen.equals("Breakfast")){
+        if (chosen.equals("Breakfast")) {
             mealChosen = "Breakfast";
             heading.setText(mealChosen);
             adapter = new FoodAdapter(this, foodList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
             mResultList.setAdapter(adapter);
 
-        }else if(chosen.equals("Lunch")){
+        } else if (chosen.equals("Lunch")) {
             mealChosen = "Lunch";
             heading.setText(mealChosen);
             adapter = new FoodAdapter(this, foodList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
             mResultList.setAdapter(adapter);
 
-        }else {
+        } else {
             mealChosen = "Dinner";
             heading.setText(mealChosen);
             adapter = new FoodAdapter(this, foodList, user.getUid(), getIntent().getStringExtra("day"), mealChosen);
             mResultList.setAdapter(adapter);
         }
 
-        if(chosen.equals("Fruit_Veg")){
+        if (chosen.equals("Fruit_Veg")) {
             foodCatgeory = "Fruit_Veg";
-        }else if(chosen.equals("SeaFood")){
+        } else if (chosen.equals("SeaFood")) {
             foodCatgeory = "SeaFood";
-        }else if (chosen.equals("Meat")){
+        } else if (chosen.equals("Meat")) {
             foodCatgeory = "Meat";
         }
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) { }
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
 }

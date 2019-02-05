@@ -4,11 +4,12 @@ public class ImageModel {
 
     private String image;
 
-    public ImageModel(String image){
+    public ImageModel(String image) {
         this.image = image;
     }
 
-    public ImageModel(){}
+    public ImageModel() {
+    }
 
     @Override
     public String toString() {

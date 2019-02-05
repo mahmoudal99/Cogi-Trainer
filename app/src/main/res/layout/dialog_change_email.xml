@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
+        android:id="@+id/dialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/confirm_password"
-        android:textSize="21sp"
-        android:textStyle="bold"
         android:fontFamily="serif-monospace"
+        android:text="@string/confirm_password"
         android:textColor="@color/black"
-        android:id="@+id/dialogTitle"/>
+        android:textSize="21sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/confirm_email"
@@ -35,7 +35,7 @@
         android:layout_height="1dp"
         android:layout_below="@id/confirm_email"
         android:layout_gravity="center_horizontal"
-        android:background="@color/black"/>
+        android:background="@color/black" />
 
     <EditText
         android:id="@+id/confirm_password"
@@ -56,21 +56,21 @@
         android:layout_height="1dp"
         android:layout_below="@id/confirm_password"
         android:layout_gravity="center_horizontal"
-        android:background="@color/black"/>
+        android:background="@color/black" />
 
     <RelativeLayout
-        android:layout_below="@id/confirm_password"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_password">
 
         <TextView
             android:id="@+id/dialogCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="serif-monospace"
             android:text="@string/cancel"
             android:textColor="@color/black"
@@ -81,9 +81,9 @@
             android:id="@+id/dialogConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="serif-monospace"
             android:text="@string/confirm"
             android:textColor="@color/black"

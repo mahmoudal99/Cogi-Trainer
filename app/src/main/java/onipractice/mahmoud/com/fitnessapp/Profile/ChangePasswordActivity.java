@@ -2,8 +2,6 @@ package onipractice.mahmoud.com.fitnessapp.Profile;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,23 +10,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
-import onipractice.mahmoud.com.fitnessapp.SignInActivity;
 import onipractice.mahmoud.com.fitnessapp.Utils.FirebaseMethods;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
     private static final String TAG = "ProfileActivity";
 
-    EditText currentPassEt, newPassEt, repeatPassEt;;
+    EditText currentPassEt, newPassEt, repeatPassEt;
     String currentPassword, newPassword, repeatPassword, userType;
     Button changePassBtn;
     ImageView backArrowIv;
@@ -53,7 +47,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         setWidgets();
     }
 
-    private void initialize(){
+    private void initialize() {
 
         currentPassEt = (EditText) findViewById(R.id.currentPassword);
         newPassEt = (EditText) findViewById(R.id.newPassword);
@@ -62,7 +56,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         changePassBtn = (Button) findViewById(R.id.changePassBtn);
     }
 
-    private void setWidgets(){
+    private void setWidgets() {
 
         changePassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,13 +77,13 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     //---------- Changing Password ----------//
 
-    private void getPassword(){
+    private void getPassword() {
 
         currentPassword = currentPassEt.getText().toString();
         newPassword = newPassEt.getText().toString();
         repeatPassword = repeatPassEt.getText().toString();
 
-        if(!newPassword.equals(repeatPassword)){
+        if (!newPassword.equals(repeatPassword)) {
 
             Toast.makeText(context, "Passwords Dont Match", Toast.LENGTH_SHORT).show();
 
@@ -99,11 +93,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
     }
 
 
-
     //---------- Firebase ----------//
 
-    private void setUpFirebaseAuthentication()
-    {
+    private void setUpFirebaseAuthentication() {
         auth = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -111,11 +103,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if(user != null)
-                {
+                if (user != null) {
                     Log.d(TAG, "Connected");
 
-                }else {
+                } else {
                     Log.d(TAG, "signed out");
                 }
             }
@@ -132,8 +123,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     public void onStop() {
 
         super.onStop();
-        if (authStateListener != null)
-        {
+        if (authStateListener != null) {
             auth.removeAuthStateListener(authStateListener);
         }
     }

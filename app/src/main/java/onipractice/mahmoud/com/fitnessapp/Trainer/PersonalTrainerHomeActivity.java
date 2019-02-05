@@ -2,10 +2,7 @@ package onipractice.mahmoud.com.fitnessapp.Trainer;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -17,6 +14,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import onipractice.mahmoud.com.fitnessapp.Client.ClientRequestsActivity;
 import onipractice.mahmoud.com.fitnessapp.Client.ClientsActivity;
@@ -25,15 +25,13 @@ import onipractice.mahmoud.com.fitnessapp.R;
 
 public class PersonalTrainerHomeActivity extends AppCompatActivity {
 
-    CircleImageView profileImg;
-    ImageView messengerImageView;
-    CardView clientsCardView, clientRequestsCardView;
+    private CircleImageView profileImg;
+    private ImageView messengerImageView;
+    private CardView clientsCardView, clientRequestsCardView;
 
     // Firebase
-    DatabaseReference userDatabase;
-    FirebaseAuth authentication;
-
-    Context context;
+    private DatabaseReference userDatabase;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,23 +40,17 @@ public class PersonalTrainerHomeActivity extends AppCompatActivity {
 
         context = PersonalTrainerHomeActivity.this;
 
-        authentication = FirebaseAuth.getInstance();
+        FirebaseAuth authentication = FirebaseAuth.getInstance();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("user_account_settings").child(authentication.getCurrentUser().getUid());
         userDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot != null){
-
-                    userDatabase.child("online").onDisconnect().setValue(ServerValue.TIMESTAMP);
-                    userDatabase.child("online").setValue("true");
-
-                }
+                userDatabase.child("online").onDisconnect().setValue(ServerValue.TIMESTAMP);
+                userDatabase.child("online").setValue("true");
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
 
         initialize();
@@ -67,7 +59,7 @@ public class PersonalTrainerHomeActivity extends AppCompatActivity {
 
     }
 
-    private void initialize(){
+    private void initialize() {
 
         profileImg = (CircleImageView) findViewById(R.id.profileImg);
         clientRequestsCardView = (CardView) findViewById(R.id.requestsCard);
@@ -76,7 +68,7 @@ public class PersonalTrainerHomeActivity extends AppCompatActivity {
 
     }
 
-    private void setUpWidgets(){
+    private void setUpWidgets() {
 
         profileImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,8 +85,8 @@ public class PersonalTrainerHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-            Intent intent = new Intent(context, ClientsActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(context, ClientsActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -111,8 +103,8 @@ public class PersonalTrainerHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-            Intent intent = new Intent(context, ClientsActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(context, ClientsActivity.class);
+                startActivity(intent);
 
             }
         });

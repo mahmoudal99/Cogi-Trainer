@@ -4,12 +4,13 @@ public class FoodItemModel {
 
     private String foodName;
 
-    public FoodItemModel(String foodName){
+    public FoodItemModel(String foodName) {
 
         this.foodName = foodName;
     }
 
-    public FoodItemModel(){}
+    public FoodItemModel() {
+    }
 
     public String getFoodName() {
         return foodName;

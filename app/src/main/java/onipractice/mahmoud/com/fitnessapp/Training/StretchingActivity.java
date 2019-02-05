@@ -1,7 +1,6 @@
 package onipractice.mahmoud.com.fitnessapp.Training;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -13,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
 import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
 

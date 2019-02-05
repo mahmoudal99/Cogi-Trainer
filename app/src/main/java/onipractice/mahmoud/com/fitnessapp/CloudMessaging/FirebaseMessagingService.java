@@ -3,10 +3,10 @@ package onipractice.mahmoud.com.fitnessapp.CloudMessaging;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
 
 import com.google.firebase.messaging.RemoteMessage;
 
+import androidx.core.app.NotificationCompat;
 import onipractice.mahmoud.com.fitnessapp.R;
 
 

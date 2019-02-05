@@ -5,9 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +20,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
 import onipractice.mahmoud.com.fitnessapp.ChooseUserTypeActivity;
 import onipractice.mahmoud.com.fitnessapp.Models.MessageModel;
 import onipractice.mahmoud.com.fitnessapp.R;

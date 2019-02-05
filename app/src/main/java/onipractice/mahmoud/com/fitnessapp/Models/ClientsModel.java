@@ -4,11 +4,11 @@ public class ClientsModel {
 
     public String id;
 
-    public ClientsModel(){
+    public ClientsModel() {
 
     }
 
-    public ClientsModel(String id){
+    public ClientsModel(String id) {
         this.id = id;
     }
 
