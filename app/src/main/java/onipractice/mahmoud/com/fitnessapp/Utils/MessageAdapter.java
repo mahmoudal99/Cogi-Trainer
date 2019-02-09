@@ -59,14 +59,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public class MessageViewHolder extends RecyclerView.ViewHolder{
 
         TextView messageText;
-        ImageView senderImg;
         LinearLayout linearLayout;
 
         public MessageViewHolder(View itemView) {
             super(itemView);
 
             messageText = (TextView) itemView.findViewById(R.id.textMessage);
-            senderImg = (ImageView) itemView.findViewById(R.id.senderProfileImg);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.textLinLayout);
 
 
@@ -87,16 +85,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
             holder.messageText.setBackgroundResource(R.drawable.chat_send_bar_bg);
             holder.messageText.setTextColor(Color.BLACK);
-            holder.senderImg.setVisibility(View.INVISIBLE);
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) holder.linearLayout.getLayoutParams();
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             holder.linearLayout.setLayoutParams(layoutParams);
 
         }
-
-        String imageUriString = cacheData.getString(c.getFrom(), "");
-        Uri imageUri = Uri.parse(imageUriString);
-        Picasso.get().load(imageUri).into(holder.senderImg);
 
         holder.messageText.setText(c.getMessage());
     }

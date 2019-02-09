@@ -122,6 +122,7 @@
     <string name="lunch">Lunch</string>
     <string name="firebase_search">Firebase Search</string>
     <string name="search_here">Search here</string>
+    <string name="delete_trainer">Delete Trainer</string>
 
     //Arrays
     <string-array name="country_names">
