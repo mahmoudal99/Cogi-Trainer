@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/relLayout1"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="@dimen/SignInBGImagHeight"
         android:background="@drawable/signupbg">
 
         <LinearLayout
@@ -19,8 +19,8 @@
 
             <ImageView
                 android:id="@+id/backArrow"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="@dimen/IconViewWidth"
+                android:layout_height="@dimen/IconViewHeight"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_back_white" />
 
@@ -38,8 +38,8 @@
 
             <ImageView
                 android:id="@+id/chat_img"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/IconViewWidth"
+                android:layout_height="@dimen/IconViewHeight"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:src="@drawable/ic_messenger" />
@@ -79,7 +79,7 @@
         android:fontFamily="serif-monospace"
         android:text="@string/name"
         android:textColor="@color/identifier_grey"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -95,16 +95,16 @@
         android:fontFamily="serif-monospace"
         android:text="@string/trainer"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <View
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/nameTv"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
         android:background="@color/black" />
 
     <TextView
@@ -120,7 +120,7 @@
         android:fontFamily="serif-monospace"
         android:text="@string/surname"
         android:textColor="@color/identifier_grey"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -135,16 +135,16 @@
         android:fontFamily="serif-monospace"
         android:text="@string/trainer"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <View
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/surnameTv"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
         android:background="@color/black" />
 
     <TextView
@@ -160,7 +160,7 @@
         android:fontFamily="serif-monospace"
         android:text="@string/speciality"
         android:textColor="@color/identifier_grey"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
 
@@ -177,16 +177,16 @@
         android:fontFamily="serif-monospace"
         android:text="@string/trainer"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <View
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/specialityTv"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
         android:background="@color/black" />
 
     <TextView
@@ -201,7 +201,7 @@
         android:fontFamily="serif-monospace"
         android:text="@string/availability"
         android:textColor="@color/identifier_grey"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
 
@@ -218,16 +218,16 @@
         android:fontFamily="serif-monospace"
         android:text="@string/trainer"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <View
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/availabilityTv"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
         android:background="@color/black" />
 
 
@@ -253,7 +253,7 @@
         android:background="@drawable/password_btn_bg"
         android:text="@string/delete_trainer"
         android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:textSize="@dimen/_15sp" />
 
 </RelativeLayout>
 

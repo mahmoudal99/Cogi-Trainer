@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import onipractice.mahmoud.com.fitnessapp.R;
 import onipractice.mahmoud.com.fitnessapp.Utils.FirebaseMethods;
 
@@ -49,11 +50,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     private void initialize() {
 
-        currentPassEt = (EditText) findViewById(R.id.currentPassword);
-        newPassEt = (EditText) findViewById(R.id.newPassword);
-        repeatPassEt = (EditText) findViewById(R.id.repeatPassword);
-        backArrowIv = (ImageView) findViewById(R.id.backArrow);
-        changePassBtn = (Button) findViewById(R.id.changePassBtn);
+        currentPassEt = findViewById(R.id.currentPassword);
+        newPassEt = findViewById(R.id.newPassword);
+        repeatPassEt = findViewById(R.id.repeatPassword);
+        backArrowIv = findViewById(R.id.backArrow);
+        changePassBtn = findViewById(R.id.changePassBtn);
     }
 
     private void setWidgets() {

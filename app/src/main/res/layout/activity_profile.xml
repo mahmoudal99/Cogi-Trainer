@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/relLayout1"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="@dimen/SignInBGImagHeight"
         android:background="@drawable/signupbg">
 
         <RelativeLayout
@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/backArrow"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/IconViewWidth"
+                android:layout_height="@dimen/IconViewHeight"
                 android:layout_gravity="center_vertical"
                 app:srcCompat="@drawable/ic_back_white" />
 
@@ -34,7 +34,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="Profile"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="@dimen/_24sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -64,7 +64,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="@string/edit"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="@dimen/_20sp" />
 
         </RelativeLayout>
 
@@ -78,8 +78,8 @@
 
         <RelativeLayout
             android:id="@+id/relLayout2"
-
-            android:layout_width="@dimen/CardViewWidth"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp">
@@ -100,14 +100,15 @@
                 android:background="@null"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/relLayout3"
-            android:layout_width="@dimen/CardViewWidth"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/relLayout2"
             android:layout_centerHorizontal="true"
@@ -123,14 +124,15 @@
                 android:background="@null"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/relLayout5"
-            android:layout_width="@dimen/CardViewWidth"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/relLayout3"
             android:layout_centerHorizontal="true"
@@ -152,7 +154,7 @@
                 android:background="@null"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/black"
-                android:textSize="17sp"
+                android:textSize="@dimen/_17sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -170,7 +172,7 @@
             android:fontFamily="serif-monospace"
             android:text="@string/edit_profile"
             android:textColor="@color/blueCardView"
-            android:textSize="20sp"
+            android:textSize="@dimen/_20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -186,7 +188,7 @@
             android:fontFamily="serif-monospace"
             android:text="@string/change_password"
             android:textColor="@color/blueCardView"
-            android:textSize="20sp"
+            android:textSize="@dimen/_20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -202,7 +204,7 @@
             android:fontFamily="serif-monospace"
             android:text="Log Out"
             android:textColor="@color/blueCardView"
-            android:textSize="20sp"
+            android:textSize="@dimen/_20sp"
             android:textStyle="bold" />
 
     </RelativeLayout>

@@ -49,7 +49,7 @@
                 android:maxLines="1"
                 android:text="@string/workouts"
                 android:textColor="@color/white"
-                android:textSize="24sp" />
+                android:textSize="@dimen/_20sp" />
 
         </LinearLayout>
 
@@ -76,7 +76,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="@string/day"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_17sp" />
 
             <ImageView
                 android:id="@+id/delete"
@@ -110,7 +110,7 @@
                 android:maxLines="1"
                 android:text="@string/time"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_17sp" />
 
         </LinearLayout>
     </LinearLayout>

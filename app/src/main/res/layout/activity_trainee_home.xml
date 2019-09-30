@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,8 +21,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImg"
-                android:layout_width="@dimen/ImageViewWidth"
-                android:layout_height="@dimen/ImageViewHeight"
+                android:layout_width="@dimen/IconViewWidth"
+                android:layout_height="@dimen/IconViewHeight"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:src="@drawable/ic_person_blue"
@@ -31,16 +30,16 @@
                 app:civ_border_width="2dp" />
 
             <ImageView
-                android:layout_width="140dp"
-                android:layout_height="110dp"
+                android:layout_width="@dimen/LogoWidth"
+                android:layout_height="@dimen/LogoHeight"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="3"
                 android:src="@drawable/logo_with_text_blue_o" />
 
             <ImageView
                 android:id="@+id/messageIv"
-                android:layout_width="@dimen/ImageViewWidth"
-                android:layout_height="@dimen/ImageViewHeight"
+                android:layout_width="@dimen/IconViewWidth"
+                android:layout_height="@dimen/IconViewHeight"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:src="@drawable/ic_text" />
@@ -65,21 +64,20 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/LeftMargin15"
+                    android:layout_weight="2"
                     android:src="@drawable/ic_jog" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="35dp"
                     android:layout_weight="3"
                     android:fontFamily="serif-monospace"
                     android:gravity="center_horizontal"
                     android:text="@string/jogging"
                     android:textColor="@color/white"
-                    android:textSize="30sp" />
+                    android:textSize="@dimen/_30sp" />
 
             </LinearLayout>
 
@@ -103,7 +101,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/LeftMargin15"
+                    android:layout_weight="2"
                     android:src="@drawable/ic_diet_planner" />
 
                 <TextView
@@ -115,42 +114,7 @@
                     android:gravity="center_horizontal"
                     android:text="@string/mydiet"
                     android:textColor="@color/white"
-                    android:textSize="30sp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/progressCardView"
-            android:layout_width="@dimen/CardViewWidth"
-            android:layout_height="@dimen/CardViewHeight"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/outline"
-            app:cardCornerRadius="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_progress" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="3"
-                    android:fontFamily="serif-monospace"
-                    android:gravity="center_horizontal"
-                    android:text="@string/progress"
-                    android:textColor="@color/white"
-                    android:textSize="30sp" />
+                    android:textSize="@dimen/_30sp" />
 
             </LinearLayout>
 
@@ -171,9 +135,10 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="-25dp"
+                    android:layout_marginLeft="@dimen/LeftMargin15"
+                    android:layout_weight="2"
                     android:src="@drawable/ic_timetable" />
 
 
@@ -181,12 +146,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="40dp"
+                    android:layout_weight="3"
                     android:fontFamily="serif-monospace"
                     android:gravity="center_horizontal"
                     android:text="@string/timetable"
                     android:textColor="@color/white"
-                    android:textSize="30sp" />
+                    android:textSize="@dimen/_30sp" />
 
             </LinearLayout>
 
@@ -207,21 +172,22 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="-45dp"
+                    android:layout_marginLeft="@dimen/LeftMargin15"
+                    android:layout_weight="2"
                     android:src="@drawable/ic_trainer" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="60dp"
+                    android:layout_weight="3"
                     android:fontFamily="serif-monospace"
                     android:gravity="center_horizontal"
                     android:text="@string/trainer"
                     android:textColor="@color/white"
-                    android:textSize="30sp" />
+                    android:textSize="@dimen/_30sp" />
 
             </LinearLayout>
 
@@ -245,21 +211,20 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/LeftMargin15"
+                    android:layout_weight="2"
                     android:src="@drawable/ic_stretch" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="35dp"
                     android:layout_weight="3"
                     android:fontFamily="serif-monospace"
                     android:gravity="center_horizontal"
                     android:text="@string/stretches"
                     android:textColor="@color/white"
-                    android:textSize="30sp" />
+                    android:textSize="@dimen/_30sp" />
 
             </LinearLayout>
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    // Card Views //
+    <dimen name="CardViewWidth">290dp</dimen>
+    <dimen name="CardViewHeight">60dp</dimen>
+
+    // Logo //
+    <dimen name="LogoWidth">110dp</dimen>
+    <dimen name="LogoHeight">110dp</dimen>
+
+    // Home Icons //
+    <dimen name="IconViewWidth">38dp</dimen>
+    <dimen name="IconViewHeight">38dp</dimen>
+
+    // Sign Up Layout
+    <dimen name="SignUpBG">500dp</dimen>
+
+    // Sign In //
+    <dimen name="SignInEditTextWidth">380dp</dimen>
+    <dimen name="SignInEditTextHeight">40dp</dimen>
+    <dimen name="SignInBGImagHeight">300dp</dimen>
+
+    // Text //
+    <dimen name="_15sp">13sp</dimen>
+    <dimen name="_17sp">15sp</dimen>
+    <dimen name="_20sp">18sp</dimen>
+    <dimen name="_24sp">24sp</dimen>
+    <dimen name="_25sp">25sp</dimen>
+    <dimen name="_30sp">24sp</dimen>
+
+    // Divider //
+    <dimen name="DividerWidth">300dp</dimen>
+    <dimen name="DividerMarginTop">40dp</dimen>
+
+    // Image Positions
+    <dimen name="LeftMargin15">15dp</dimen>
+    <dimen name="LeftMargin25">-25dp</dimen>
+    <dimen name="LeftMargin45">-45dp</dimen>
+    <dimen name="LeftMargin35">35dp</dimen>
+</resources>

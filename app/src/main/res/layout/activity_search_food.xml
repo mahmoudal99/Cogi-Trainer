@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/backArrow"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/IconViewWidth"
+            android:layout_height="@dimen/IconViewHeight"
             android:layout_gravity="center_vertical"
             app:srcCompat="@drawable/ic_back" />
 
@@ -27,7 +27,7 @@
             android:fontFamily="serif-monospace"
             android:text="@string/food_search"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="@dimen/_20sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
@@ -36,16 +36,16 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/DividerMarginTop"
         android:background="@color/outline" />
 
     <EditText
         android:id="@+id/search_field"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="20dp"
         android:layout_toStartOf="@+id/search_btn"
         android:layout_toLeftOf="@+id/search_btn"
@@ -58,12 +58,12 @@
         android:paddingRight="20dp"
         android:paddingBottom="10dp"
         android:textColor="#999999"
-        android:textSize="18sp" />
+        android:textSize="@dimen/_20sp" />
 
     <ImageButton
         android:id="@+id/search_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/IconViewWidth"
+        android:layout_height="@dimen/IconViewHeight"
         android:layout_alignTop="@+id/search_field"
         android:layout_alignBottom="@+id/search_field"
         android:layout_alignParentEnd="true"

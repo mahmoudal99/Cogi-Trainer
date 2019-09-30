@@ -2,9 +2,12 @@ package onipractice.mahmoud.com.fitnessapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -57,6 +60,16 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainee_home);
 
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics ();
+        display.getMetrics(outMetrics);
+
+        float density  = getResources().getDisplayMetrics().density;
+        float dpHeight = outMetrics.heightPixels / density;
+        float dpWidth  = outMetrics.widthPixels / density;
+
+        Toast.makeText(this, String.valueOf(dpHeight) + "+" + String.valueOf(dpWidth), Toast.LENGTH_LONG).show();
+
         authentication = FirebaseAuth.getInstance();
 
         context = TraineeHomeActivity.this;
@@ -82,7 +95,7 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
 
     private void setWidgets() {
         profileImg = (CircleImageView) findViewById(R.id.profileImg);
-        progressCardView = (CardView) findViewById(R.id.progressCardView);
+//        progressCardView = (CardView) findViewById(R.id.progressCardView);
         trainerCardView = (CardView) findViewById(R.id.trainerCard);
         timetableCardView = (CardView) findViewById(R.id.timetableCard);
         myDietCardView = (CardView) findViewById(R.id.dietCardView);
@@ -101,13 +114,13 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
             }
         });
 
-        progressCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ProgressGalleryActivity.class);
-                startActivity(intent);
-            }
-        });
+//        progressCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, ProgressGalleryActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         rootReference = FirebaseDatabase.getInstance().getReference();
         uidReference = rootReference.child("Friends").child(userID);

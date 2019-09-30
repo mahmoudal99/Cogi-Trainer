@@ -35,6 +35,8 @@ public class FirebaseMethods {
 
     private static int counter = 0;
 
+    Context context;
+
     //firebase
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -42,9 +44,6 @@ public class FirebaseMethods {
     private DatabaseReference myRef;
     DatabaseReference uidRef;
     private String userID;
-
-    private Context context;
-
 
     //Shared Preference
     SharedPreferences.Editor editor;

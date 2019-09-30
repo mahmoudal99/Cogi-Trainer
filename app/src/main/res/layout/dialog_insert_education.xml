@@ -13,7 +13,7 @@
         android:fontFamily="serif-monospace"
         android:text="Add Education"
         android:textColor="@color/black"
-        android:textSize="21sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <EditText
@@ -26,7 +26,7 @@
         android:hint="education"
         android:textColor="@color/outline"
         android:textColorHint="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <View
@@ -52,7 +52,7 @@
             android:fontFamily="serif-monospace"
             android:text="CANCEL"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_17sp"
             android:textStyle="bold" />
 
         <TextView
@@ -65,7 +65,7 @@
             android:fontFamily="serif-monospace"
             android:text="CONFIRM"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_17sp"
             android:textStyle="bold" />
 
     </RelativeLayout>

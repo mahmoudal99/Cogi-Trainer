@@ -20,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/backArrow"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/IconViewWidth"
+                android:layout_height="@dimen/IconViewHeight"
                 android:src="@drawable/ic_back"
                 android:layout_gravity="center_vertical" />
 
@@ -32,7 +32,7 @@
                     android:layout_centerInParent="true"
                     android:text="@string/edit_profile"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/_20sp"
                     android:textStyle="bold" />
 
         </RelativeLayout>
@@ -57,7 +57,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="My Account"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -76,7 +76,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="@string/name"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -88,7 +88,7 @@
                 android:background="@null"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/identifier_grey"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp" />
@@ -96,7 +96,7 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
@@ -115,7 +115,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="@string/surname"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -127,7 +127,7 @@
                 android:background="@null"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/identifier_grey"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp" />
@@ -135,7 +135,7 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
@@ -154,7 +154,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="Email"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -166,7 +166,7 @@
                 android:background="@null"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/identifier_grey"
-                android:textSize="17sp"
+                android:textSize="@dimen/_17sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp" />
@@ -174,7 +174,7 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
@@ -194,7 +194,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="@string/gender"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -207,7 +207,7 @@
                 android:onClick="onClick"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/identifier_grey"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp" />
@@ -215,7 +215,7 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
@@ -234,7 +234,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="Weight"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -247,7 +247,7 @@
                 android:onClick="onClick"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/identifier_grey"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp" />
@@ -255,7 +255,7 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>
@@ -275,7 +275,7 @@
                 android:fontFamily="serif-monospace"
                 android:text="Height"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -287,7 +287,7 @@
                 android:background="@null"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/identifier_grey"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sp"
                 android:textStyle="bold"
                 android:onClick="onClick"
                 android:layout_marginEnd="20dp"
@@ -296,7 +296,7 @@
         </RelativeLayout>
 
         <View
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black"/>

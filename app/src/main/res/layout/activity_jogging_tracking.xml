@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/backArrow"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/IconViewWidth"
+            android:layout_height="@dimen/IconViewHeight"
             app:srcCompat="@drawable/ic_back"
             android:layout_gravity="center_vertical" />
 

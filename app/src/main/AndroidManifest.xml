@@ -11,6 +11,11 @@
         android:name="onipractice.mahmoud.com.fitnessapp.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"/>
+
     <uses-permission android:name="onipractice.mahmoud.com.fitnessapp.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -30,7 +35,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Jogging.JoggingActivity"
+        <activity
+            android:name=".Jogging.JoggingActivity"
             tools:ignore="InnerclassSeparator" />
 
         <meta-data
@@ -45,14 +51,16 @@
             android:label="@string/title_activity_jogging_tracking"
             tools:ignore="InnerclassSeparator" />
 
-        <service android:name=".CloudMessaging.FirebaseInstanceIdService"
+        <service
+            android:name=".CloudMessaging.FirebaseInstanceIdService"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <service android:name=".CloudMessaging.FirebaseMessagingService"
+        <service
+            android:name=".CloudMessaging.FirebaseMessagingService"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -73,7 +81,8 @@
 
         <activity android:name=".ChooseUserTypeActivity" />
 
-        <activity android:name=".Trainer.PersonalTrainerHomeActivity"
+        <activity
+            android:name=".Trainer.PersonalTrainerHomeActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
@@ -81,13 +90,16 @@
             android:noHistory="true" />
         <activity android:name=".TraineePersonalDetailsActivity" />
 
-        <activity android:name=".Profile.ProfileActivity"
+        <activity
+            android:name=".Profile.ProfileActivity"
             tools:ignore="InnerclassSeparator" />
 
-        <activity android:name=".Profile.EditProfileActivity"
+        <activity
+            android:name=".Profile.EditProfileActivity"
             tools:ignore="InnerclassSeparator" />
 
-        <activity android:name=".Profile.ChangePasswordActivity"
+        <activity
+            android:name=".Profile.ChangePasswordActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
@@ -95,7 +107,8 @@
             android:label="@string/title_activity_progress_gallery"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".Client.ClientProfileActivity"
+        <activity
+            android:name=".Client.ClientProfileActivity"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="onipractice.mahmoud.com.fitnessapp_TARGET_NOTIFICATION" />
@@ -104,26 +117,32 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Trainer.MyTrainerActivity"
+        <activity
+            android:name=".Trainer.MyTrainerActivity"
             tools:ignore="InnerclassSeparator" />
 
-        <activity android:name=".Messaging.MessengerActivity"
+        <activity
+            android:name=".Messaging.MessengerActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
 
-        <activity android:name=".Trainer.TrainerPersonalDetailsActivity"
+        <activity
+            android:name=".Trainer.TrainerPersonalDetailsActivity"
             tools:ignore="InnerclassSeparator" />
 
-        <activity android:name=".Trainer.AddTrainerActivity"
+        <activity
+            android:name=".Trainer.AddTrainerActivity"
             tools:ignore="InnerclassSeparator" />
 
-        <activity android:name=".Client.ClientRequestsActivity"
+        <activity
+            android:name=".Client.ClientRequestsActivity"
             tools:ignore="InnerclassSeparator" />
 
-        <activity android:name=".Client.ClientsActivity"
+        <activity
+            android:name=".Client.ClientsActivity"
             tools:ignore="InnerclassSeparator" />
 
         <meta-data
@@ -134,7 +153,8 @@
         <activity android:name=".DietActivity" />
         <activity android:name=".SearchFoodActivity" />
 
-        <activity android:name=".Training.StretchingActivity"
+        <activity
+            android:name=".Training.StretchingActivity"
             tools:ignore="InnerclassSeparator" />
 
     </application>

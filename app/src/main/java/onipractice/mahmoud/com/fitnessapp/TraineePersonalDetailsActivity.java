@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import onipractice.mahmoud.com.fitnessapp.Models.PersonalDetails;
 
 public class TraineePersonalDetailsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -59,7 +60,6 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
         maleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 maleBtn.setBackgroundColor(getResources().getColor(R.color.outline));
                 femaleBtn.setBackgroundColor(getResources().getColor(R.color.transparent));
                 gender = "male";
@@ -69,7 +69,6 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
         femaleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 maleBtn.setBackgroundColor(getResources().getColor(R.color.transparent));
                 femaleBtn.setBackgroundColor(getResources().getColor(R.color.outline));
                 gender = "female";

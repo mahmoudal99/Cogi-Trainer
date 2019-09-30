@@ -1,134 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:layout_width="match_parent"
-
-    android:layout_height="match_parent"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white">
 
-
-
     <RelativeLayout
-
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-
         android:background="@color/white"
-
         android:orientation="horizontal">
 
-
-
         <ImageView
-
             android:id="@+id/backArrow"
-
-            android:layout_width="40dp"
-
-            android:layout_height="40dp"
-
-            android:src="@drawable/ic_back"
-
-            android:layout_gravity="center_vertical" />
-
-
+            android:layout_width="@dimen/IconViewWidth"
+            android:layout_height="@dimen/IconViewHeight"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_back" />
 
         <TextView
-
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
-
-            android:fontFamily="serif-monospace"
-
             android:layout_centerInParent="true"
-
+            android:fontFamily="serif-monospace"
             android:text="Diet Plan"
-
             android:textColor="@color/black"
-
             android:textSize="22sp"
-
             android:textStyle="bold" />
-
-
 
     </RelativeLayout>
 
-
-
     <View
-
-        android:layout_marginTop="40dp"
-
         android:layout_width="match_parent"
-
         android:layout_height="2dp"
-
         android:layout_gravity="center_horizontal"
-
+        android:layout_marginTop="@dimen/DividerMarginTop"
         android:background="@color/outline" />
 
-
-
     <RelativeLayout
-
-        android:layout_marginTop="70dp"
-
-        android:layout_gravity="center"
-
         android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content">
-
-
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="55dp">
 
         <ListView
-
             android:id="@+id/list"
-
             android:layout_width="match_parent"
-
             android:layout_height="match_parent"
-
             android:layout_alignParentTop="true"
-
-            android:layout_marginTop="10dp"
-
-            android:dividerHeight="10dp"
-
+            android:layout_marginTop="5dp"
             android:background="@color/white"
-
-            android:divider="@color/white">
-
-
+            android:divider="@color/white"
+            android:dividerHeight="10dp">
 
         </ListView>
 
-
-
     </RelativeLayout>
 
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-
         android:id="@+id/fab"
-
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-
         android:layout_gravity="bottom|end"
-
         android:layout_margin="@dimen/fab_margin"
-
         android:src="@drawable/ic_add" />
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

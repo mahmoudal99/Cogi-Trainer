@@ -13,7 +13,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="@dimen/SignUpBG"
             android:layout_gravity="center"
             android:background="@color/outline">
 
@@ -40,7 +40,7 @@
                     android:gravity="center"
                     android:hint="Email"
                     android:textColorHint="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/_20sp" />
 
                 <EditText
                     android:id="@+id/firstnameET"
@@ -51,7 +51,7 @@
                     android:gravity="center"
                     android:hint="@string/first_name"
                     android:textColorHint="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/_20sp" />
 
                 <EditText
                     android:id="@+id/lastnameET"
@@ -62,7 +62,7 @@
                     android:gravity="center"
                     android:hint="@string/last_name"
                     android:textColorHint="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/_20sp" />
 
                 <EditText
                     android:id="@+id/passwordET"
@@ -74,7 +74,7 @@
                     android:hint="@string/Password"
                     android:inputType="textPassword"
                     android:textColorHint="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/_20sp" />
 
                 <Button
                     android:id="@+id/signUpBTN"
@@ -84,7 +84,7 @@
                     android:background="@null"
                     android:text="@string/sign_up"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/_20sp" />
 
             </LinearLayout>
 
@@ -110,11 +110,12 @@
                     android:gravity="center"
                     android:text="@string/GoSignIn"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/_20sp" />
 
                 <View
-                    android:layout_width="match_parent"
+                    android:layout_width="@dimen/DividerWidth"
                     android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
                     android:background="@color/black" />
 
                 <TextView
@@ -124,7 +125,7 @@
                     android:gravity="center"
                     android:text="@string/ContactUs"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/_15sp" />
 
 
             </LinearLayout>

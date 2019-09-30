@@ -16,14 +16,14 @@
         <TextView
             android:id="@+id/textMessage"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/chat_text_item_bg"
             android:padding="10dp"
             android:text="message"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="@dimen/_17sp" />
     </LinearLayout>
 
 </RelativeLayout>

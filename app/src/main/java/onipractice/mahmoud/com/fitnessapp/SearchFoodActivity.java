@@ -147,12 +147,12 @@ public class SearchFoodActivity extends AppCompatActivity implements AdapterView
     };
 
     private void setUpSpinners() {
-        foodListAdapter = ArrayAdapter.createFromResource(SearchFoodActivity.this, R.array.foodCategories, android.R.layout.simple_spinner_item);
+        foodListAdapter = ArrayAdapter.createFromResource(SearchFoodActivity.this, R.array.foodCategories, R.layout.spinner_text);
         foodListAdapter.setDropDownViewResource(android.R.layout.preference_category);
         foodSpinner.setAdapter(foodListAdapter);
         foodSpinner.setOnItemSelectedListener(this);
 
-        mealListAdapter = ArrayAdapter.createFromResource(SearchFoodActivity.this, R.array.meals, android.R.layout.simple_spinner_item);
+        mealListAdapter = ArrayAdapter.createFromResource(SearchFoodActivity.this, R.array.meals, R.layout.spinner_text);
         mealListAdapter.setDropDownViewResource(android.R.layout.preference_category);
         mealSpinner.setAdapter(mealListAdapter);
         mealSpinner.setOnItemSelectedListener(this);

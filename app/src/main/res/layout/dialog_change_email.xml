@@ -13,7 +13,7 @@
         android:fontFamily="serif-monospace"
         android:text="@string/confirm_password"
         android:textColor="@color/black"
-        android:textSize="21sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <EditText
@@ -27,7 +27,7 @@
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:textColorHint="@color/identifier_grey"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <View
@@ -48,7 +48,7 @@
         android:inputType="textPassword"
         android:textColor="@color/black"
         android:textColorHint="@color/identifier_grey"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold" />
 
     <View
@@ -74,7 +74,7 @@
             android:fontFamily="serif-monospace"
             android:text="@string/cancel"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_17sp"
             android:textStyle="bold" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:fontFamily="serif-monospace"
             android:text="@string/confirm"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_17sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
