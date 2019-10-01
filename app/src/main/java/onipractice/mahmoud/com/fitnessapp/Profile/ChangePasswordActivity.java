@@ -66,14 +66,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
             }
         });
 
-        backArrowIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("user", userType);
-                startActivity(intent);
-            }
-        });
     }
 
     //---------- Changing Password ----------//

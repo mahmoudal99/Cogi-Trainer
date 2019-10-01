@@ -19,9 +19,10 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
+import onipractice.mahmoud.com.fitnessapp.TraineeHomeActivity;
 import onipractice.mahmoud.com.fitnessapp.Utils.Dialogs;
 
-public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener{
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "ProfileActivity";
 
@@ -31,7 +32,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     Dialogs dialogs;
 
     // Variables
-    String name, surname, userId, weight, gender, height, newGender, userType;
+    String name, surname, userId, weight, gender, height,  userType;
     Context context;
 
     //firebase
@@ -45,7 +46,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        context = EditProfileActivity.this;
+        context = SettingsActivity.this;
         userType = getIntent().getStringExtra("user");
 
         initialize();
@@ -61,16 +62,14 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     private void initialize(){
 
-        emailTv = findViewById(R.id.emailTv);
+        emailTv = findViewById(R.id.emailTextView);
         nameTv =  findViewById(R.id.nameTv);
         surnameTv = findViewById(R.id.surnameTv);
         backArrow = (ImageView) findViewById(R.id.backArrow);
         weightTv = findViewById(R.id.weightTv);
-        genderTv = findViewById(R.id.genderTv);
-        heightTv = findViewById(R.id.heightTv);
-        weightLabel = findViewById(R.id.weight);
-        heightLabel = findViewById(R.id.height);
-        genderLabel = findViewById(R.id.gender);
+        genderTv = findViewById(R.id.genderTextView);
+        heightTv = findViewById(R.id.heightTextView);
+        weightLabel = findViewById(R.id.weightTextView);
     }
 
     private void setUpWidgets(){
@@ -86,7 +85,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ProfileActivity.class);
+                Intent intent = new Intent(context, TraineeHomeActivity.class);
                 intent.putExtra("user", userType);
                 startActivity(intent);
             }
@@ -191,10 +190,10 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         dialogs = new Dialogs(context);
 
         switch (v.getId()) {
-            case R.id.genderTv:
+            case R.id.genderTextView:
                 dialogs.genderDialog();
                 break;
-            case R.id.heightTv:
+            case R.id.heightTextView:
                 dialogs.heightDialog();
                 break;
             case R.id.weightTv:

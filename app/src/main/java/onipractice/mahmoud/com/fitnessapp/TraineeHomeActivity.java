@@ -2,7 +2,6 @@ package onipractice.mahmoud.com.fitnessapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -29,7 +28,6 @@ import androidx.cardview.widget.CardView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import onipractice.mahmoud.com.fitnessapp.Jogging.JoggingActivity;
 import onipractice.mahmoud.com.fitnessapp.Messaging.MessengerActivity;
-import onipractice.mahmoud.com.fitnessapp.Profile.ProfileActivity;
 import onipractice.mahmoud.com.fitnessapp.Trainer.AddTrainerActivity;
 import onipractice.mahmoud.com.fitnessapp.Trainer.MyTrainerActivity;
 import onipractice.mahmoud.com.fitnessapp.Training.StretchingActivity;
@@ -105,22 +103,6 @@ public class TraineeHomeActivity extends AppCompatActivity implements Recurrence
     }
 
     private void init() {
-        profileImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("user", "trainee");
-                startActivity(intent);
-            }
-        });
-
-//        progressCardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, ProgressGalleryActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         rootReference = FirebaseDatabase.getInstance().getReference();
         uidReference = rootReference.child("Friends").child(userID);

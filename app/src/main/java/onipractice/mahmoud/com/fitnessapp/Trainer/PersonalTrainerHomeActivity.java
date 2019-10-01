@@ -20,7 +20,7 @@ import androidx.cardview.widget.CardView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import onipractice.mahmoud.com.fitnessapp.Client.ClientRequestsActivity;
 import onipractice.mahmoud.com.fitnessapp.Client.ClientsActivity;
-import onipractice.mahmoud.com.fitnessapp.Profile.ProfileActivity;
+import onipractice.mahmoud.com.fitnessapp.Profile.SettingsActivity;
 import onipractice.mahmoud.com.fitnessapp.R;
 
 public class PersonalTrainerHomeActivity extends AppCompatActivity {
@@ -74,7 +74,7 @@ public class PersonalTrainerHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, ProfileActivity.class);
+                Intent intent = new Intent(context, SettingsActivity.class);
                 intent.putExtra("user", "trainer");
                 startActivity(intent);
 

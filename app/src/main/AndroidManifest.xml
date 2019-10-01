@@ -91,11 +91,7 @@
         <activity android:name=".TraineePersonalDetailsActivity" />
 
         <activity
-            android:name=".Profile.ProfileActivity"
-            tools:ignore="InnerclassSeparator" />
-
-        <activity
-            android:name=".Profile.EditProfileActivity"
+            android:name=".Profile.SettingsActivity"
             tools:ignore="InnerclassSeparator" />
 
         <activity

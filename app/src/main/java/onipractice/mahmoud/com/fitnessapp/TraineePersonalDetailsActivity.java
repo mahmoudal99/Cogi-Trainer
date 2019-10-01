@@ -87,7 +87,7 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
 
     private void setWidgets() {
 
-        TextView heightET = (TextView) findViewById(R.id.heightTv);
+        TextView heightET = (TextView) findViewById(R.id.heightTextView);
         TextView weightET = (TextView) findViewById(R.id.weightTv);
         TextView ageET = (TextView) findViewById(R.id.ageET);
         nextBtn = (Button) findViewById(R.id.nextBtn);
@@ -289,7 +289,7 @@ public class TraineePersonalDetailsActivity extends AppCompatActivity implements
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.heightTv:
+            case R.id.heightTextView:
                 heightDialog();
                 break;
 
